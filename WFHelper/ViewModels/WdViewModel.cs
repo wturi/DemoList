@@ -22,7 +22,7 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
-using WFHelper.ExecuteOperations;
+using WFHelper.Executions;
 using WFHelper.Extensions;
 using WFHelper.ExtensionService;
 using WFHelper.XamlClr;
@@ -476,8 +476,8 @@ namespace WFHelper.ViewModels
 
         private void ExecuteRun(object obj)
         {
-            var execute = new Execute(this.WorkflowDesigner);
-            execute.Run();
+            var workflowRun = new WorkflowRunner(this.WorkflowDesigner);
+            workflowRun.Run();
         }
 
         #endregion 菜单事件实现

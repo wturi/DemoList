@@ -67,7 +67,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExecuteOperations\Execute.cs" />
+    <Compile Include="Executions\IWorkflowRunner.cs" />
+    <Compile Include="Executions\WorkflowRunner.cs" />
     <Compile Include="ExpressionEditor\ExpressionEditorInstance.cs" />
     <Compile Include="ExpressionEditor\ExpressionEditorService.cs" />
     <Compile Include="ExtensionService\ValidationErrorService.cs" />

@@ -8,18 +8,24 @@ using System.Linq;
 using System.Text;
 using WFHelper.TrackingParticipant;
 
-namespace WFHelper.ExecuteOperations
+namespace WFHelper.Executions
 {
-    public class Execute
+    public class WorkflowRunner : IWorkflowRunner
     {
         private readonly WorkflowDesigner _workflowDesigner;
 
-        public Execute(WorkflowDesigner workflowDesigner)
+        public WorkflowRunner(WorkflowDesigner workflowDesigner)
         {
             _workflowDesigner = workflowDesigner;
         }
 
-        // ReSharper disable once MemberCanBeMadeStatic.Global
+        public bool IsRunning { get; }
+
+        public void Abort()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Run()
         {
             var stream = new MemoryStream(Encoding.ASCII.GetBytes(_workflowDesigner.Text));
