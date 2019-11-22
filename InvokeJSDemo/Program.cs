@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using MSScriptControl;
+using Newtonsoft.Json;
 
 namespace InvokeJSDemo
 {
@@ -7,31 +10,51 @@ namespace InvokeJSDemo
     {
         private static void Main()
         {
-            var jsPath = AppDomain.CurrentDomain.BaseDirectory + @"JSTestFiles\Test1.js";
-            var str2 = File.ReadAllText(jsPath);
+            var myScriptEngine = new RunScriptHelper.ScriptEngine(RunScriptHelper.ScriptLanguage.JavaScript);
 
-            var fun = $@"sayHello('{"张三"}')";
-            var result = ExecuteScript(fun, str2);
+            var jsStrText = @"function add(one,str){
+var list=JSON.parse(str);
+    list.Push(one);
+    return list;
+}";
+            try
+            {
 
-            Console.WriteLine(result);
+
+                //var ss = JsonConvert.SerializeObject(new List<string> {"李四","王五" });
+
+                //var jsMethodRunValue = myScriptEngine.Run("add", new object[] { "张三", ss, }, jsStrText);
+                //Console.WriteLine(jsMethodRunValue.ToString());
+
+                JsRun();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
             Console.ReadLine();
         }
 
-        private static string ExecuteScript(string sExpression, string sCode)
+
+
+
+        public static void JsRun()
         {
-            var scriptControl = new MSScriptControl.ScriptControl { UseSafeSubset = true, Language = "JScript" };
-            scriptControl.AddCode(sCode);
-            string str;
-            try
-            {
-                str = scriptControl.Eval(sExpression).ToString();
-                return str;
-            }
-            catch (Exception ex)
-            {
-                str = ex.Message;
-            }
-            return str;
+            ScriptControlClass sc = new ScriptControlClass();
+            sc.UseSafeSubset = true;
+            sc.Language = "JavaScript";
+
+            var jsStrText = @"function add(name){
+nameList.Push(one);
+    return one;
+}";
+
+            var ddd = new object[] { "张三", "李四" };
+            sc.AddCode(jsStrText);
+            sc.AddObject("nameList", ddd, false);
+
+            string str = sc.Run("add", new object[] { "dsds" }).ToString();
         }
+
     }
 }

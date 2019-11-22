@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Activities;
 using System.Activities.Core.Presentation;
+using System.Activities.Expressions;
 using System.Activities.Presentation;
 using System.Activities.Presentation.Metadata;
 using System.Activities.Presentation.Toolbox;
@@ -22,6 +23,7 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.CSharp.Activities;
 using WFHelper.Executions;
 using WFHelper.Extensions;
 using WFHelper.ExtensionService;
@@ -416,15 +418,44 @@ namespace WFHelper.ViewModels
             StatusClean();
             this.WorkflowDesigner = new WorkflowDesigner();
             this.WorkflowDesigner.ModelChanged += this.WorkflowDesignerModelChanged;
-            this.WorkflowDesigner.Context.Services.GetService<DesignerConfigurationService>().TargetFrameworkName =
-                new FrameworkName(".NETFramework", new Version("4.5"));
+
+            DesignerConfigurationService configurationService = this.WorkflowDesigner.Context.Services.GetService<DesignerConfigurationService>();
+
+            var fff = configurationService.TargetFrameworkName;
+
+            configurationService.TargetFrameworkName = new FrameworkName(".NETFramework", new System.Version(4, 6));
+            configurationService.LoadingFromUntrustedSourceEnabled = true;
+            configurationService.AnnotationEnabled = true;
+
+
             if (File.Exists(TemplateXaml))
             {
                 this.WorkflowDesigner.Load(TemplateXaml);
             }
             else
             {
-                this.WorkflowDesigner.Load(new Flowchart() { DisplayName = "主流程" });
+                Variable<int> n = new Variable<int>
+                {
+                    Name = "n"
+                };
+                Activity wf = new Sequence
+                {
+                    Variables = { n },
+                    Activities =
+                    {
+                        new Assign<int>
+                        {
+                            To = new CSharpReference<int>("n"),
+                            Value = new CSharpValue<int>("new Random().Next(1, 101)")
+                        },
+                        new WriteLine
+                        {
+                            Text = new CSharpValue<string>("\"The number is \" + n")
+                        }
+                    }
+                };
+                CompileExpressions(wf);
+             this.WorkflowDesigner.Load(wf);
             }
 
             this.WorkflowDesigner.Flush();
@@ -497,7 +528,10 @@ namespace WFHelper.ViewModels
             this.WorkflowDesigner = new WorkflowDesigner();
             this.WorkflowDesigner.ModelChanged += this.WorkflowDesignerModelChanged;
 
-            this.WorkflowDesigner.Context.Services.GetService<DesignerConfigurationService>().TargetFrameworkName = new FrameworkName(".NETFramework", new Version("4.5"));
+            DesignerConfigurationService configurationService = this.WorkflowDesigner.Context.Services.GetService<DesignerConfigurationService>();
+            configurationService.TargetFrameworkName = new FrameworkName(".NETFramework", new System.Version(4, 5));
+            configurationService.LoadingFromUntrustedSourceEnabled = true;
+            configurationService.AnnotationEnabled = true;
 
             AddExtensionCallBack();
             AddExtensionService();
@@ -586,6 +620,99 @@ namespace WFHelper.ViewModels
 
         #endregion
 
+        static void CompileExpressions(DynamicActivity dynamicActivity)
+        {
+            // activityName is the Namespace.Type of the activity that contains the
+            // C# expressions. For Dynamic Activities this can be retrieved using the
+            // name property , which must be in the form Namespace.Type.
+            string activityName = dynamicActivity.Name;
+
+            // Split activityName into Namespace and Type.Append _CompiledExpressionRoot to the type name
+            // to represent the new type that represents the compiled expressions.
+            // Take everything after the last . for the type name.
+            string activityType = activityName.Split('.').Last() + "_CompiledExpressionRoot";
+            // Take everything before the last . for the namespace.
+            string activityNamespace = string.Join(".", activityName.Split('.').Reverse().Skip(1).Reverse());
+
+            // Create a TextExpressionCompilerSettings.
+            TextExpressionCompilerSettings settings = new TextExpressionCompilerSettings
+            {
+                Activity = dynamicActivity,
+                Language = "C#",
+                ActivityName = activityType,
+                ActivityNamespace = activityNamespace,
+                RootNamespace = null,
+                GenerateAsPartialClass = false,
+                AlwaysGenerateSource = true,
+                ForImplementation = true
+            };
+
+            // Compile the C# expression.
+            TextExpressionCompilerResults results =
+                new TextExpressionCompiler(settings).Compile();
+
+            // Any compilation errors are contained in the CompilerMessages.
+            if (results.HasErrors)
+            {
+                throw new Exception("Compilation failed.");
+            }
+
+            // Create an instance of the new compiled expression type.
+            ICompiledExpressionRoot compiledExpressionRoot =
+                Activator.CreateInstance(results.ResultType,
+                    new object[] { dynamicActivity }) as ICompiledExpressionRoot;
+
+            // Attach it to the activity.
+            CompiledExpressionInvoker.SetCompiledExpressionRootForImplementation(
+                dynamicActivity, compiledExpressionRoot);
+        }
+
+        static void CompileExpressions(Activity activity)
+        {
+            // activityName is the Namespace.Type of the activity that contains the
+            // C# expressions.
+            string activityName = activity.GetType().ToString();
+
+            // Split activityName into Namespace and Type.Append _CompiledExpressionRoot to the type name
+            // to represent the new type that represents the compiled expressions.
+            // Take everything after the last . for the type name.
+            string activityType = activityName.Split('.').Last() + "_CompiledExpressionRoot";
+            // Take everything before the last . for the namespace.
+            string activityNamespace = string.Join(".", activityName.Split('.').Reverse().Skip(1).Reverse());
+
+            // Create a TextExpressionCompilerSettings.
+            TextExpressionCompilerSettings settings = new TextExpressionCompilerSettings
+            {
+                Activity = activity,
+                Language = "C#",
+                ActivityName = activityType,
+                ActivityNamespace = activityNamespace,
+                RootNamespace = null,
+                GenerateAsPartialClass = false,
+                AlwaysGenerateSource = true,
+                ForImplementation = false
+            };
+
+            // Compile the C# expression.
+            TextExpressionCompilerResults results =
+                new TextExpressionCompiler(settings).Compile();
+
+            // Any compilation errors are contained in the CompilerMessages.
+            if (results.HasErrors)
+            {
+                throw new Exception("Compilation failed.");
+            }
+
+            // Create an instance of the new compiled expression type.
+            ICompiledExpressionRoot compiledExpressionRoot =
+                Activator.CreateInstance(results.ResultType,
+                    new object[] { activity }) as ICompiledExpressionRoot;
+
+            // Attach it to the activity.
+            CompiledExpressionInvoker.SetCompiledExpressionRoot(
+                activity, compiledExpressionRoot);
+        }
         #endregion 方法
+
     }
 }

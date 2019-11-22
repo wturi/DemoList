@@ -16,15 +16,16 @@ namespace WFHelper.TrackingParticipant
 
         protected override void Track(TrackingRecord record, TimeSpan timeout)
         {
-            if (record.Level != TraceLevel.Error) return;
+            //if (record.Level != TraceLevel.Error) return;
             _fileName = @"d:\" + record.InstanceId + ".txt";
             using (var sw = File.AppendText(_fileName))
             {
-                var obj = JsonConvert.DeserializeObject<ErrorRecordDataStructure>(JsonConvert.SerializeObject(record));
-                if (obj.FaultSource == null) return;
-                var str = obj.EventTime.ToString(CultureInfo.CurrentCulture) + "--" + obj.ActivityDefinitionId + "--" + obj.FaultSource.Name.ToString() + "--" +
-                          obj.UnhandledException.Message;
-                sw.WriteLine(str);
+                var json = JsonConvert.SerializeObject(record);
+                var obj = JsonConvert.DeserializeObject<ErrorRecordDataStructure>(json);
+                //if (obj.FaultSource == null) return;
+                //var str = obj.EventTime.ToString(CultureInfo.CurrentCulture) + "--" + obj.ActivityDefinitionId + "--" + obj.FaultSource.Name.ToString() + "--" +
+                //          obj.UnhandledException.Message;
+                sw.WriteLine(record.ToString());
             }
         }
     }

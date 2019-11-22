@@ -1,0 +1,74 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:AvaloniaApplication2.ViewModels;assembly=AvaloniaApplication2"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApplication2.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication2">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="25" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="200" MinHeight="100" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="200" MinWidth="100" />
+      <ColumnDefinition Width="*" MinWidth="300" />
+      <ColumnDefinition Width="280"  MinWidth="100" />
+    </Grid.ColumnDefinitions>
+    <GridSplitter  HorizontalAlignment="Right"
+                      VerticalAlignment="Stretch"
+                      Width="5"
+                      Grid.Column="0"
+                      Grid.Row="1" Background="#FFEDEDED" />
+    <GridSplitter  HorizontalAlignment="Left"
+                   VerticalAlignment="Stretch"
+                  Background="#FFEDEDED"
+                   Width="5"
+                   Grid.Column="2"
+                   Grid.Row="1" />
+    <StackPanel Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0">
+      <Menu Height="25"
+            VerticalAlignment="Center">
+        <MenuItem Header="文件">
+          <MenuItem Header="新建" />
+          <MenuItem Header="打开" />
+          <MenuItem Header="保存" />
+          <MenuItem Header="另存为" />
+          <MenuItem Header="退出" />
+        </MenuItem>
+        <MenuItem Header="运行"/>
+      </Menu>
+    </StackPanel>
+    <TabControl HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="0,0,5,0"
+                    Grid.Column="0"
+                    Grid.Row="1">
+      <TabItem Header="工具栏">
+        <!--<ContentControl Content="{Binding ToolboxPanel}" />-->
+      </TabItem>
+    </TabControl>
+    <TabControl HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="0,0,0,0"
+                  Grid.Column="1"
+                  Grid.Row="1">
+      <TabItem Header="画布">
+        <!--<ContentControl Content="{Binding WorkflowDesignerPanel}" />-->
+      </TabItem>
+      <TabItem Header="代码"
+               GotFocus="TabItemGotFocusRefreshXamlBox">
+        <TextBox Name="XamlTextBox" Text="xaml"
+                 AcceptsReturn="True" >
+        </TextBox>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>
