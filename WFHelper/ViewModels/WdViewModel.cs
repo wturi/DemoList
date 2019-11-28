@@ -6,6 +6,7 @@ using System.Activities;
 using System.Activities.Core.Presentation;
 using System.Activities.Expressions;
 using System.Activities.Presentation;
+using System.Activities.Presentation.Hosting;
 using System.Activities.Presentation.Metadata;
 using System.Activities.Presentation.Toolbox;
 using System.Activities.Presentation.Validation;
@@ -455,7 +456,7 @@ namespace WFHelper.ViewModels
                     }
                 };
                 CompileExpressions(wf);
-             this.WorkflowDesigner.Load(wf);
+                this.WorkflowDesigner.Load(wf);
             }
 
             this.WorkflowDesigner.Flush();
@@ -594,6 +595,8 @@ namespace WFHelper.ViewModels
             //抓取错误信息
             var validationErrorService = new ValidationErrorService(WorkflowErrors);
             this.WorkflowDesigner.Context.Services.Publish<IValidationErrorService>(validationErrorService);
+
+
         }
 
         /// <summary>
@@ -602,6 +605,9 @@ namespace WFHelper.ViewModels
         private void AddExtensionCallBack()
         {
             this.WorkflowDesigner.Context.Items.Subscribe<Selection>(CallBackExtension.SelectionChanged);
+
+            this.WorkflowDesigner.Context.Items.Subscribe<System.Activities.Presentation.Hosting.AssemblyContextControlItem>(
+                CallBackExtension.SelectionChanged);
         }
 
         #endregion 扩展
@@ -712,6 +718,7 @@ namespace WFHelper.ViewModels
             CompiledExpressionInvoker.SetCompiledExpressionRoot(
                 activity, compiledExpressionRoot);
         }
+
         #endregion 方法
 
     }

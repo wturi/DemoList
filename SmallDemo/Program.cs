@@ -14,7 +14,7 @@ namespace SmallDemo
         {
             var list = TypeName.Split('`');
             var type = list[1].MidStrEx("[[", "]]");
-            var dd = type.Split(new string[] { "],[" }, StringSplitOptions.RemoveEmptyEntries).Select(d => d.Split(',')[0]).StringJoin<string>(",");
+            var dd = type.Split(new string[] { "],[" }, StringSplitOptions.RemoveEmptyEntries).Select(d => d.Split(',')[0]).StringJoin(",");
 
             var ddd = $"{list[0]}<{dd}>";
         }

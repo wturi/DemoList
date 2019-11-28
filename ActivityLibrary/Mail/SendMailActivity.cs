@@ -20,7 +20,7 @@ namespace ActivityLibrary.Mail
         public InArgument<string> Subject { get; set; }
 
         [RequiredArgument]
-        public InArgument<string> Body { get; set; }
+        public string Body { get; set; }
 
         #endregion Input
 
@@ -29,7 +29,7 @@ namespace ActivityLibrary.Mail
             using (var client = new SmtpClient())
             {
                 var message = new MailMessage(From.Get(context), To.Get(context), Subject.Get(context),
-                    Body.Get(context))
+                    Body)
                 { IsBodyHtml = false };
                 client.Send(message);
             }

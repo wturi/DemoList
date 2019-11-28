@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Activities.Presentation.Hosting;
 using System.Activities.Presentation.View;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WFHelper.Extensions
 {
-   public  static class CallBackExtension
+    public static class CallBackExtension
     {
         public static void SelectionChanged(Selection selection)
         {
@@ -25,6 +26,16 @@ namespace WFHelper.Extensions
                     sb.Insert(0, displayName.ComputedValue);
                 }
                 modelItem = modelItem.Parent;
+            }
+        }
+
+
+        public static void SelectionChanged(AssemblyContextControlItem assemblyContext)
+        {
+            var nameSpace = assemblyContext.AllAssemblyNamesInContext;
+            while (nameSpace != null)
+            {
+                var name = string.Join(";", nameSpace);
             }
         }
     }
