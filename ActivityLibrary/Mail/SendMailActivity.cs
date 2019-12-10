@@ -1,4 +1,5 @@
 ﻿using System.Activities;
+using System.ComponentModel;
 using System.Drawing;
 using System.Net.Mail;
 
@@ -11,6 +12,8 @@ namespace ActivityLibrary.Mail
         #region Input
 
         [RequiredArgument]
+        [Description("发件人")]
+        [DisplayName("发件人")]
         public InArgument<string> From { get; set; }
 
         [RequiredArgument]
