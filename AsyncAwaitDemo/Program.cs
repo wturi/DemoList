@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace AsyncAwaitDemo
 {
@@ -26,11 +25,8 @@ namespace AsyncAwaitDemo
             Console.ReadLine();
         }
 
-
-
         private static async Task<string> GoGoGo(string arg1, string arg2, string arg3)
         {
-
             return await Task.Run(() =>
             {
                 Console.WriteLine(arg1 + "开始排队...");
@@ -42,14 +38,12 @@ namespace AsyncAwaitDemo
             });
         }
 
-
         public static object Get(string name, object obj)
         {
             _semaphore.Wait();
             Thread.Sleep(1000);
             if (_demo.ContainsKey(name))
             {
-
                 _semaphore.Release();
                 return _demo[name];
             }
