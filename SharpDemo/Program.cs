@@ -39,8 +39,8 @@ namespace SharpDemo
             {
                 // 通过反射，调用HelloWorld的实例
                 Assembly objAssembly = cr.CompiledAssembly;
-                object objHelloWorld = objAssembly.CreateInstance("DynamicCodeGenerate.HelloWorld");
-                MethodInfo objMI = objHelloWorld.GetType().GetMethod("OutPut");
+                object objHelloWorld = objAssembly.CreateInstance("ValidationCodeGenerateCode.HelloWorld");
+                MethodInfo objMI = objHelloWorld.GetType().GetMethod("ValidationCode");
 
                 Console.WriteLine(objMI.Invoke(objHelloWorld, null));
             }
@@ -53,7 +53,7 @@ namespace SharpDemo
             StringBuilder sb = new StringBuilder();
             sb.Append("using System;");
             sb.Append(Environment.NewLine);
-            sb.Append("namespace DynamicCodeGenerate");
+            sb.Append("namespace ValidationCodeGenerateCode");
             sb.Append(Environment.NewLine);
             sb.Append("{");
             sb.Append(Environment.NewLine);
@@ -61,11 +61,13 @@ namespace SharpDemo
             sb.Append(Environment.NewLine);
             sb.Append("      {");
             sb.Append(Environment.NewLine);
-            sb.Append("          public string OutPut()");
+            sb.Append("          public void ValidationCode()");
             sb.Append(Environment.NewLine);
             sb.Append("          {");
             sb.Append(Environment.NewLine);
-            sb.Append("               return \"Hello world!\";");
+            sb.Append("               List<string> b = null;");
+            sb.Append(Environment.NewLine);
+            sb.Append("               List<string> validationCodeVar = b;");
             sb.Append(Environment.NewLine);
             sb.Append("          }");
             sb.Append(Environment.NewLine);
