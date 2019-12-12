@@ -113,7 +113,6 @@ namespace WinRing0Demo
             KC_MULTIMEDIA_Mail = 0xB4,
             KC_MULTIMEDIA_Search = 0xAA,
             KC_MULTIMEDIA_Collection = 0xAB,
-
         }
 
         private static Ols ols = null;
@@ -285,6 +284,7 @@ namespace WinRing0Demo
                     result = Key.KC_CONTROL_RightSquareBrackets; break;
                 case "'":
                     result = Key.KC_CONTROL_SingleQuotes; break;
+
                 #endregion 符号
 
                 #region 空格
@@ -309,8 +309,7 @@ namespace WinRing0Demo
 
         private static List<char> SymbolChar = new List<char> { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '~', };
 
-
-        private static char ShiftConvert(char chr)
+         private static char ShiftConvert(char chr)
         {
             var resultChr = chr;
             switch (chr)
