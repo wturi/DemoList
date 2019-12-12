@@ -12,41 +12,35 @@ namespace WinRing0Demo
         static void Main(string[] args)
         {
             Thread.Sleep(3000);
-            foreach (var k in (WinRingHelper.Key[])Enum.GetValues(typeof(WinRingHelper.Key)))
-            {
-                WinRingHelper.init();
-                Console.WriteLine($"key={k.ToString()}");
-                WinRingHelper.KeyDown(k);
-                Thread.CurrentThread.Join(100);
-                WinRingHelper.KeyUp(k);
-                Thread.CurrentThread.Join(100);
-            }
-
-
-            WinRingHelper.init();
-            //WinRingHelper.KeyDown(WinRingHelper.Key.VK_SHIFT);
-            WinRingHelper.KeyDown(WinRingHelper.Key.);
-            Thread.CurrentThread.Join(100);
-            WinRingHelper.KeyUp(WinRingHelper.Key.VK_NUM1);
-            //WinRingHelper.KeyUp(WinRingHelper.Key.VK_SHIFT);
-
-
-            //string val = "*/-+.";
-
-            //foreach (char chr in val)
+            Console.WriteLine("开始打印");
+            //foreach (var k in (WinRingHelper.Key[])Enum.GetValues(typeof(WinRingHelper.Key)))
             //{
             //    WinRingHelper.init();
-            //    if (chr >= 'A' && chr <= 'Z')
-            //        WinRingHelper.KeyDown(WinRingHelper.Key.VK_SHIFT);
-            //    WinRingHelper.KeyDown(chr);
+            //    Console.WriteLine($"key={k.ToString()}");
+            //    WinRingHelper.KeyDown(k);
             //    Thread.CurrentThread.Join(100);
-            //    WinRingHelper.KeyUp(chr);
-            //    if (chr >= 'A' && chr <= 'Z')
-            //        WinRingHelper.KeyUp(WinRingHelper.Key.VK_SHIFT);
+            //    WinRingHelper.KeyUp(k);
             //    Thread.CurrentThread.Join(100);
             //}
 
 
+            // WinRingHelper.init();
+            // WinRingHelper.KeyDown(WinRingHelper.Key.KC_CONTROL_Shift);
+            // WinRingHelper.KeyDown(WinRingHelper.Key.KC_N);
+            // Thread.CurrentThread.Join(100);
+            //WinRingHelper.KeyUp(WinRingHelper.Key.KC_CONTROL_Shift);
+            // WinRingHelper.KeyUp(WinRingHelper.Key.KC_N);
+
+
+            string val = "!@#$abcd%^&*()_+>ABCD";
+
+            WinRingHelper.init();
+            foreach (char chr in val)
+            {
+                WinRingHelper.Send(chr);
+            }
+
+            Console.WriteLine("打印完成");
             Console.ReadLine();
         }
     }

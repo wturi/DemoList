@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace WinRing0Demo
 {
@@ -7,114 +9,111 @@ namespace WinRing0Demo
     {
         public enum Key
         {
-            ABSOLUTE = 0x8000,
-            LEFTDOWN = 2,
-            LEFTUP = 4,
-            MIDDLEDOWN = 0x20,
-            MIDDLEUP = 0x40,
-            MOVE = 1,
-            RIGHTDOWN = 8,
-            RIGHTUP = 0x10,
-            VIRTUALDESK = 0x4000,
-            VK_A = 0x41,
-            VK_ADD = 0x6b,
-            VK_B = 0x42,
-            VK_BACK = 8,
-            VK_C = 0x43,
-            VK_CANCEL = 3,
-            VK_CAPITAL = 20,
-            VK_CLEAR = 12,
-            VK_CONTROL = 0x11,
-            VK_D = 0x44,
-            VK_DECIMAL = 110,
-            VK_DELETE = 0x2e,
-            VK_DIVIDE = 0x6f,
-            VK_DOWN = 40,
-            VK_E = 0x45,
-            VK_END = 0x23,
-            VK_ESCAPE = 0x1b,
-            VK_EXECUTE = 0x2b,
-            VK_F = 70,
-            VK_F1 = 0x70,
-            VK_F10 = 0x79,
-            VK_F11 = 0x7a,
-            VK_F12 = 0x7b,
-            VK_F2 = 0x71,
-            VK_F3 = 0x72,
-            VK_F4 = 0x73,
-            VK_F5 = 0x74,
-            VK_F6 = 0x75,
-            VK_F7 = 0x76,
-            VK_F8 = 0x77,
-            VK_F9 = 120,
-            VK_G = 0x47,
-            VK_H = 0x48,
-            VK_HELP = 0x2f,
-            VK_HOME = 0x24,
-            VK_I = 0x49,
-            VK_INSERT = 0x2d,
-            VK_J = 0x4a,
-            VK_K = 0x4b,
-            VK_L = 0x4c,
-            VK_LBUTTON = 1,
-            VK_LEFT = 0x25,
-            VK_M = 0x4d,
-            VK_MBUTTON = 4,
-            VK_MENU = 0x12,
-            VK_N = 0x4e,
-            VK_NEXT = 0x22,
-            VK_NULTIPLY = 0x6a,
-            VK_NUM0 = 0x30,
-            VK_NUM1 = 0x31,
-            VK_NUM2 = 50,
-            VK_NUM3 = 0x33,
-            VK_NUM4 = 0x34,
-            VK_NUM5 = 0x35,
-            VK_NUM6 = 0x36,
-            VK_NUM7 = 0x37,
-            VK_NUM8 = 0x38,
-            VK_NUM9 = 0x39,
-            VK_NUMLOCK = 0x90,
-            VK_NUMPAD0 = 0x60,
-            VK_NUMPAD1 = 0x61,
-            VK_NUMPAD2 = 0x62,
-            VK_NUMPAD3 = 0x63,
-            VK_NUMPAD4 = 100,
-            VK_NUMPAD5 = 0x65,
-            VK_NUMPAD6 = 0x66,
-            VK_NUMPAD7 = 0x67,
-            VK_NUMPAD8 = 0x68,
-            VK_NUMPAD9 = 0x69,
-            VK_O = 0x4f,
-            VK_P = 80,
-            VK_PAUSE = 0x13,
-            VK_PRINT = 0x2a,
-            VK_PRIOR = 0x21,
-            VK_Q = 0x51,
-            VK_R = 0x52,
-            VK_RBUTTON = 2,
-            VK_RETURN = 13,
-            VK_RIGHT = 0x27,
-            VK_S = 0x53,
-            VK_SCROLL = 0x91,
-            VK_SELECT = 0x29,
-            VK_SEPARATOR = 0x6c,
-            VK_SHIFT = 0x10,
-            VK_SNAPSHOT = 0x2c,
-            VK_SPACE = 0x20,
-            VK_SUBTRACT = 0x6d,
-            VK_T = 0x54,
-            VK_TAB = 9,
-            VK_U = 0x55,
-            VK_UP = 0x26,
-            VK_V = 0x56,
-            VK_W = 0x57,
-            VK_X = 0x58,
-            VK_Y = 0x59,
-            VK_Z = 90,
-            WHEEL = 0x800,
-            XDOWN = 0x80,
-            XUP = 0x100
+            KC_A = 0x41,
+            KC_B = 0x42,
+            KC_C = 0x43,
+            KC_D = 0x44,
+            KC_E = 0x45,
+            KC_F = 0x46,
+            KC_G = 0x47,
+            KC_H = 0x48,
+            KC_I = 0x49,
+            KC_J = 0x4A,
+            KC_K = 0x4B,
+            KC_L = 0x4C,
+            KC_M = 0x4D,
+            KC_N = 0x4E,
+            KC_O = 0x4F,
+            KC_P = 0x50,
+            KC_Q = 0x51,
+            KC_R = 0x52,
+            KC_S = 0x53,
+            KC_T = 0x54,
+            KC_U = 0x55,
+            KC_V = 0x56,
+            KC_W = 0x57,
+            KC_X = 0x58,
+            KC_Y = 0x59,
+            KC_Z = 0x5A,
+            KC_0 = 0x30,
+            KC_1 = 0x31,
+            KC_2 = 0x32,
+            KC_3 = 0x33,
+            KC_4 = 0x34,
+            KC_5 = 0x35,
+            KC_6 = 0x36,
+            KC_7 = 0x37,
+            KC_8 = 0x38,
+            KC_9 = 0x39,
+            KC_SMALL_0 = 0x60,
+            KC_SMALL_1 = 0x61,
+            KC_SMALL_2 = 0x62,
+            KC_SMALL_3 = 0x63,
+            KC_SMALL_4 = 0x64,
+            KC_SMALL_5 = 0x65,
+            KC_SMALL_6 = 0x66,
+            KC_SMALL_7 = 0x67,
+            KC_SMALL_8 = 0x68,
+            KC_SMALL_9 = 0x69,
+            KC_SMALL_Nultiply = 0x6A,
+            KC_SMALL_Add = 0x6B,
+            KC_SMALL_Enter = 0x6C,
+            KC_SMALL_Subtract = 0x6D,
+            KC_SMALL_Decimal = 0x6E,
+            KC_SMALL_Divide = 0x6F,
+            KC_FUNCTION_F1 = 0x70,
+            KC_FUNCTION_F2 = 0x71,
+            KC_FUNCTION_F3 = 0x72,
+            KC_FUNCTION_F4 = 0x73,
+            KC_FUNCTION_F5 = 0x74,
+            KC_FUNCTION_F6 = 0x75,
+            KC_FUNCTION_F7 = 0x76,
+            KC_FUNCTION_F8 = 0x77,
+            KC_FUNCTION_F9 = 0x78,
+            KC_FUNCTION_F10 = 0x79,
+            KC_FUNCTION_F11 = 0x7A,
+            KC_FUNCTION_F12 = 0x7B,
+            KC_CONTROL_BackSpace = 0x8,
+            KC_CONTROL_Tab = 0x9,
+            KC_CONTROL_Clear = 0xC,
+            KC_CONTROL_Enter = 0xD,
+            KC_CONTROL_Shift = 0x10,
+            KC_CONTROL_Control = 0x11,
+            KC_CONTROL_Alt = 0x12,
+            KC_CONTROL_CapeLock = 0x14,
+            KC_CONTROL_Esc = 0x1B,
+            KC_CONTROL_Spacebar = 0x20,
+            KC_CONTROL_PageUp = 0x21,
+            KC_CONTROL_PageDown = 0x22,
+            KC_CONTROL_End = 0x23,
+            KC_CONTROL_Home = 0x24,
+            KC_CONTROL_LeftArrow = 0x25,
+            KC_CONTROL_UpArrow = 0x26,
+            KC_CONTROL_RightArrow = 0x27,
+            KC_CONTROL_DwArrow = 0x28,
+            KC_CONTROL_Insert = 0x2D,
+            KC_CONTROL_Delete = 0x2E,
+            KC_CONTROL_NumLock = 0x90,
+            KC_CONTROL_Semicolon = 0xBA,
+            KC_CONTROL_Equal = 0xBB,
+            KC_CONTROL_Comma = 0xBC,
+            KC_CONTROL_Minus = 0xBD,
+            KC_CONTROL_Decimal = 0xBE,
+            KC_CONTROL_Divide = 0xBF,
+            KC_CONTROL_Apostrophe = 0xC0,
+            KC_CONTROL_LeftSquareBrackets = 0xDB,
+            KC_CONTROL_RightSquareBrackets = 0xDD,
+            KC_CONTROL_RightSlash = 0xDC,
+            KC_CONTROL_SingleQuotes = 0xDE,
+            KC_MULTIMEDIA_VolumeAdd = 0xAF,
+            KC_MULTIMEDIA_VolumeSubtract = 0xAE,
+            KC_MULTIMEDIA_Stop = 0xB3,
+            KC_MULTIMEDIA_Mute = 0xAD,
+            KC_MULTIMEDIA_Browser = 0xAC,
+            KC_MULTIMEDIA_Mail = 0xB4,
+            KC_MULTIMEDIA_Search = 0xAA,
+            KC_MULTIMEDIA_Collection = 0xAB,
+
         }
 
         private static Ols ols = null;
@@ -158,7 +157,7 @@ namespace WinRing0Demo
 
         public static void KeyUp(char str)
         {
-            int btScancode = MapVirtualKey((uint)GetKey(str), 0);
+            int btScancode = MapVirtualKey(str, 0);
             KBCWait4IBE();
             ols.WriteIoPortByte(0x64, 0xd2);
             KBCWait4IBE();
@@ -176,111 +175,122 @@ namespace WinRing0Demo
 
         private static Key GetKey(char str)
         {
-            var result = Key.VK_A;
+            var result = Key.KC_A;
 
             switch (str.ToString().ToLower())
             {
                 #region 字母
 
                 case "a":
-                    result = Key.VK_A; break;
+                    result = Key.KC_A; break;
                 case "b":
-                    result = Key.VK_B; break;
+                    result = Key.KC_B; break;
                 case "c":
-                    result = Key.VK_C; break;
+                    result = Key.KC_C; break;
                 case "d":
-                    result = Key.VK_D; break;
+                    result = Key.KC_D; break;
                 case "e":
-                    result = Key.VK_E; break;
+                    result = Key.KC_E; break;
                 case "f":
-                    result = Key.VK_F; break;
+                    result = Key.KC_F; break;
                 case "g":
-                    result = Key.VK_G; break;
+                    result = Key.KC_G; break;
                 case "h":
-                    result = Key.VK_H; break;
+                    result = Key.KC_H; break;
                 case "i":
-                    result = Key.VK_I; break;
+                    result = Key.KC_I; break;
                 case "j":
-                    result = Key.VK_J; break;
+                    result = Key.KC_J; break;
                 case "k":
-                    result = Key.VK_K; break;
+                    result = Key.KC_K; break;
                 case "l":
-                    result = Key.VK_L; break;
+                    result = Key.KC_L; break;
                 case "m":
-                    result = Key.VK_M; break;
+                    result = Key.KC_M; break;
                 case "n":
-                    result = Key.VK_N; break;
+                    result = Key.KC_N; break;
                 case "o":
-                    result = Key.VK_O; break;
+                    result = Key.KC_O; break;
                 case "p":
-                    result = Key.VK_P; break;
+                    result = Key.KC_P; break;
                 case "q":
-                    result = Key.VK_Q; break;
+                    result = Key.KC_Q; break;
                 case "r":
-                    result = Key.VK_R; break;
+                    result = Key.KC_R; break;
                 case "s":
-                    result = Key.VK_S; break;
+                    result = Key.KC_S; break;
                 case "t":
-                    result = Key.VK_T; break;
+                    result = Key.KC_T; break;
                 case "u":
-                    result = Key.VK_U; break;
+                    result = Key.KC_U; break;
                 case "v":
-                    result = Key.VK_V; break;
+                    result = Key.KC_V; break;
                 case "w":
-                    result = Key.VK_W; break;
+                    result = Key.KC_W; break;
                 case "x":
-                    result = Key.VK_X; break;
+                    result = Key.KC_X; break;
                 case "y":
-                    result = Key.VK_Y; break;
+                    result = Key.KC_Y; break;
                 case "z":
-                    result = Key.VK_Z; break;
+                    result = Key.KC_Z; break;
 
                 #endregion 字母
 
                 #region 数字
 
                 case "0":
-                    result = Key.VK_NUM0; break;
+                    result = Key.KC_0; break;
                 case "1":
-                    result = Key.VK_NUM1; break;
+                    result = Key.KC_1; break;
                 case "2":
-                    result = Key.VK_NUM2; break;
+                    result = Key.KC_2; break;
                 case "3":
-                    result = Key.VK_NUM3; break;
+                    result = Key.KC_3; break;
                 case "4":
-                    result = Key.VK_NUM4; break;
+                    result = Key.KC_4; break;
                 case "5":
-                    result = Key.VK_NUM5; break;
+                    result = Key.KC_5; break;
                 case "6":
-                    result = Key.VK_NUM6; break;
+                    result = Key.KC_6; break;
                 case "7":
-                    result = Key.VK_NUM7; break;
+                    result = Key.KC_7; break;
                 case "8":
-                    result = Key.VK_NUM8; break;
+                    result = Key.KC_8; break;
                 case "9":
-                    result = Key.VK_NUM9; break;
+                    result = Key.KC_9; break;
 
                 #endregion 数字
 
                 #region 符号
 
-                case "*":
-                    result = Key.VK_NULTIPLY; break;
-                case "+":
-                    result = Key.VK_ADD; break;
+                case ";":
+                    result = Key.KC_CONTROL_Semicolon; break;
+                case "=":
+                    result = Key.KC_CONTROL_Equal; break;
+                case ",":
+                    result = Key.KC_CONTROL_Comma; break;
                 case "-":
-                    result = Key.VK_SUBTRACT; break;
+                    result = Key.KC_CONTROL_Minus; break;
                 case ".":
-                    result = Key.VK_DECIMAL; break;
+                    result = Key.KC_CONTROL_Decimal; break;
                 case "/":
-                    result = Key.VK_DIVIDE; break;
-
+                    result = Key.KC_CONTROL_Divide; break;
+                case "`":
+                    result = Key.KC_CONTROL_Apostrophe; break;
+                case "[":
+                    result = Key.KC_CONTROL_LeftSquareBrackets; break;
+                case @"\":
+                    result = Key.KC_CONTROL_RightSlash; break;
+                case "]":
+                    result = Key.KC_CONTROL_RightSquareBrackets; break;
+                case "'":
+                    result = Key.KC_CONTROL_SingleQuotes; break;
                 #endregion 符号
 
                 #region 空格
 
                 case " ":
-                    result = Key.VK_SPACE; break;
+                    result = Key.KC_CONTROL_BackSpace; break;
 
                 #endregion 空格
 
@@ -288,6 +298,66 @@ namespace WinRing0Demo
                     break;
             }
             return result;
+        }
+
+        private static bool JudgeShift(char chr)
+        {
+            if (chr >= 'A' && chr <= 'Z') return true;
+            if (SymbolChar.Contains(chr)) return true;
+            return false;
+        }
+
+        private static List<char> SymbolChar = new List<char> { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '~', };
+
+
+        private static char ShiftConvert(char chr)
+        {
+            var resultChr = chr;
+            switch (chr)
+            {
+                case '!': resultChr = '1'; break;
+                case '@': resultChr = '2'; break;
+                case '#': resultChr = '3'; break;
+                case '$': resultChr = '4'; break;
+                case '%': resultChr = '5'; break;
+                case '^': resultChr = '6'; break;
+                case '&': resultChr = '7'; break;
+                case '*': resultChr = '8'; break;
+                case '(': resultChr = '9'; break;
+                case ')': resultChr = '0'; break;
+                case '_': resultChr = '-'; break;
+                case '+': resultChr = '='; break;
+                case '{': resultChr = '['; break;
+                case '}': resultChr = ']'; break;
+                case '|': resultChr = '\\'; break;
+                case ':': resultChr = ';'; break;
+                case '"': resultChr = '\''; break;
+                case '<': resultChr = ','; break;
+                case '>': resultChr = '.'; break;
+                case '?': resultChr = '/'; break;
+                case '~': resultChr = '`'; break;
+                default:
+                    resultChr = chr;
+                    break;
+            }
+            return resultChr;
+        }
+
+        public static void Send(char chr)
+        {
+            var isShift = JudgeShift(chr);
+
+            if (isShift)
+            {
+                KeyDown(Key.KC_CONTROL_Shift);
+                chr = ShiftConvert(chr);
+            }
+            KeyDown(chr);
+            Thread.CurrentThread.Join(100);
+            KeyUp(chr);
+            if (isShift)
+                KeyUp(Key.KC_CONTROL_Shift);
+            Thread.CurrentThread.Join(100);
         }
     }
 }
