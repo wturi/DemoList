@@ -16,7 +16,6 @@ namespace BindingDemo.ViewModel
             {
                 if (_name == value) return;
                 _name = value;
-                RaisePropertyChanged("IsRunningProcess");
             }
         }
     }

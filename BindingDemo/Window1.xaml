@@ -14,8 +14,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{Binding Path=Name,Mode=TwoWay}"/>
         <TextBlock Grid.Row="1" x:Name="Name" Text="{Binding Path=IsRunningProcess}"/>
+
+        <TextBlock Grid.Row="2" Text="{Binding ElementName=Name,Path=Text}"/>
     </Grid>
 </Window>
