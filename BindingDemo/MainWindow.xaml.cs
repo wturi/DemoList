@@ -16,6 +16,9 @@ namespace BindingDemo
             InitializeComponent();
             DataContext = ViewModel;
 
+            var window1 = new Window1();
+            window1.Show();
+
             Update.UpdateVal();
         }
     }

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BindingDemo.ViewModel;
 
 namespace BindingDemo
 {
@@ -19,9 +20,15 @@ namespace BindingDemo
     /// </summary>
     public partial class Window1 : Window
     {
+        public MainWindowViewModel ViewModel = ModelFactory.Get(typeof(MainWindowViewModel), new object[] { }) as MainWindowViewModel;
         public Window1()
         {
             InitializeComponent();
+
+            DataContext = new Window1ViewModel();
+
+            Name.DataContext = ViewModel;
+
         }
     }
 }
