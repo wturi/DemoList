@@ -309,7 +309,7 @@ namespace WinRing0Demo
 
         private static List<char> SymbolChar = new List<char> { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '~', };
 
-         private static char ShiftConvert(char chr)
+        private static char ShiftConvert(char chr)
         {
             var resultChr = chr;
             switch (chr)

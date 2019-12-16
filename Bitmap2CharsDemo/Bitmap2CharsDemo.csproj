@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E141680C-5BFA-433E-B9B7-118A86857CEF}</ProjectGuid>
+    <ProjectGuid>{FB5A2098-6496-4B7F-B45A-C2C967DCD865}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>WinRing0Demo</RootNamespace>
-    <AssemblyName>WinRing0Demo</AssemblyName>
+    <RootNamespace>Bitmap2CharsDemo</RootNamespace>
+    <AssemblyName>Bitmap2CharsDemo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,21 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ols.cs" />
+    <Compile Include="Bitmap2Chars.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WinRingHelper.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="DLL\WinRing0.sys" />
-    <None Include="DLL\WinRing0x64.sys" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DLL\WinRing0.dll" />
-    <Content Include="DLL\WinRing0x64.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
