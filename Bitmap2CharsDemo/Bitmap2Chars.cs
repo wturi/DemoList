@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -16,13 +18,33 @@ namespace Bitmap2CharsDemo
         /// <returns></returns>
         public static String BitmapConvert(Bitmap bitmap, int rowSize, int colSize)
         {
+            GC.Collect();
             StringBuilder result = new StringBuilder();
             char[] charset = { 'M', '8', '0', 'V', '1', 'i', ':', '*', '|', '.', ' ' };
             int bitmapH = bitmap.Height;
             int bitmapW = bitmap.Width;
+
+            var tblDatas = new DataTable("Datas");
+
+            DataColumn dc = null;
+            dc = tblDatas.Columns.Add("ID", Type.GetType("System.Int32"));
+            dc.AutoIncrement = true;//自动增加
+            dc.AutoIncrementSeed = 1;//起始为1
+            dc.AutoIncrementStep = 1;//步长为1
+            dc.AllowDBNull = false;//
+
+
+            for (int i = 0; i < bitmapW / colSize; i++)
+            {
+                dc = tblDatas.Columns.Add("data" + i, Type.GetType("System.String"));
+            }
+
+            DataRow dataRow;
+
             for (int h = 0; h < bitmapH / rowSize; h++)
             {
                 int offsetY = h * rowSize;
+                dataRow = tblDatas.NewRow();
                 for (int w = 0; w < bitmapW / colSize; w++)
                 {
                     int offsetX = w * colSize;
@@ -47,9 +69,13 @@ namespace Bitmap2CharsDemo
                     if (index == charset.Length)
                         index--;
                     result.Append(charset[charset.Length - 1 - index]);
+                    dataRow["data" + w] = charset[charset.Length - 1 - index];
                 }
                 result.Append("\r\n");
+                tblDatas.Rows.Add(dataRow);
             }
+
+            var ss = JsonConvert.SerializeObject(tblDatas);
             return result.ToString();
         }
 
