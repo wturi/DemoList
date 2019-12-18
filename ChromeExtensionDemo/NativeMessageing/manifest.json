@@ -1,0 +1,13 @@
+{
+    "name" : "callapp",
+    "version" : "1.0.1",
+    "description" : "call local application",
+    "background" : { "scripts": ["background.js"] },
+    "permissions" : [
+    "nativeMessaging",
+    "contextMenus",
+    "tabs"
+    ],
+    "minimum_chrome_version" : "6.0.0.0",
+    "manifest_version": 2
+}
