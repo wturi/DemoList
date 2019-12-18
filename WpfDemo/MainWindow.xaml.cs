@@ -1,19 +1,11 @@
 ﻿using mshtml;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace WpfDemo
 {
@@ -36,8 +28,6 @@ namespace WpfDemo
             mshtml.IHTMLElement kw = (mshtml.IHTMLElement)doms.getElementById("reportModal");
             var cssSelector = CssPath(kw, true);
         }
-
-
 
         /// <summary>
         /// 获取css Selector
