@@ -24,8 +24,8 @@ namespace WpfDemo
 
         private void webbrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
-            mshtml.HTMLDocument doms = (mshtml.HTMLDocument)webBrowser.Document;
-            mshtml.IHTMLElement kw = (mshtml.IHTMLElement)doms.getElementById("reportModal");
+            HTMLDocument doms = (HTMLDocument)webBrowser.Document;
+            IHTMLElement kw = doms.getElementById("reportModal");
             var cssSelector = CssPath(kw, true);
         }
 
@@ -37,8 +37,7 @@ namespace WpfDemo
         /// <returns></returns>
         private string CssPath(IHTMLElement hTMLElement, bool optiomized)
         {
-            var node = hTMLElement as IHTMLDOMNode;
-            if (node == null || node.nodeType != 1) return "";
+            if (!(hTMLElement is IHTMLDOMNode node) || node.nodeType != 1) return "";
             var steps = new List<SelectorStep>();
             var contextNode = node;
             while (contextNode != null)
