@@ -1,0 +1,9 @@
+{
+    "name": "com.ctrip.ops.mysql.callapp",
+    "description": "Chrome call native app and sent message to app.",
+    "path": "‪D:\\Project\\Work\\DemoList\\ChromeDemos\\MyApp\\bin\\Debug\\MyApp.exe",
+    "type": "stdio",
+    "allowed_origins": [
+        "chrome-extension://dadkmbefdegekemajepgpicbpkodfcdi/"
+    ]
+}

@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
-
 using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
-namespace MyApp
+namespace ConsoleApp16
 {
     internal class Program
     {
@@ -20,17 +20,18 @@ namespace MyApp
                 string chromeMessage = "";
                 while (!string.IsNullOrEmpty(chromeMessage = OpenStandardStreamIn()))
                 {
-                    Write(chromeMessage);
+                    Write(chromeMessage+"返回的");
                     log2file("--------------------My application starts with Chrome Extension message: " + chromeMessage + "---------------------------------");
 
-                    Task.Run(() =>
-                    {
+                    Task.Run(() => {
+
                         Thread.Sleep(3000);
                         Write("111");
                     });
                 }
             }
             log2file("--------------------program end at " + DateTime.Now.ToString() + "--------------------");
+
         }
 
         private static string OpenStandardStreamIn()
@@ -50,6 +51,7 @@ namespace MyApp
 
             return input;
         }
+
 
         public static void Write(JToken data)
         {
