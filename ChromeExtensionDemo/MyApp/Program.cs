@@ -35,7 +35,7 @@ namespace MyApp
                     return "exit";
 
                 default:
-                    return "echo: " + message;
+                    return "MyApp echo: " + message;
             }
         }
 
@@ -79,7 +79,8 @@ namespace MyApp
 
         private static void log2file(string s)
         {
-            FileStream fs = new FileStream(@"c:\test1.log", FileMode.Append);
+            var fileName = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+            FileStream fs = new FileStream($"{fileName}\\test.log", FileMode.Append);
             StreamWriter sw = new StreamWriter(fs);
             sw.WriteLine(s);
             sw.Close();

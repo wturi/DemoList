@@ -1,8 +1,3 @@
-//Author: jyx
-//Date: 2014.10.11
-//Description: This is a javaScript file use for handle contextMenus action
-//When click the contextMenus, it will sent the infomation to native app
-
 //connect to native app
 var port = null;
 var nativeHostName = "com.ctrip.ops.mysql.callapp";//chrome与本地程序通信的桥梁，根据该名称进行配置项的寻找。windows下在注册表HKEY_CURRENT_USER\Software\Google\Chrome\NativeMessagingHosts内寻找，linux下在目录/etc/opt/chrome/native-messaging-hosts/寻找该名称的json文件（本例子为com.ctrip.ops.mysql.callapp.json）
@@ -11,6 +6,7 @@ var nativeHostName = "com.ctrip.ops.mysql.callapp";//chrome与本地程序通信
 function onDisconnected() {
     //alert("连接到FastDownload服务失败: " + chrome.runtime.lastError.message);
     port = null;
+    console.log("Inside onDisconnected(): " + chrome.runtime.lastError.message);
 }
 
 function onNativeMessage(message) {
@@ -20,6 +16,7 @@ function onNativeMessage(message) {
 //connect to native host and get the communicatetion port
 function connectToNativeHost() {
     port = chrome.runtime.connectNative(nativeHostName);//根据配置文件连接到本地程序
+    port.onMessage.addListener(onNativeMessage);
     port.onDisconnect.addListener(onDisconnected);
 }
 
@@ -28,7 +25,9 @@ function connectToNativeHost() {
 function getClickHandler() {
     return function (info, tab) {
         console.log(info.linkUrl);
-        connectToNativeHost();
+        if (port == null) {
+            connectToNativeHost();
+        }
         port.postMessage(info.linkUrl);
     };
 };
