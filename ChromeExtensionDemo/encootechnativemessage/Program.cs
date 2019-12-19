@@ -1,38 +1,32 @@
 ﻿using Newtonsoft.Json.Linq;
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BotTimeNativeMessage
+namespace encootechnativemessage
 {
     internal class Program
     {
         private static bool _isSocketStart = false;
         private static List<Socket> Sockets = new List<Socket>();
-        static SocketHelp sh = new SocketHelp(false);
+        private static SocketHelp sh = new SocketHelp(false);
 
         [STAThread]
         private static void Main(string[] args)
         {
             if (args.Length != 0)
             {
-                for (int i = 0; i < args.Length; i++)
-                    log2file("arg " + i.ToString() + args[i]);
-
                 string chromeMessage = "";
                 //StartSocket();
                 while (!string.IsNullOrEmpty(chromeMessage = OpenStandardStreamIn()))
                 {
                     Write(chromeMessage + "返回的");
                     Sockets.ForEach(s => s.Send(sh.PackData(chromeMessage)));
-                    log2file("--------------------My application starts with Chrome Extension message: " + chromeMessage + "---------------------------------");
                     if (!_isSocketStart)
                     {
                         Task.Run(() =>
@@ -42,7 +36,6 @@ namespace BotTimeNativeMessage
                     }
                 }
             }
-            log2file("--------------------program end at " + DateTime.Now.ToString() + "--------------------");
         }
 
         private static string OpenStandardStreamIn()
@@ -65,10 +58,12 @@ namespace BotTimeNativeMessage
 
         private static void Write(JToken data)
         {
-            var json = new JObject();
-            json["data"] = data;
+            var json = new JObject
+            {
+                ["data"] = data
+            };
 
-            var bytes = System.Text.Encoding.UTF8.GetBytes(json.ToString());
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(json.ToString());
 
             var stdout = Console.OpenStandardOutput();
             stdout.WriteByte((byte)((bytes.Length >> 0) & 0xFF));
@@ -79,16 +74,9 @@ namespace BotTimeNativeMessage
             stdout.Flush();
         }
 
-        private static void log2file(string s)
-        {
-            var fileName = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            FileStream fs = new FileStream($"{fileName}\\test.log", FileMode.Append);
-            StreamWriter sw = new StreamWriter(fs);
-            sw.WriteLine(s);
-            sw.Close();
-            fs.Close();
-        }
-
+        /// <summary>
+        /// 启动socket服务
+        /// </summary>
         private static void StartSocketV2()
         {
             int port = 8881;
@@ -118,6 +106,10 @@ namespace BotTimeNativeMessage
             }
         }
 
+        /// <summary>
+        /// 接收数据
+        /// </summary>
+        /// <param name="sc"></param>
         public static void ReceiveData(Socket sc)
         {
             byte[] buffer = new byte[1024];

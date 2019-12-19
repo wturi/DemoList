@@ -1,0 +1,9 @@
+{
+    "name": "com.encootech.bottime",
+    "description": "Chrome call native app and sent message to app.",
+    "path": "‪D:\\Project\\Work\\DemoList\\ChromeExtensionDemo\\BotTimeNativeMessage\\bin\\Debug\\BotTimeNativeMessage.exe",
+    "type": "stdio",
+    "allowed_origins": [
+        "chrome-extension://dadkmbefdegekemajepgpicbpkodfcdi/"
+    ]
+}

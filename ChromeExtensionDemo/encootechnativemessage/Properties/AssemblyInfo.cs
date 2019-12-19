@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("BotTimeNativeMessage")]
+[assembly: AssemblyTitle("encootechnativemessage")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BotTimeNativeMessage")]
+[assembly: AssemblyProduct("encootechnativemessage")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("f2a804e2-5c55-4494-b0c8-d3853cfe92b9")]
+[assembly: Guid("4751ada0-9580-4a1c-851c-0a2ab0190a9e")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

@@ -1,6 +1,6 @@
 //connect to native app
 var port = null;
-var nativeHostName = "com.ctrip.ops.mysql.callapp";//chrome与本地程序通信的桥梁，根据该名称进行配置项的寻找。windows下在注册表HKEY_CURRENT_USER\Software\Google\Chrome\NativeMessagingHosts内寻找，linux下在目录/etc/opt/chrome/native-messaging-hosts/寻找该名称的json文件（本例子为com.ctrip.ops.mysql.callapp.json）
+var nativeHostName = "com.encootech.bottime";//chrome与本地程序通信的桥梁，根据该名称进行配置项的寻找。windows下在注册表HKEY_CURRENT_USER\Software\Google\Chrome\NativeMessagingHosts内寻找，linux下在目录/etc/opt/chrome/native-messaging-hosts/寻找该名称的json文件（本例子为com.ctrip.ops.mysql.callapp.json）
 
 //onNativeDisconnect
 function onDisconnected() {

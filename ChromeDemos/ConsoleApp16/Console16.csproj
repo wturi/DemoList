@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F2A804E2-5C55-4494-B0C8-D3853CFE92B9}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp16</RootNamespace>
-    <AssemblyName>ConsoleApp16</AssemblyName>
+    <RootNamespace>BotTimeNativeMessage</RootNamespace>
+    <AssemblyName>BotTimeNativeMessage</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -48,10 +48,17 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketHelp.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ChromeExtensionDemo\SocketHelper\SocketHelper.csproj">
+      <Project>{abdfc1df-1109-46cc-a6cf-cdef2ea359c8}</Project>
+      <Name>SocketHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
