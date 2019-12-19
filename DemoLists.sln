@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ChromeDemos", "ChromeDemos"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp", "ChromeDemos\MyApp\MyApp.csproj", "{355FCE99-C60D-4149-89DD-F35F7B032DD3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedMemory", "SharedMemory", "{AA6354EA-42B8-409F-8481-138C79C7DF3D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

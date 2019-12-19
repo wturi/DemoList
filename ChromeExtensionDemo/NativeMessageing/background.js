@@ -34,9 +34,9 @@ function getClickHandler() {
 
 //在浏览器启动时即创建右键菜单，在页面链接上右击鼠标会显示该菜单，当点击"start program"的时候就会调用getClickHandler（）函数处理
 chrome.contextMenus.create({
-    "title": "start program",
+    "title": "发送消息",
     "type": "normal",
-    "id": "callapp",
+    "id": "BotTime Demo",
     "contexts": ["link"],
     "enabled": true,
     "onclick": getClickHandler()

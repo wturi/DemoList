@@ -1,13 +1,27 @@
 {
-    "name" : "callapp",
-    "version" : "1.0.1",
-    "description" : "call local application",
-    "background" : { "scripts": ["background.js"] },
-    "permissions" : [
-    "nativeMessaging",
-    "contextMenus",
-    "tabs"
+    "name": "BotTime Demo",
+    "version": "1.0.1",
+    "description": "BotTime Demo",
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "icons":{
+        "48":"ide.png"
+    },
+    "browser_action":{
+        "default_icon":"ide.png",
+        "default_title":"BotTime Demo"
+    },
+    "permissions": [
+        "nativeMessaging",
+        "contextMenus",
+        "tabs",
+		"http://*/*", 
+		"https://*/*", 
+		"file://*/*"
     ],
-    "minimum_chrome_version" : "6.0.0.0",
+    "minimum_chrome_version": "6.0.0.0",
     "manifest_version": 2
 }
