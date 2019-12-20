@@ -67,7 +67,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMServer_State", "SharedMem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotTimeNativeMessage", "ChromeExtensionDemo\BotTimeNativeMessage\BotTimeNativeMessage.csproj", "{FF1E2E46-E611-4392-AB33-9F0174C6B917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "encootechnativemessage", "ChromeExtensionDemo\encootechnativemessage\encootechnativemessage.csproj", "{4751ADA0-9580-4A1C-851C-0A2AB0190A9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncootechNativeMessage", "ChromeExtensionDemo\encootechnativemessage\EncootechNativeMessage.csproj", "{4751ADA0-9580-4A1C-851C-0A2AB0190A9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
