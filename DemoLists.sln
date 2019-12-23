@@ -73,6 +73,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SocketDemos", "SocketDemos"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketServerDemo", "SocketDemos\SocketServerDemo\SocketServerDemo.csproj", "{052A1EC9-B3C3-409C-8BC0-E7E3CC5DE3A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SocketExtension", "SocketDemos\SocketExtension\SocketExtension.csproj", "{229D9EA0-A344-4349-B405-40C961AADFF7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -289,6 +291,14 @@ Global
 		{052A1EC9-B3C3-409C-8BC0-E7E3CC5DE3A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{052A1EC9-B3C3-409C-8BC0-E7E3CC5DE3A7}.Release|x64.ActiveCfg = Release|Any CPU
 		{052A1EC9-B3C3-409C-8BC0-E7E3CC5DE3A7}.Release|x64.Build.0 = Release|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Debug|x64.Build.0 = Debug|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Release|x64.ActiveCfg = Release|Any CPU
+		{229D9EA0-A344-4349-B405-40C961AADFF7}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -320,6 +330,7 @@ Global
 		{FF1E2E46-E611-4392-AB33-9F0174C6B917} = {1EE25BE7-677D-4CF3-AD01-0C53CE2D15BD}
 		{4751ADA0-9580-4A1C-851C-0A2AB0190A9E} = {1EE25BE7-677D-4CF3-AD01-0C53CE2D15BD}
 		{052A1EC9-B3C3-409C-8BC0-E7E3CC5DE3A7} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
+		{229D9EA0-A344-4349-B405-40C961AADFF7} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}

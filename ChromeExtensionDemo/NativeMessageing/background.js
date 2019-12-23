@@ -10,7 +10,7 @@ function onDisconnected() {
 }
 
 function onNativeMessage(message) {
-    console.log("Received message: <b>" + JSON.stringify(message) + "</b>");
+    console.log("Received message: " + JSON.stringify(message));
 }
 
 //connect to native host and get the communicatetion port
