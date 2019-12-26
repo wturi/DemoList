@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,15 +14,19 @@ namespace AsyncAwaitDemo
 
         private static void Main(string[] args)
         {
-            for (int i = 1; i < 6; i++)
-            {
-               var a=  GoGoGo("a" + i, "a" + i, "a" + i);
-            }
-            for (int i = 1; i < 6; i++)
-            {
-                var a = GoGoGo("a" + i, "a" + i, "a" + i);
-            }
+            //for (int i = 1; i < 6; i++)
+            //{
+            //   var a=  GoGoGo("a" + i, "a" + i, "a" + i);
+            //}
+            //for (int i = 1; i < 6; i++)
+            //{
+            //    var a = GoGoGo("a" + i, "a" + i, "a" + i);
+            //}
 
+            var jsonSetting = new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore };
+            var json = JsonConvert.SerializeObject(new DemoData { Str1 = "1" }, Formatting.Indented, jsonSetting);
+
+            Console.WriteLine(json);
             Console.ReadLine();
         }
 
@@ -64,5 +69,12 @@ namespace AsyncAwaitDemo
                 return obj;
             }
         }
+    }
+
+    public class DemoData
+    {
+        public string Str1 { get; set; }
+
+        public string Str2 { get; set; }
     }
 }
