@@ -22,7 +22,7 @@ namespace SmallDemo
                     return result;
                 result = sempstress.Remove(endIndexOf);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // ignored
             }

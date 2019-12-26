@@ -31,7 +31,7 @@ namespace TimeOutDemo
                 Console.ReadLine();
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Time Out");
             }

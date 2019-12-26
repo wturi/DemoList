@@ -83,6 +83,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WatcherWeakDemos", "Watcher
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatcherWeak", "WatcherWeakDemos\WatcherWeak\WatcherWeak.csproj", "{688C8B3F-9584-4588-8A16-C375721DFF2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamicDemo", "DynamicDemo\DynamicDemo\DynamicDemo.csproj", "{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -331,6 +333,14 @@ Global
 		{688C8B3F-9584-4588-8A16-C375721DFF2D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{688C8B3F-9584-4588-8A16-C375721DFF2D}.Release|x64.ActiveCfg = Release|Any CPU
 		{688C8B3F-9584-4588-8A16-C375721DFF2D}.Release|x64.Build.0 = Release|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Debug|x64.Build.0 = Debug|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Release|x64.ActiveCfg = Release|Any CPU
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -366,6 +376,7 @@ Global
 		{0F3D5EA8-29BE-4723-82AC-4DD7FE485F0B} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
 		{E4F9271C-2B45-4DA8-BB9C-BDF8F1FAF0F9} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 		{688C8B3F-9584-4588-8A16-C375721DFF2D} = {00D235AF-CA76-456E-B905-190C20E631B2}
+		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}

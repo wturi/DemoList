@@ -15,7 +15,7 @@ namespace AsyncAwaitDemo
         {
             for (int i = 1; i < 6; i++)
             {
-                GoGoGo("a" + i, "a" + i, "a" + i);
+               var a=  GoGoGo("a" + i, "a" + i, "a" + i);
             }
             for (int i = 1; i < 6; i++)
             {
