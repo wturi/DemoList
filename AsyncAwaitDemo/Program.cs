@@ -31,7 +31,17 @@ namespace AsyncAwaitDemo
             {
                 Console.WriteLine(arg1 + "开始排队...");
                 Console.WriteLine(arg1 + "开始执行...");
-                Get(arg1, arg1);
+                _semaphore.Wait();
+                Thread.Sleep(1000);
+                if (_demo.ContainsKey(arg1))
+                {
+                    _semaphore.Release();
+                }
+                else
+                {
+                    _demo.Add(arg1, arg1);
+                    _semaphore.Release();
+                }
                 Console.WriteLine();
                 Console.WriteLine(arg1 + "执行完毕，离开！");
                 return "结束";
