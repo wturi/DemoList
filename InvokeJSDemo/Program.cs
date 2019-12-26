@@ -12,11 +12,6 @@ namespace InvokeJSDemo
         {
             var myScriptEngine = new RunScriptHelper.ScriptEngine(RunScriptHelper.ScriptLanguage.JavaScript);
 
-            var jsStrText = @"function add(one,str){
-var list=JSON.parse(str);
-    list.Push(one);
-    return list;
-}";
             try
             {
 
