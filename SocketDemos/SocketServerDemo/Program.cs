@@ -14,10 +14,16 @@ namespace SocketServerDemo
     {
         static void Main(string[] args)
         {
-            Task.Run(() =>
+            try
             {
+
                 SocketServer.Init();
-            });
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
 
             Console.ReadLine();
         }
