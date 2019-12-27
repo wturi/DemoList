@@ -10,7 +10,7 @@ namespace ReadApp
         {
             long capacity = 1 << 10 << 10;
 
-            using (var mmf = MemoryMappedFile.OpenExisting("testMmf"))
+            using (var mmf = MemoryMappedFile.OpenExisting("BotTimeNativeMessageHostSharedMemory"))
             {
                 MemoryMappedViewAccessor viewAccessor = mmf.CreateViewAccessor(0, capacity);
 

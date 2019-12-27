@@ -11,7 +11,7 @@ namespace WriteApp
             long capacity = 1 << 10 << 10;
 
             //创建或者打开共享内存
-            using (var mmf = MemoryMappedFile.CreateOrOpen("testMmf", capacity, MemoryMappedFileAccess.ReadWrite))
+            using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeNativeMessageHostSharedMemory", capacity, MemoryMappedFileAccess.ReadWrite))
             {
                 //通过MemoryMappedFile的CreateViewAccssor方法获得共享内存的访问器
                 var viewAccessor = mmf.CreateViewAccessor(0, capacity);
