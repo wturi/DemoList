@@ -89,6 +89,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WriteApp", "SharedMemory\Wr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadApp", "SharedMemory\ReadApp\ReadApp.csproj", "{E2A6AA21-0EC0-4809-ACAC-805819CF01DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectDemo", "ReflectDemos\ReflectDemo\ReflectDemo.csproj", "{EDE7156A-F5A1-4C81-922F-F527BE74956D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -361,6 +363,14 @@ Global
 		{E2A6AA21-0EC0-4809-ACAC-805819CF01DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2A6AA21-0EC0-4809-ACAC-805819CF01DF}.Release|x64.ActiveCfg = Release|Any CPU
 		{E2A6AA21-0EC0-4809-ACAC-805819CF01DF}.Release|x64.Build.0 = Release|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Debug|x64.Build.0 = Debug|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Release|x64.ActiveCfg = Release|Any CPU
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -399,6 +409,7 @@ Global
 		{13DAD4EB-070A-40BA-8AAA-16B666C27F8D} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 		{9F7DBDA1-EF6C-46EE-94FB-9CC0A76DD76E} = {AA6354EA-42B8-409F-8481-138C79C7DF3D}
 		{E2A6AA21-0EC0-4809-ACAC-805819CF01DF} = {AA6354EA-42B8-409F-8481-138C79C7DF3D}
+		{EDE7156A-F5A1-4C81-922F-F527BE74956D} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}
