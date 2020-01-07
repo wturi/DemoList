@@ -101,6 +101,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "OrleansDemo\Host\Ho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IGrains", "OrleansDemo\IGrains\IGrains.csproj", "{C2BE307D-2607-43CC-83DD-78ECB8264368}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchCaseThrough", "Demos\SwitchCaseThrough\SwitchCaseThrough.csproj", "{DDF7722D-BE36-412C-988D-9B9855AAD3A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -413,6 +415,14 @@ Global
 		{C2BE307D-2607-43CC-83DD-78ECB8264368}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C2BE307D-2607-43CC-83DD-78ECB8264368}.Release|x64.ActiveCfg = Release|Any CPU
 		{C2BE307D-2607-43CC-83DD-78ECB8264368}.Release|x64.Build.0 = Release|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Debug|x64.Build.0 = Debug|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Release|x64.ActiveCfg = Release|Any CPU
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -456,6 +466,7 @@ Global
 		{E3E3AE6A-A329-40CA-AB3A-251A2A91E739} = {E8767364-368B-4276-9400-83AD38058F76}
 		{CECF108B-2B67-4253-A07E-5203E39E72CE} = {E8767364-368B-4276-9400-83AD38058F76}
 		{C2BE307D-2607-43CC-83DD-78ECB8264368} = {E8767364-368B-4276-9400-83AD38058F76}
+		{DDF7722D-BE36-412C-988D-9B9855AAD3A7} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}
