@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 
 namespace SwitchCaseThrough
 {
@@ -20,12 +15,10 @@ namespace SwitchCaseThrough
         /// <returns></returns>
         private delegate Point actionByMain(Point point);
 
-
         /// <summary>
-        /// 定义一个dictionary 
+        /// 定义一个dictionary
         /// </summary>
         private static Dictionary<ClickLocation, actionByMain> mainList = new Dictionary<ClickLocation, actionByMain>();
-
 
         public static void RunPlan()
         {
@@ -36,17 +29,11 @@ namespace SwitchCaseThrough
             var e = mainList[ClickLocation.Center](requestPoint);
         }
 
-
-
-        static void AddMainList()
+        private static void AddMainList()
         {
-
             mainList.Add(ClickLocation.Center, ClickCenter);
             mainList.Add(ClickLocation.LeftTop, ClickLeftTop);
-
-
         }
-
 
         #region 具体操作
 
@@ -101,7 +88,6 @@ namespace SwitchCaseThrough
         }
 
         #endregion 具体操作
-
     }
 
     public enum ClickLocation
