@@ -11,9 +11,11 @@ namespace ReadApp
         {
             long capacity = 1 << 10 << 10;
 
+
+            string oldMessage = string.Empty;
             try
             {
-                using (var mmf = MemoryMappedFile.OpenExisting("BotTimeNativeMessageHostSharedMemory"))
+                using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeStudioMemory", capacity))
                 {
                     MemoryMappedViewAccessor viewAccessor = mmf.CreateViewAccessor(0, capacity);
 
@@ -24,13 +26,15 @@ namespace ReadApp
                         int strLength = viewAccessor.ReadInt32(0);
                         char[] charsInMMf = new char[strLength];
                         //读取字符
-                        viewAccessor.ReadArray<char>(4, charsInMMf, 0, strLength);
-                        Console.Clear();
+                        viewAccessor.ReadArray(4, charsInMMf, 0, strLength);
                         StringBuilder sb = new StringBuilder();
                         sb.Append(charsInMMf);
-                        Console.Write(sb.ToString());
-                        Console.Write("\r");
-                        Thread.Sleep(200);
+
+                        if (!sb.ToString().Equals(oldMessage) )
+                        {
+                            oldMessage = sb.ToString();
+                            Console.WriteLine(sb.ToString());
+                        }
                     }
                 }
             }

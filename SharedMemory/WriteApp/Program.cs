@@ -9,7 +9,6 @@ namespace WriteApp
         private static void Main(string[] args)
         {
             long capacity = 1 << 10 << 10;
-
             //创建或者打开共享内存
             using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeNativeMessageHostSharedMemory", capacity, MemoryMappedFileAccess.ReadWrite))
             {
