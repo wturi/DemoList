@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO.MemoryMappedFiles;
 using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 
 namespace ReadApp
 {
@@ -11,11 +11,10 @@ namespace ReadApp
         {
             long capacity = 1 << 10 << 10;
 
-
             string oldMessage = string.Empty;
             try
             {
-                using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeStudioMemory", capacity))
+                using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeMemory030020", capacity))
                 {
                     MemoryMappedViewAccessor viewAccessor = mmf.CreateViewAccessor(0, capacity);
 
@@ -30,7 +29,7 @@ namespace ReadApp
                         StringBuilder sb = new StringBuilder();
                         sb.Append(charsInMMf);
 
-                        if (!sb.ToString().Equals(oldMessage) )
+                        if (!sb.ToString().Equals(oldMessage))
                         {
                             oldMessage = sb.ToString();
                             Console.WriteLine(sb.ToString());
