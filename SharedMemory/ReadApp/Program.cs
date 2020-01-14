@@ -14,7 +14,7 @@ namespace ReadApp
             string oldMessage = string.Empty;
             try
             {
-                using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeMemory030020", capacity))
+                using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeNativeMessageHostSharedMemory", capacity))
                 {
                     MemoryMappedViewAccessor viewAccessor = mmf.CreateViewAccessor(0, capacity);
 

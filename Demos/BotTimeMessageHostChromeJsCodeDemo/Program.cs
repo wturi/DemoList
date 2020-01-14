@@ -43,8 +43,10 @@ namespace BotTimeMessageHostChromeJsCodeDemo
                 .OrderByDescending(f => f.Name)
                 .FirstOrDefault();
 
+
             var verInHost = fileName.Name.Replace(bowserType, string.Empty).Replace(".", string.Empty);
             var verInChrome = ver.Replace(".", string.Empty).PadRight(verInHost.Length, '0');
+
 
             var k2 = int.Parse(verInHost);
             var k = int.Parse(verInChrome);
