@@ -113,6 +113,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotTimeClient", "BotTimeSha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotTimeMessageHostChromeJsCodeDemo", "Demos\BotTimeMessageHostChromeJsCodeDemo\BotTimeMessageHostChromeJsCodeDemo.csproj", "{34A78A1C-0B5C-4567-AFD8-E720674B648F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recursive", "Demos\Recursive\Recursive.csproj", "{A29DB273-093F-41F4-B1F4-C90520479105}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -465,6 +467,14 @@ Global
 		{34A78A1C-0B5C-4567-AFD8-E720674B648F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{34A78A1C-0B5C-4567-AFD8-E720674B648F}.Release|x64.ActiveCfg = Release|Any CPU
 		{34A78A1C-0B5C-4567-AFD8-E720674B648F}.Release|x64.Build.0 = Release|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Debug|x64.Build.0 = Debug|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Release|x64.ActiveCfg = Release|Any CPU
+		{A29DB273-093F-41F4-B1F4-C90520479105}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -513,6 +523,7 @@ Global
 		{0F430325-8CB2-478E-AB85-F1A99D0D5758} = {2CBDD8E2-432D-4D60-B335-3C732CA546DE}
 		{876A88C6-BCEF-4A4F-B230-86E5869E790C} = {2CBDD8E2-432D-4D60-B335-3C732CA546DE}
 		{34A78A1C-0B5C-4567-AFD8-E720674B648F} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
+		{A29DB273-093F-41F4-B1F4-C90520479105} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}
