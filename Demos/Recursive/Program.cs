@@ -9,7 +9,12 @@ namespace Recursive
     {
         private static void Main(string[] args)
         {
-            Add();
+
+            string str = "abc";
+
+           Console.WriteLine( str[0]);
+
+            //Add();
             Console.ReadLine();
         }
 
