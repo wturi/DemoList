@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
 using Newtonsoft.Json;
 
@@ -44,13 +45,62 @@ namespace FrmZhidao
 
     internal class Program
     {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        //[STAThread]
+
+        [StructLayout(LayoutKind.Sequential)]//定义与API相兼容结构体，实际上是一种内存转换
+        public struct POINTAPI
+        {
+            public int X;
+            public int Y;
+        }
+
+        [DllImport("user32.dll", EntryPoint = "GetCursorPos")]//获取鼠标坐标
+        public static extern int GetCursorPos(
+            ref POINTAPI lpPoint
+        );
+
+        [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]//指定坐标处窗体句柄
+        public static extern int WindowFromPoint(
+            int xPoint,
+            int yPoint
+        );
+
+        [DllImport("user32.dll", EntryPoint = "GetWindowText")]
+        public static extern int GetWindowText(
+            int hWnd,
+            StringBuilder lpString,
+            int nMaxCount
+        );
+
+        [DllImport("user32.dll", EntryPoint = "GetClassName")]
+        public static extern int GetClassName(
+            int hWnd,
+            StringBuilder lpString,
+            int nMaxCont
+        );
+
+
+
         private static void Main(string[] args)
         {
             while (true)
             {
-                var returnIntPrt = APIMethod.WindowFromPoint();
+                POINTAPI point = new POINTAPI();//必须用与之相兼容的结构体，类也可以
+                                                //add some wait time
+               
+                GetCursorPos(ref point);//获取当前鼠标坐标
 
-                Console.WriteLine(JsonConvert.SerializeObject(returnIntPrt));
+                int hwnd = WindowFromPoint(point.X, point.Y);//获取指定坐标处窗口的句柄
+                StringBuilder name = new StringBuilder(256);
+                GetWindowText(hwnd, name, 256);
+                GetClassName(hwnd, name, 256);
+
+
+                Console.WriteLine(hwnd);
+
                 Thread.Sleep(1000);
             }
         }
