@@ -6,17 +6,23 @@ namespace ActionAndFuncDemo
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("-------action demo-------");
+            //Console.WriteLine("-------action demo-------");
 
-            var ArguemntAction = new Action<string, string>(ActionDemo.Argument);
+            //var ArguemntAction = new Action<string, string>(ActionDemo.Argument);
 
-            ArguemntAction("哈哈哈哈", "哭哭哭哭");
+            //ArguemntAction("哈哈哈哈", "哭哭哭哭");
 
-            Console.WriteLine("-------func demo-------");
+            //Console.WriteLine("-------func demo-------");
 
-            var ArgumentFunc = new Func<int, int, int>(FuncDemo.Add);
+            //var ArgumentFunc = new Func<int, int, int>(FuncDemo.Add);
 
-            Console.WriteLine("func demo add return num" + ArgumentFunc(1, 2));
+            //Console.WriteLine("func demo add return num" + ArgumentFunc(1, 2));
+
+
+
+            A.func d = new A.func(A.B);
+            A.Call(d, 88);
+
 
             Console.ReadLine();
         }
@@ -35,6 +41,21 @@ namespace ActionAndFuncDemo
         public static int Add(int num1, int num2)
         {
             return num1 + num2;
+        }
+    }
+
+
+    public static class A
+    {
+        public delegate void func(int a);
+
+        public static void B(int n)
+        {
+            Console.WriteLine(n);
+        }
+        public static void Call(func f, int k)
+        {
+            f(k);
         }
     }
 }
