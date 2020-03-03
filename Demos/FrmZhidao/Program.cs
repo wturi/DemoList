@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -45,42 +46,49 @@ namespace FrmZhidao
 
     internal class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        //[STAThread]
+        [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
+        public static extern bool GetCursorPos(out Point pt);
+        [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]
+        public static extern IntPtr WindowFromPoint(Point pt);
 
-        [StructLayout(LayoutKind.Sequential)]//定义与API相兼容结构体，实际上是一种内存转换
-        public struct POINTAPI
+
+        //鼠标位置的坐标
+        public static Point GetCursorPosPoint()
         {
-            public int X;
-            public int Y;
+            Point p = new Point();
+            if (GetCursorPos(out p))
+            {
+                return p;
+            }
+            return default(Point);
         }
 
-        [DllImport("user32.dll", EntryPoint = "GetCursorPos")]//获取鼠标坐标
-        public static extern int GetCursorPos(
-            ref POINTAPI lpPoint
-        );
 
-        [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]//指定坐标处窗体句柄
-        public static extern int WindowFromPoint(
-            int xPoint,
-            int yPoint
-        );
+        /// </summary>
+        /// 找到句柄
+        /// <param name="p">指定位置坐标</param>
+        /// <returns></returns>
+        public static int GetHandle(Point p)
+        {
+            return (int)WindowFromPoint(p);
+        }
 
-        [DllImport("user32.dll", EntryPoint = "GetWindowText")]
-        public static extern int GetWindowText(
-            int hWnd,
-            StringBuilder lpString,
-            int nMaxCount
-        );
+        /// <summary>
+        /// 得到鼠标指向的窗口句柄
+        /// </summary>
+        /// <returns>找不到则返回-1</returns>
+        public static int GetMoustPointWindwsHwnd()
+        {
+            try
+            {
+                return GetHandle(GetCursorPosPoint());
+            }
+            catch (System.Exception ex)
+            {
 
-        [DllImport("user32.dll", EntryPoint = "GetClassName")]
-        public static extern int GetClassName(
-            int hWnd,
-            StringBuilder lpString,
-            int nMaxCont
-        );
+            }
+            return -1;
+        }
 
 
 
@@ -88,18 +96,10 @@ namespace FrmZhidao
         {
             while (true)
             {
-                POINTAPI point = new POINTAPI();//必须用与之相兼容的结构体，类也可以
-                                                //add some wait time
-               
-                GetCursorPos(ref point);//获取当前鼠标坐标
+                int Hwnd = GetMoustPointWindwsHwnd();
 
-                int hwnd = WindowFromPoint(point.X, point.Y);//获取指定坐标处窗口的句柄
-                StringBuilder name = new StringBuilder(256);
-                GetWindowText(hwnd, name, 256);
-                GetClassName(hwnd, name, 256);
+                Console.WriteLine($"鼠标指向句柄 : {Hwnd}");
 
-
-                Console.WriteLine(hwnd);
 
                 Thread.Sleep(1000);
             }
