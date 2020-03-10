@@ -135,6 +135,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocketDemo", "SocketDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocketDemo1", "SocketDemos\SuperSocketDemo1\SuperSocketDemo1.csproj", "{C8D575ED-387F-455B-B80A-6BC74C649CE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlEncodeDemo", "Demos\UrlEncodeDemo\UrlEncodeDemo.csproj", "{893C5239-3269-4FAE-97F7-2DCC941F8278}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -567,6 +569,14 @@ Global
 		{C8D575ED-387F-455B-B80A-6BC74C649CE4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8D575ED-387F-455B-B80A-6BC74C649CE4}.Release|x64.ActiveCfg = Release|Any CPU
 		{C8D575ED-387F-455B-B80A-6BC74C649CE4}.Release|x64.Build.0 = Release|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Debug|x64.Build.0 = Debug|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|x64.ActiveCfg = Release|Any CPU
+		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -625,6 +635,7 @@ Global
 		{7EF63786-D97C-4F78-8D7F-9D310C65F723} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 		{15E01063-14D1-492E-80E5-F7BEFC0CB350} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
 		{C8D575ED-387F-455B-B80A-6BC74C649CE4} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
+		{893C5239-3269-4FAE-97F7-2DCC941F8278} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}

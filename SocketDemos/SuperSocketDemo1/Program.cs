@@ -1,43 +1,82 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using SuperSocket.SocketBase;
-using SuperSocket.SocketEngine;
+using SuperSocket.SocketBase.Command;
+using SuperSocket.SocketBase.Protocol;
 
 namespace SuperSocketDemo1
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static int _startPort = 2018;
+
+        private static void Main(string[] args)
         {
-            #region 初始化Socket
-            IBootstrap bootstrap = BootstrapFactory.CreateBootstrap();
-            if (!bootstrap.Initialize())
+            var appServer = Init();
+
+            Console.WriteLine($"the server start port : {_startPort}");
+
+            Console.WriteLine("The server started successfully, press key 'q' to stop it!");
+
+            while (Console.ReadKey().KeyChar != 'q')
             {
-                Console.WriteLine(DateTime.Now + ":Socket初始化失败\r\n");
-                return;
+                Console.WriteLine();
+                continue;
             }
 
-            var result = bootstrap.Start();
-            foreach (var server in bootstrap.AppServers)
-            {
-                if (server.State == ServerState.Running)
-                {
-                    Console.WriteLine(DateTime.Now + ":serverName为:" + server.Name + "Socket运行中\r\n");
-                    Console.Read();
-                }
-                else
-                {
-                    Console.WriteLine(DateTime.Now + ":serverName为:" + server.Name + "Socket启动失败\r\n");
-                }
-            }
-            #endregion
+            //Stop the appServer
+            appServer.Stop();
 
+            Console.WriteLine("The server was stopped!");
+            Console.ReadKey();
 
             Console.ReadLine();
+        }
 
+        private static SocketServer Init(int retrySetupNum = 0, int retryStartNum = 0)
+        {
+            var appServer = new SocketServer();
+
+            if (!appServer.Setup(_startPort))
+            {
+                //失败则端口加1重新连接
+                _startPort++;
+                if (retrySetupNum < 10)
+                    return Init(++retrySetupNum);
+                throw new Exception("server setup error");
+            }
+
+            if (appServer.Start()) return appServer;
+
+            //失败则端口加1重新连接
+            _startPort++;
+            if (retryStartNum < 10)
+                return Init(retrySetupNum, ++retryStartNum);
+            throw new Exception("server start error");
+        }
+    }
+
+    public class ADD : CommandBase<SocketSession, StringRequestInfo>
+    {
+        public override void ExecuteCommand(SocketSession session, StringRequestInfo requestInfo)
+        {
+            session.Send(requestInfo.Parameters.Select(p => Convert.ToInt32(p)).Sum().ToString());
+        }
+    }
+
+    public class MULT : CommandBase<SocketSession, StringRequestInfo>
+    {
+        public override void ExecuteCommand(SocketSession session, StringRequestInfo requestInfo)
+        {
+            var result = 1;
+
+            foreach (var factor in requestInfo.Parameters.Select(p => Convert.ToInt32(p)))
+            {
+                result *= factor;
+            }
+
+            session.Send(result.ToString());
         }
     }
 }

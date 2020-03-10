@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Threading;
-using Newtonsoft.Json;
 
 namespace FrmZhidao
 {
@@ -27,7 +25,8 @@ namespace FrmZhidao
         [DllImport("user32.dll")]
         private static extern bool SetWindowText(IntPtr hWnd, string lpString);
 
-        public static POINT GetCursorPos()
+
+        private static POINT GetCursorPos()
         {
             POINT p;
             if (GetCursorPos(out p))
@@ -39,7 +38,7 @@ namespace FrmZhidao
 
         public static IntPtr WindowFromPoint()
         {
-            POINT p = GetCursorPos();
+            var p = GetCursorPos();
             return WindowFromPoint(p);
         }
     }
@@ -47,28 +46,28 @@ namespace FrmZhidao
     internal class Program
     {
         [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
-        public static extern bool GetCursorPos(out Point pt);
-        [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]
-        public static extern IntPtr WindowFromPoint(Point pt);
+        private static extern bool GetCursorPos(out Point pt);
 
+        [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]
+        private static extern IntPtr WindowFromPoint(Point pt);
+
+
+        [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto)]
+        private static extern IntPtr GetParent(IntPtr hWnd);
 
         //鼠标位置的坐标
-        public static Point GetCursorPosPoint()
+        private static Point GetCursorPosPoint()
         {
-            Point p = new Point();
-            if (GetCursorPos(out p))
-            {
-                return p;
-            }
-            return default(Point);
+            var p = new Point();
+            return GetCursorPos(out p) ? p : default(Point);
         }
 
-
-        /// </summary>
+        /// <summary>
         /// 找到句柄
+        /// </summary>
         /// <param name="p">指定位置坐标</param>
         /// <returns></returns>
-        public static int GetHandle(Point p)
+        private static int GetHandle(Point p)
         {
             return (int)WindowFromPoint(p);
         }
@@ -77,32 +76,50 @@ namespace FrmZhidao
         /// 得到鼠标指向的窗口句柄
         /// </summary>
         /// <returns>找不到则返回-1</returns>
-        public static int GetMoustPointWindwsHwnd()
+        private static int GetMousePointWindowsHandle()
         {
             try
             {
                 return GetHandle(GetCursorPosPoint());
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
-
+                // ignored
             }
+
             return -1;
         }
-
-
 
         private static void Main(string[] args)
         {
             while (true)
             {
-                int Hwnd = GetMoustPointWindwsHwnd();
+                var hWnd = GetMousePointWindowsHandle();
+                Console.Write($"鼠标指向句柄 : {hWnd}");
 
-                Console.WriteLine($"鼠标指向句柄 : {Hwnd}");
+                GetParentHandle((IntPtr)hWnd);
+
+                Console.WriteLine();
 
 
                 Thread.Sleep(1000);
             }
+        }
+
+
+        private static void GetParentHandle(IntPtr hWnd)
+        {
+            var parentHandle = GetParent((IntPtr)hWnd);
+            if (((int)parentHandle) == 0)
+            {
+                Console.WriteLine(" 到顶了 ");
+                return;
+            }
+
+            Console.Write($"  上层句柄:{parentHandle}");
+
+
+            GetParentHandle(parentHandle);
         }
     }
 }
