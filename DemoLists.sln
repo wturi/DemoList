@@ -137,6 +137,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSocketDemo1", "SocketD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UrlEncodeDemo", "Demos\UrlEncodeDemo\UrlEncodeDemo.csproj", "{893C5239-3269-4FAE-97F7-2DCC941F8278}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueDemo", "Demos\QueueDemo\QueueDemo.csproj", "{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -577,6 +579,14 @@ Global
 		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|Any CPU.Build.0 = Release|Any CPU
 		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|x64.ActiveCfg = Release|Any CPU
 		{893C5239-3269-4FAE-97F7-2DCC941F8278}.Release|x64.Build.0 = Release|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Debug|x64.Build.0 = Debug|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Release|x64.ActiveCfg = Release|Any CPU
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -636,6 +646,7 @@ Global
 		{15E01063-14D1-492E-80E5-F7BEFC0CB350} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
 		{C8D575ED-387F-455B-B80A-6BC74C649CE4} = {81B32FCB-40F5-4DC6-B2A0-BEA80CCAC5D3}
 		{893C5239-3269-4FAE-97F7-2DCC941F8278} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
+		{77F6F0A2-A2DE-41DF-B0D6-4D1FB5620744} = {A52C7DCB-590D-4FA7-B3BD-165C44FBF87F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}
