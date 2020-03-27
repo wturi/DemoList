@@ -17,12 +17,12 @@ namespace WpfDemo
         public MainWindow()
         {
             InitializeComponent();
-            this.webBrowser.LoadCompleted += new LoadCompletedEventHandler(webbrowser_LoadCompleted);
+            this.webBrowser.LoadCompleted += WebBrowser_LoadCompleted;
             Uri uri = new Uri("https://bbs.csdn.net/topics/390839955");
             webBrowser.Navigate(uri);
         }
 
-        private void webbrowser_LoadCompleted(object sender, NavigationEventArgs e)
+        private void WebBrowser_LoadCompleted(object sender, NavigationEventArgs e)
         {
             HTMLDocument doms = (HTMLDocument)webBrowser.Document;
             IHTMLElement kw = doms.getElementById("reportModal");
@@ -106,15 +106,12 @@ namespace WpfDemo
                     continue;
                 }
                 List<string> siblingClassNamesArray = PrefixedElementClassNames(sibling as IHTMLElement);
-                foreach (var siblingClass in siblingClassNamesArray)
+                foreach (var siblingClass in siblingClassNamesArray.Where(siblingClass => ownClassNames.Contains(siblingClass)))
                 {
-                    if (!ownClassNames.Contains(siblingClass)) continue;
                     ownClassNames.Remove(siblingClass);
-                    if (ownClassNames.Count == 0)
-                    {
-                        needsNthChild = true;
-                        break;
-                    }
+                    if (ownClassNames.Count != 0) continue;
+                    needsNthChild = true;
+                    break;
                 }
             }
             var result = nodeName;
