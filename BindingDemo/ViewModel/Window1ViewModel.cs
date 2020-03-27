@@ -14,9 +14,11 @@ namespace BindingDemo.ViewModel
             get => _name;
             set
             {
-                if (_name == value) return;
+                if (value != null && _name == value) return;
                 _name = value;
             }
         }
+
+        public object IsRunningProcess => throw new NotImplementedException();
     }
 }

@@ -176,7 +176,6 @@ namespace WpfDemo
         /// <returns></returns>
         private string CSSEscape(string value)
         {
-            return value;
 
             // IE暂不支持以下处理
             if (string.IsNullOrEmpty(value))

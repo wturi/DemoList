@@ -37,7 +37,7 @@ namespace SocketClient
             {
                 socketclient.Connect(point);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return;
             }

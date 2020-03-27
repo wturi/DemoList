@@ -13,27 +13,22 @@ namespace BotTimeNativeMessage
     internal class Program
     {
         private static bool _isSocketStart = false;
-        private static List<Socket> Sockets = new List<Socket>();
-        private static SocketHelp sh = new SocketHelp(false);
+        private static readonly List<Socket> Sockets = new List<Socket>();
+        private static readonly SocketHelp Sh = new SocketHelp(false);
 
         [STAThread]
         private static void Main(string[] args)
         {
-            if (args.Length != 0)
+            if (args.Length == 0) return;
+            string chromeMessage = "";
+            //StartSocket();
+            while (!string.IsNullOrEmpty(chromeMessage = OpenStandardStreamIn()))
             {
-                string chromeMessage = "";
-                //StartSocket();
-                while (!string.IsNullOrEmpty(chromeMessage = OpenStandardStreamIn()))
+                Write(chromeMessage + "返回的");
+                Sockets.ForEach(s => s.Send(Sh.PackData(chromeMessage)));
+                if (!_isSocketStart)
                 {
-                    Write(chromeMessage + "返回的");
-                    Sockets.ForEach(s => s.Send(sh.PackData(chromeMessage)));
-                    if (!_isSocketStart)
-                    {
-                        Task.Run(() =>
-                        {
-                            StartSocketV2();
-                        });
-                    }
+                    Task.Run(StartSocketV2);
                 }
             }
         }
@@ -41,16 +36,15 @@ namespace BotTimeNativeMessage
         private static string OpenStandardStreamIn()
         {
             //// We need to read first 4 bytes for length information
-            Stream stdin = Console.OpenStandardInput();
-            int length = 0;
-            byte[] bytes = new byte[4];
-            stdin.Read(bytes, 0, 4);
-            length = System.BitConverter.ToInt32(bytes, 0);
+            var standard = Console.OpenStandardInput();
+            var bytes = new byte[4];
+            standard.Read(bytes, 0, 4);
+            var length = BitConverter.ToInt32(bytes, 0);
 
-            string input = "";
-            for (int i = 0; i < length; i++)
+            var input = "";
+            for (var i = 0; i < length; i++)
             {
-                input += (char)stdin.ReadByte();
+                input += (char)standard.ReadByte();
             }
 
             return input;
@@ -92,8 +86,10 @@ namespace BotTimeNativeMessage
                 {
                     Socket sc = listener.Accept();//接受一个连接
                     Sockets.Add(sc); //将连接的客户端, 添加到内存当中
-                    Thread t = new Thread(new ThreadStart(() => ReceiveData(sc))); //开启当前Socket线程, 去执行获取数据的动作,与客户端通信
-                    t.IsBackground = true;
+                    var t = new Thread(() => ReceiveData(sc))
+                    {
+                        IsBackground = true
+                    }; //开启当前Socket线程, 去执行获取数据的动作,与客户端通信
                     t.Start();
                 }
             }
@@ -103,13 +99,13 @@ namespace BotTimeNativeMessage
             }
         }
 
-        public static void ReceiveData(Socket sc)
+        private static void ReceiveData(Socket sc)
         {
-            byte[] buffer = new byte[1024];
+            var buffer = new byte[1024];
             Write("接受到了客户端：" + sc.RemoteEndPoint.ToString() + "连接....");
             //握手
-            int length = sc.Receive(buffer);//接受客户端握手信息
-            sc.Send(sh.PackHandShakeData(sh.GetSecKeyAccetp(buffer, length)));
+            var length = sc.Receive(buffer);//接受客户端握手信息
+            sc.Send(Sh.PackHandShakeData(Sh.GetSecKeyAccetp(buffer, length)));
             while (true)
             {
                 try
@@ -117,13 +113,13 @@ namespace BotTimeNativeMessage
                     //接受客户端数据
                     Write("等待客户端数据....");
                     length = sc.Receive(buffer);//接受客户端信息
-                    string clientMsg = sh.GetSecKeyAccetp(buffer, length);
+                    var clientMsg = Sh.GetSecKeyAccetp(buffer, length);
                     Write("接受到客户端数据：" + clientMsg);
                     //发送数据
-                    string sendMsg = "服务端返回信息:" + clientMsg;
-                    sc.Send(sh.PackData(sendMsg));
+                    var sendMsg = "服务端返回信息:" + clientMsg;
+                    sc.Send(Sh.PackData(sendMsg));
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Sockets.Remove(sc);  //如果接收的过程中,断开, 那么内存中移除当前Socket对象, 并且退出当前线程
                     Write("客户端已经断开连接!");

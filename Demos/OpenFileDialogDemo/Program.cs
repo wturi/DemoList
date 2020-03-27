@@ -67,11 +67,6 @@ namespace OpenFileDialogDemo
                 Console.WriteLine($"x:{point.X},y:{point.Y}");
                 Thread.Sleep(1000);
             }
-
-
-
-
-            Console.ReadLine();
         }
 
         [DllImport("user32.dll", EntryPoint = "GetCursorPos")]

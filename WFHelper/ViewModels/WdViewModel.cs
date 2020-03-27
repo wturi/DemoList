@@ -305,7 +305,7 @@ namespace WFHelper.ViewModels
 
                 MetadataStore.AddAttributeTable(builder.CreateTable());
             }
-            catch (FileNotFoundException exception)
+            catch (FileNotFoundException)
             {
                 // Ignore - will use default icons
             }
