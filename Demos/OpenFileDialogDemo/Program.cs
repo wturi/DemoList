@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace OpenFileDialogDemo
 {
@@ -46,14 +49,39 @@ namespace OpenFileDialogDemo
             //    Azmount += ".00";
             //}
 
-            //Console.WriteLine(Azmount);
+            ////Console.WriteLine(Azmount);
 
-            var str =
-                "{\"nodeHierarchyInfo\":[{\"customId\":\"2|0|39\",\"isPresentInSelector\":1,\"selectorInfo\":{\"index\":0,\"attributes\":{\"tag\":\"A\",\"ancestorid\":\"1\",\"sinfo\":\"WPF中制作无边框窗体_祝紫山(大可山人)博客[GDI+,WPF..._CSDN博客\"}},\"otherAttributes\":{}}],\"retCode\":1,\"returnId\":73009839002501,\"codeVersion\":1027}";
+            //var str =
+            //    "{\"nodeHierarchyInfo\":[{\"customId\":\"2|0|39\",\"isPresentInSelector\":1,\"selectorInfo\":{\"index\":0,\"attributes\":{\"tag\":\"A\",\"ancestorid\":\"1\",\"sinfo\":\"WPF中制作无边框窗体_祝紫山(大可山人)博客[GDI+,WPF..._CSDN博客\"}},\"otherAttributes\":{}}],\"retCode\":1,\"returnId\":73009839002501,\"codeVersion\":1027}";
 
-            var listStr = RecvMsgProcess(str);
+            ////var listStr = RecvMsgProcess(str);
+
+            //var n = "222";
+
+            //Console.WriteLine("12\"121" + n + "22");
+
+
+            while (true)
+            {
+                var point = GetCursorPosPoint();
+                Console.WriteLine($"x:{point.X},y:{point.Y}");
+                Thread.Sleep(1000);
+            }
+
+
+
 
             Console.ReadLine();
+        }
+
+        [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
+        public static extern bool GetCursorPos(out Point pt);
+
+
+        //鼠标位置的坐标
+        public static Point GetCursorPosPoint()
+        {
+            return GetCursorPos(out var p) ? p : default;
         }
 
         private static List<string> RecvMsgProcess(string message)
