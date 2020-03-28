@@ -37,7 +37,7 @@ namespace ReadApp
 
                     //if (sb.ToString().Equals(oldMessage)) continue;
                     //oldMessage = sb.ToString();
-                    Console.WriteLine("数据："+sb.ToString());
+                    Console.WriteLine("数据："+sb);
                     Thread.Sleep(500);
                 }
             }
