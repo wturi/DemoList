@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO.MemoryMappedFiles;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ReadApp
@@ -9,10 +10,17 @@ namespace ReadApp
     {
         private static void Main(string[] args)
         {
+
+            Console.WriteLine("输入对应地址，输入 c 为默认chrome地址：BotTimeNativeMessageHostSharedMemory");
+            var path = Console.ReadLine();
+            if (string.IsNullOrWhiteSpace(path) || path == "c")
+            {
+                path = "BotTimeNativeMessageHostSharedMemory";
+            }
             const long capacity = 1 << 10 << 10;
 
             var oldMessage = string.Empty;
-            using (var mmf = MemoryMappedFile.CreateOrOpen("BotTimeNativeMessageHostSharedMemory", capacity))
+            using (var mmf = MemoryMappedFile.CreateOrOpen(path, capacity))
             {
                 var viewAccessor = mmf.CreateViewAccessor(0, capacity);
 
@@ -27,9 +35,10 @@ namespace ReadApp
                     var sb = new StringBuilder();
                     sb.Append(charsInMMf);
 
-                    if (sb.ToString().Equals(oldMessage)) continue;
-                    oldMessage = sb.ToString();
-                    Console.WriteLine(sb.ToString());
+                    //if (sb.ToString().Equals(oldMessage)) continue;
+                    //oldMessage = sb.ToString();
+                    Console.WriteLine("数据："+sb.ToString());
+                    Thread.Sleep(500);
                 }
             }
         }
