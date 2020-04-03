@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
+
 using MSScriptControl;
-using Newtonsoft.Json;
 
 namespace InvokeJSDemo
 {
@@ -14,8 +12,6 @@ namespace InvokeJSDemo
 
             try
             {
-
-
                 //var ss = JsonConvert.SerializeObject(new List<string> {"李四","王五" });
 
                 //var jsMethodRunValue = myScriptEngine.Run("add", new object[] { "张三", ss, }, jsStrText);
@@ -29,9 +25,6 @@ namespace InvokeJSDemo
             }
             Console.ReadLine();
         }
-
-
-
 
         public static void JsRun()
         {
@@ -50,6 +43,5 @@ nameList.Push(one);
 
             string str = sc.Run("add", new object[] { "dsds" }).ToString();
         }
-
     }
 }

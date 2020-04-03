@@ -2,7 +2,6 @@
 using System.IO.MemoryMappedFiles;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ReadApp
 {
@@ -10,7 +9,6 @@ namespace ReadApp
     {
         private static void Main(string[] args)
         {
-
             Console.WriteLine("输入对应地址，输入 c 为默认chrome地址：BotTimeNativeMessageHostSharedMemory");
             var path = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(path) || path == "c")
@@ -37,7 +35,7 @@ namespace ReadApp
 
                     //if (sb.ToString().Equals(oldMessage)) continue;
                     //oldMessage = sb.ToString();
-                    Console.WriteLine("数据："+sb);
+                    Console.WriteLine("数据：" + sb);
                     Thread.Sleep(500);
                 }
             }

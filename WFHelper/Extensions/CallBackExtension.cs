@@ -1,10 +1,6 @@
-﻿using System;
-using System.Activities.Presentation.Hosting;
+﻿using System.Activities.Presentation.Hosting;
 using System.Activities.Presentation.View;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace WFHelper.Extensions
 {
@@ -28,7 +24,6 @@ namespace WFHelper.Extensions
                 modelItem = modelItem.Parent;
             }
         }
-
 
         public static void SelectionChanged(AssemblyContextControlItem assemblyContext)
         {

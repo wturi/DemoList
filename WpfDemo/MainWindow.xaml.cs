@@ -1,11 +1,11 @@
-﻿using mshtml;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Navigation;
+
+using mshtml;
 
 namespace WpfDemo
 {
@@ -173,7 +173,6 @@ namespace WpfDemo
         /// <returns></returns>
         private string CSSEscape(string value)
         {
-
             // IE暂不支持以下处理
             if (string.IsNullOrEmpty(value))
             {

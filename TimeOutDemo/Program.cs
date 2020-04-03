@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Runtime.Remoting.Messaging;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace TimeOutDemo
 {
     internal class Program
     {
         private static int count = 0;
+
         private static void Main(string[] args)
         {
             try
@@ -15,7 +14,6 @@ namespace TimeOutDemo
                 var message = string.Empty;
                 var dd = string.Empty;
                 var ishave = false;
-
 
                 CallWithTimeout(delegate
                 {
@@ -29,7 +27,6 @@ namespace TimeOutDemo
                 Console.WriteLine(ishave);
                 Console.WriteLine(message);
                 Console.ReadLine();
-
             }
             catch (Exception)
             {
@@ -44,11 +41,10 @@ namespace TimeOutDemo
             count++;
             Console.WriteLine(count);
             //Thread.Sleep(1000);
-            message = count>20?( "FiveSecondMethod" + arg1 + arg2):null;
+            message = count > 20 ? ("FiveSecondMethod" + arg1 + arg2) : null;
 
             return count > 20 ? message : null;
         }
-
 
         private static void CallWithTimeout(Action action, int timeoutMilliseconds)
         {

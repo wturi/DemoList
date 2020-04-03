@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using WFHelper.ExtensionService;
+
 using WFHelper.ViewModels;
 
 namespace WFDemo
@@ -18,7 +18,6 @@ namespace WFDemo
             this.DataContext = _wdViewModel;
             this.Closing += _wdViewModel.ViewClosing;
             this.Closed += _wdViewModel.ViewClosed;
-
         }
 
         #region 方法

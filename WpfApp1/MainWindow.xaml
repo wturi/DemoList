@@ -7,12 +7,11 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="109,100,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="109,175,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="265,175,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="109,265,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="265,100,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="265,265,0,0" VerticalAlignment="Top"/>
-
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="109,100,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="109,175,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="265,175,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="109,265,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="265,100,0,0" VerticalAlignment="Top" />
+        <CheckBox Content="CheckBox" HorizontalAlignment="Left" Margin="265,265,0,0" VerticalAlignment="Top" />
     </Grid>
 </Window>

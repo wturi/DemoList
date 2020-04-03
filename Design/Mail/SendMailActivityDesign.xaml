@@ -53,5 +53,4 @@
         <TextBlock VerticalAlignment="Center" Margin="5" Text="Body" Grid.Column="0" Grid.Row="3"></TextBlock>
         <sapv:ExpressionTextBox Grid.Row="3" Grid.Column="1" HintText="Enter a C# Expression" Expression="{Binding Path=ModelItem.Body,Mode=TwoWay,Converter={StaticResource ArgumentToExpressionConverter}, ConverterParameter=In }"   ExpressionType="system:String"  OwnerActivity="{Binding Path=ModelItem}" Width="300" Margin="0,5" MaxLines="1"></sapv:ExpressionTextBox>
     </Grid>
-
 </sap:ActivityDesigner>

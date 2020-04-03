@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+
 using BindingDemo.ViewModel;
 
 namespace BindingDemo
@@ -11,6 +8,7 @@ namespace BindingDemo
     public static class Update
     {
         private static MainWindowViewModel ViewModel = ModelFactory.Get(typeof(MainWindowViewModel), new object[] { }) as MainWindowViewModel;
+
         public static void UpdateVal()
         {
             Task.Run(() =>
@@ -20,7 +18,6 @@ namespace BindingDemo
                     ViewModel.IsRunningProcess = !ViewModel.IsRunningProcess;
                     Thread.Sleep(1000);
                 }
-
             });
         }
     }

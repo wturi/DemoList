@@ -1,17 +1,16 @@
-﻿using Microsoft.CSharp;
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Reflection;
+
+using Microsoft.CSharp;
 
 namespace CSharpCodeDemo
 {
     internal class Program
     {
-
         private static void Main(string[] args)
         {
-
             string code = @"
                             using System;
                             using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace CSharpCodeDemo
                             {
                                 public class Test
                                 {
-                                    private static List<string> CSharpCodeLogOutputStr = new List<string>();    
+                                    private static List<string> CSharpCodeLogOutputStr = new List<string>();
 
                                      public static void BotTimeWriteLine(string message)
                                     {
@@ -33,7 +32,7 @@ namespace CSharpCodeDemo
                                         {
                                            BotTimeWriteLine(i.ToString());
                                         }
-                                        outStr=CSharpCodeLogOutputStr;  
+                                        outStr=CSharpCodeLogOutputStr;
                                     }
                                 }
                             }

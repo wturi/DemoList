@@ -5,16 +5,16 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="AvaloniaApplication1.MainWindow"
         Title="AvaloniaApplication1">
-  <Grid Width="800" Height="600">
-    <Grid.RowDefinitions>
-      <RowDefinition Height="25" />
-      <RowDefinition Height="*" />
-      <RowDefinition Height="200" MinHeight="100" />
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="200" MinWidth="100" />
-      <ColumnDefinition Width="*" MinWidth="300" />
-      <ColumnDefinition Width="280"  MinWidth="100" />
-    </Grid.ColumnDefinitions>
-  </Grid>
+    <Grid Width="800" Height="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="200" MinHeight="100" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" MinWidth="100" />
+            <ColumnDefinition Width="*" MinWidth="300" />
+            <ColumnDefinition Width="280"  MinWidth="100" />
+        </Grid.ColumnDefinitions>
+    </Grid>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Newtonsoft.Json;
 
 namespace DynamicDemo
@@ -7,13 +8,11 @@ namespace DynamicDemo
     {
         private static void Main(string[] args)
         {
-
             var returnObj = GetDynamicClassBydt();
             Console.WriteLine(JsonConvert.SerializeObject(returnObj));
 
             Console.ReadLine();
         }
-
 
         private static void Run1()
         {
@@ -32,7 +31,7 @@ namespace DynamicDemo
         /// 使用dynamic根据DataTable的列名自动添加属性并赋值
         /// </summary>
         /// <param name="dt"></param>
-        /// <returns></returns> 
+        /// <returns></returns>
         private static Object GetDynamicClassBydt()
         {
             dynamic d = new System.Dynamic.ExpandoObject();

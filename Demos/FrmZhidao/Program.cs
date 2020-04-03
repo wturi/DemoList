@@ -25,7 +25,6 @@ namespace FrmZhidao
         [DllImport("user32.dll")]
         private static extern bool SetWindowText(IntPtr hWnd, string lpString);
 
-
         private static POINT GetCursorPos()
         {
             POINT p;
@@ -50,7 +49,6 @@ namespace FrmZhidao
 
         [DllImport("user32.dll", EntryPoint = "WindowFromPoint")]
         private static extern IntPtr WindowFromPoint(Point pt);
-
 
         [DllImport("user32.dll", ExactSpelling = true, CharSet = CharSet.Auto)]
         private static extern IntPtr GetParent(IntPtr hWnd);
@@ -101,11 +99,9 @@ namespace FrmZhidao
 
                 Console.WriteLine();
 
-
                 Thread.Sleep(1000);
             }
         }
-
 
         private static void GetParentHandle(IntPtr hWnd)
         {
@@ -117,7 +113,6 @@ namespace FrmZhidao
             }
 
             Console.Write($"  上层句柄:{parentHandle}");
-
 
             GetParentHandle(parentHandle);
         }

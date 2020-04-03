@@ -4,8 +4,6 @@ namespace SwitchCaseThrough
 {
     internal class Program
     {
-
-
         private static void Main(string[] args)
         {
             Plan2.RunPlan();
@@ -13,6 +11,4 @@ namespace SwitchCaseThrough
             Console.ReadLine();
         }
     }
-
-
 }

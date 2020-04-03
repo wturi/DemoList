@@ -2,9 +2,7 @@
 using System.Linq;
 
 using SuperSocket.SocketBase;
-using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
-using SuperSocket.SocketEngine;
 
 namespace SuperSocketDemo
 {
@@ -26,7 +24,6 @@ namespace SuperSocketDemo
 
             Console.WriteLine();
 
-
             appServer.NewSessionConnected += new SessionHandler<AppSession>(appServer_NewSessionConnected);
             appServer.NewRequestReceived += new RequestHandler<AppSession, StringRequestInfo>(appServer_NewRequestReceived);
 
@@ -37,7 +34,6 @@ namespace SuperSocketDemo
                 Console.ReadKey();
                 return;
             }
-
 
             Console.WriteLine("The server started successfully, press key 'q' to stop it!");
 
@@ -54,12 +50,12 @@ namespace SuperSocketDemo
             Console.ReadKey();
         }
 
-        static void appServer_NewSessionConnected(AppSession session)
+        private static void appServer_NewSessionConnected(AppSession session)
         {
             session.Send("Welcome to SuperSocket Telnet Server");
         }
 
-        static void appServer_NewRequestReceived(AppSession session, StringRequestInfo requestInfo)
+        private static void appServer_NewRequestReceived(AppSession session, StringRequestInfo requestInfo)
         {
             switch (requestInfo.Key.ToUpper())
             {

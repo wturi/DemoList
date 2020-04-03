@@ -19,13 +19,13 @@ namespace WFHelper.XamlClr
             }
         }
 
-        #endregion Constructors and Destructors
+        #endregion 构造函数和析构函数
 
         #region 属性
 
         public List<XamlClrRef> References { get; set; }
 
-        #endregion Properties
+        #endregion 属性
 
         public XamlClrReferences Load()
         {

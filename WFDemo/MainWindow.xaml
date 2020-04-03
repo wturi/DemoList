@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="550" Width="800" >
+        Title="{Binding Title}" Height="550" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
@@ -69,7 +69,7 @@
                 <TextBox Name="XamlTextBox" Text="{Binding XAML, Mode=TwoWay}"
                          AcceptsReturn="True"
                          HorizontalScrollBarVisibility="Auto"
-                         VerticalScrollBarVisibility="Auto"  >
+                         VerticalScrollBarVisibility="Auto">
                 </TextBox>
             </TabItem>
         </TabControl>
@@ -94,10 +94,10 @@
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     Grid.Row="2">
-            <TabItem Header="输出" >
+            <TabItem Header="输出">
                 <TextBlock Name="StatusText" Text="{Binding Path=Status}" />
             </TabItem>
-            <TabItem Header="错误信息" >
+            <TabItem Header="错误信息">
                 <ListBox Name="WorkflowErrors" ItemsSource="{Binding WorkflowErrors}"></ListBox>
             </TabItem>
         </TabControl>

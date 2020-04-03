@@ -12,7 +12,7 @@ namespace ReflectDemo
         {
             Console.WriteLine(DateTime.Now.ToString("hh:mm:ss-ffff"));
             AddressInfo model = new AddressInfo();
-            ForeachClassProperties(model); 
+            ForeachClassProperties(model);
             Console.WriteLine(DateTime.Now.ToString("hh:mm:ss-ffff"));
             Console.ReadLine();
         }

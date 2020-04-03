@@ -1,17 +1,13 @@
-﻿using System;
-using System.Activities.Presentation.Validation;
+﻿using System.Activities.Presentation.Validation;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WFHelper.ExtensionService
 {
     /// <summary>
     /// 验证错误的服务
     /// </summary>
- public   class ValidationErrorService : IValidationErrorService
+    public class ValidationErrorService : IValidationErrorService
     {
         private readonly IList _errorList;
 
@@ -29,5 +25,4 @@ namespace WFHelper.ExtensionService
             }
         }
     }
-
 }

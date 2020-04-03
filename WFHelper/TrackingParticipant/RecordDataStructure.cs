@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+
 using WFHelper.Annotations;
 
 namespace WFHelper.TrackingParticipant
@@ -22,33 +23,44 @@ namespace WFHelper.TrackingParticipant
         public TraceLevel Level { get; set; }
     }
 
-    public  class UnhandledException
+    public class UnhandledException
     {
         [CanBeNull]
         public string ClassName { get; set; }
+
         [CanBeNull]
         public string Message { get; set; }
-        [CanBeNull] 
+
+        [CanBeNull]
         public object Data { get; set; }
+
         [CanBeNull]
         public object InnerException { get; set; }
+
         [CanBeNull]
         public object HelpURL { get; set; }
+
         [CanBeNull]
         public string StackTraceString { get; set; }
-        [CanBeNull] 
+
+        [CanBeNull]
         public object RemoteStackTraceString { get; set; }
+
         public int RemoteStackIndex { get; set; }
-        [CanBeNull] 
+
+        [CanBeNull]
         public string ExceptionMethod { get; set; }
+
         public int HResult { get; set; }
-        [CanBeNull] 
+
+        [CanBeNull]
         public string Source { get; set; }
+
         [CanBeNull]
         public object WatsonBuckets { get; set; }
     }
 
-    public  class FaultSource
+    public class FaultSource
     {
         public string Name { get; set; }
         public string Id { get; set; }

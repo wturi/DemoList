@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -9,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace SocketClient
 {
-    class Program
+    internal class Program
     {
+        private static Thread threadclient = null;
+        private static Socket socketclient = null;
 
-        static Thread threadclient = null;
-        static Socket socketclient = null;
-
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Connect();
 
@@ -26,7 +23,6 @@ namespace SocketClient
             });
             Console.ReadLine();
         }
-
 
         public static void Connect()
         {
@@ -47,7 +43,6 @@ namespace SocketClient
             };
             threadclient.Start();
         }
-
 
         private static void recv()
         {
@@ -77,7 +72,6 @@ namespace SocketClient
                 }
             }
         }
-
 
         private static void ClientSendMsg(string sendMsg)
         {

@@ -60,7 +60,6 @@ namespace OpenFileDialogDemo
 
             //Console.WriteLine("12\"121" + n + "22");
 
-
             while (true)
             {
                 var point = GetCursorPosPoint();
@@ -71,7 +70,6 @@ namespace OpenFileDialogDemo
 
         [DllImport("user32.dll", EntryPoint = "GetCursorPos")]
         public static extern bool GetCursorPos(out Point pt);
-
 
         //鼠标位置的坐标
         public static Point GetCursorPosPoint()

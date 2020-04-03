@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Elsa.Dashboard
+﻿namespace Elsa.Dashboard
 {
     public class Class1
     {

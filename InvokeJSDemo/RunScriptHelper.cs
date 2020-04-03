@@ -1,5 +1,6 @@
-﻿using MSScriptControl;
-using System;
+﻿using System;
+
+using MSScriptControl;
 
 namespace InvokeJSDemo
 {
@@ -66,7 +67,7 @@ namespace InvokeJSDemo
             /// <param name="language">脚本类型</param>
             public ScriptEngine(ScriptLanguage language)
             {
-                this.msc = new ScriptControlClass {UseSafeSubset = true, Language = language.ToString()};
+                this.msc = new ScriptControlClass { UseSafeSubset = true, Language = language.ToString() };
                 ((DScriptControlSource_Event)this.msc).Error += new DScriptControlSource_ErrorEventHandler(OnError);
                 ((DScriptControlSource_Event)this.msc).Timeout += new DScriptControlSource_TimeoutEventHandler(OnTimeout);
             }

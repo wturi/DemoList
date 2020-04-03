@@ -9,7 +9,7 @@
         Title="AvaloniaApplication2">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
     <Grid>
         <Grid.RowDefinitions>
@@ -43,7 +43,7 @@
                     <MenuItem Header="另存为" />
                     <MenuItem Header="退出" />
                 </MenuItem>
-                <MenuItem Header="运行"/>
+                <MenuItem Header="运行" />
             </Menu>
         </StackPanel>
         <TabControl HorizontalAlignment="Stretch"
@@ -65,7 +65,7 @@
             </TabItem>
             <TabItem Header="代码">
                 <TextBox Name="XamlTextBox" Text="xaml"
-                 AcceptsReturn="True" >
+                 AcceptsReturn="True">
                 </TextBox>
             </TabItem>
         </TabControl>

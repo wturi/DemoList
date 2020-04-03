@@ -1,6 +1,5 @@
 ﻿using System;
-using Newtonsoft.Json;
-using SuperSocket.SocketBase;
+
 using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
 

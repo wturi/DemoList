@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Elsa
+﻿namespace Elsa
 {
     public class Class1
     {

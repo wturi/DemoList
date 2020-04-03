@@ -1,12 +1,8 @@
-﻿using ActivityLibrary.Mail;
-using Design;
-using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Activities;
 using System.Activities.Core.Presentation;
 using System.Activities.Expressions;
 using System.Activities.Presentation;
-using System.Activities.Presentation.Hosting;
 using System.Activities.Presentation.Metadata;
 using System.Activities.Presentation.Toolbox;
 using System.Activities.Presentation.Validation;
@@ -24,11 +20,19 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
+
+using ActivityLibrary.Mail;
+
+using Design;
+
 using Microsoft.CSharp.Activities;
+using Microsoft.Win32;
+
 using WFHelper.Executions;
 using WFHelper.Extensions;
 using WFHelper.ExtensionService;
 using WFHelper.XamlClr;
+
 using Image = System.Drawing.Image;
 
 namespace WFHelper.ViewModels
@@ -428,7 +432,6 @@ namespace WFHelper.ViewModels
             configurationService.LoadingFromUntrustedSourceEnabled = true;
             configurationService.AnnotationEnabled = true;
 
-
             if (File.Exists(TemplateXaml))
             {
                 this.WorkflowDesigner.Load(TemplateXaml);
@@ -595,8 +598,6 @@ namespace WFHelper.ViewModels
             //抓取错误信息
             var validationErrorService = new ValidationErrorService(WorkflowErrors);
             this.WorkflowDesigner.Context.Services.Publish<IValidationErrorService>(validationErrorService);
-
-
         }
 
         /// <summary>
@@ -624,9 +625,9 @@ namespace WFHelper.ViewModels
             this.Status = "";
         }
 
-        #endregion
+        #endregion 输出操作
 
-        static void CompileExpressions(DynamicActivity dynamicActivity)
+        private static void CompileExpressions(DynamicActivity dynamicActivity)
         {
             // activityName is the Namespace.Type of the activity that contains the
             // C# expressions. For Dynamic Activities this can be retrieved using the
@@ -673,7 +674,7 @@ namespace WFHelper.ViewModels
                 dynamicActivity, compiledExpressionRoot);
         }
 
-        static void CompileExpressions(Activity activity)
+        private static void CompileExpressions(Activity activity)
         {
             // activityName is the Namespace.Type of the activity that contains the
             // C# expressions.
@@ -720,6 +721,5 @@ namespace WFHelper.ViewModels
         }
 
         #endregion 方法
-
     }
 }

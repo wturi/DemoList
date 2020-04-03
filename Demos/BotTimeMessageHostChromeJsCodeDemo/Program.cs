@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+
 using Newtonsoft.Json;
 
 namespace BotTimeMessageHostChromeJsCodeDemo
@@ -43,17 +44,14 @@ namespace BotTimeMessageHostChromeJsCodeDemo
                 .OrderByDescending(f => f.Name)
                 .FirstOrDefault();
 
-
             var verInHost = fileName.Name.Replace(bowserType, string.Empty).Replace(".", string.Empty);
             var verInChrome = ver.Replace(".", string.Empty).PadRight(verInHost.Length, '0');
-
 
             var k2 = int.Parse(verInHost);
             var k = int.Parse(verInChrome);
 
             return k2 > k ? fileName.FullName : string.Empty;
         }
-
 
         /// <summary>
         /// 解压缩

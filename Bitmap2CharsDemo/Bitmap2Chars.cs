@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
+
+using Newtonsoft.Json;
 
 namespace Bitmap2CharsDemo
 {
@@ -32,7 +33,6 @@ namespace Bitmap2CharsDemo
             dc.AutoIncrementSeed = 1;//起始为1
             dc.AutoIncrementStep = 1;//步长为1
             dc.AllowDBNull = false;//
-
 
             for (int i = 0; i < bitmapW / colSize; i++)
             {

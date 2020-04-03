@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
+
 using BindingDemo.ViewModel;
 
 namespace BindingDemo
@@ -21,6 +10,7 @@ namespace BindingDemo
     public partial class Window1 : Window
     {
         public MainWindowViewModel ViewModel = ModelFactory.Get(typeof(MainWindowViewModel), new object[] { }) as MainWindowViewModel;
+
         public Window1()
         {
             InitializeComponent();
@@ -28,7 +18,6 @@ namespace BindingDemo
             DataContext = new Window1ViewModel();
 
             Name.DataContext = ViewModel;
-
         }
     }
 }

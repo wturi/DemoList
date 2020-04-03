@@ -5,7 +5,6 @@ using System.Net.Mail;
 
 namespace ActivityLibrary.Mail
 {
-
     [ToolboxBitmap(typeof(SendMailActivity), "../Icon/sendmail.png")]
     public sealed class SendMailActivity : NativeActivity
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AvaloniaApplication2.ViewModels
+﻿namespace AvaloniaApplication2.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

@@ -18,11 +18,8 @@ namespace ActionAndFuncDemo
 
             //Console.WriteLine("func demo add return num" + ArgumentFunc(1, 2));
 
-
-
             A.func d = new A.func(A.B);
             A.Call(d, 88);
-
 
             Console.ReadLine();
         }
@@ -44,7 +41,6 @@ namespace ActionAndFuncDemo
         }
     }
 
-
     public static class A
     {
         public delegate void func(int a);
@@ -53,6 +49,7 @@ namespace ActionAndFuncDemo
         {
             Console.WriteLine(n);
         }
+
         public static void Call(func f, int k)
         {
             f(k);
