@@ -45,8 +45,8 @@ namespace WpfDemoSample
             _demoDictionary = new ConcurrentDictionary<string, string>();
             _windowNameList = new List<string>();
 
-            _demoDictionary.TryAdd("获取鼠标坐标", nameof(GetMouseInfo));
-            _windowNameList.Add("获取鼠标坐标");
+            _demoDictionary.TryAdd("获取鼠标信息", nameof(GetMouseInfo));
+            _windowNameList.Add("获取鼠标信息");
         }
 
 
