@@ -9,15 +9,35 @@ namespace GetParentProcess
 {
     class Program
     {
+        private static List<Process> BeforeOpenBrowser { set; get; } = new List<Process>();
+
         static void Main(string[] args)
         {
 
-            Parent(Process.GetCurrentProcess(), new[] { "cmd" });
+            GetNowProcessBeforeOpenBrowser("iexplore");
+
+            //Parent(Process.GetCurrentProcess(), new[] { "cmd" });
 
             Console.ReadLine();
         }
 
 
+
+        /// <summary>
+        /// 获取打开浏览器之前的ie进程
+        /// </summary>
+        private static void GetNowProcessBeforeOpenBrowser(string processName)
+        {
+
+            var pp = Process.GetProcessesByName(processName);
+            foreach (var process in pp)
+            {
+                if (process.ProcessName == processName)
+                {
+                    BeforeOpenBrowser.Add(process);
+                }
+            }
+        }
 
 
         /// <summary>
