@@ -75,9 +75,10 @@ namespace WpfDemoSample
                 //加载类型
                 var type = Type.GetType(path);
                 //根据类型创建实例
+                if (type == null) throw new Exception();
                 var obj = Activator.CreateInstance(type, true);
                 //加载方法参数类型及方法
-                MethodInfo method = null;
+                MethodInfo method;
                 if (paras != null && paras.Length > 0)
                 {
                     //加载方法参数类型
@@ -95,6 +96,7 @@ namespace WpfDemoSample
                     method = type.GetMethod(methodName);
                 }
                 //类型转换并返回
+                if (method == null) throw new Exception();
                 return (T)method.Invoke(obj, paras);
             }
             catch
