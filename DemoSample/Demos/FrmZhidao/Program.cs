@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -90,17 +91,20 @@ namespace FrmZhidao
 
         private static void Main(string[] args)
         {
-            while (true)
-            {
-                var hWnd = GetMousePointWindowsHandle();
-                Console.Write($"鼠标指向句柄 : {hWnd}");
 
-                GetParentHandle((IntPtr)hWnd);
+            var dd = Assembly.Load("System");
 
-                Console.WriteLine();
+            //while (true)
+            //{
+            //    var hWnd = GetMousePointWindowsHandle();
+            //    Console.Write($"鼠标指向句柄 : {hWnd}");
 
-                Thread.Sleep(1000);
-            }
+            //    GetParentHandle((IntPtr)hWnd);
+
+            //    Console.WriteLine();
+
+            //    Thread.Sleep(1000);
+            //}
         }
 
         private static void GetParentHandle(IntPtr hWnd)
