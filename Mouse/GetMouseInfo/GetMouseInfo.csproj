@@ -7,8 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ClassBase\ClassBase.csproj" />
-    <ProjectReference Include="..\Mouse\GetMouseInfo\GetMouseInfo.csproj" />
+    <ProjectReference Include="..\..\ClassBase\ClassBase.csproj" />
   </ItemGroup>
 
 </Project>

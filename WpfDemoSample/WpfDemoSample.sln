@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDemoSample", "WpfDemoSam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassBase", "..\ClassBase\ClassBase.csproj", "{42402BFF-D67B-427B-A175-3BAE372CABCD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mouse", "Mouse", "{11FDE0E7-226C-46C2-B82B-F3DEFC61AD8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetMouseInfo", "..\Mouse\GetMouseInfo\GetMouseInfo.csproj", "{3578842F-E983-4CF9-86F9-918E480FEC11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3578842F-E983-4CF9-86F9-918E480FEC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3578842F-E983-4CF9-86F9-918E480FEC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3578842F-E983-4CF9-86F9-918E480FEC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3578842F-E983-4CF9-86F9-918E480FEC11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3578842F-E983-4CF9-86F9-918E480FEC11} = {11FDE0E7-226C-46C2-B82B-F3DEFC61AD8E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC7971A1-15AC-4DA2-8E61-FAF5202C87C5}
