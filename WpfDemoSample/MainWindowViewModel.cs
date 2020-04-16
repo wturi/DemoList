@@ -54,7 +54,7 @@ namespace WpfDemoSample
         {
             if (_demoDictionary.TryGetValue(windowName, out var value))
             {
-                GetInvokeMethod<string>("GetMouseInfo", "GetMouseInfo", "MainWindow", "Show", null);
+                GetInvokeMethod<string>(value, value, "MainWindow", "Show", null);
             }
         }
 
