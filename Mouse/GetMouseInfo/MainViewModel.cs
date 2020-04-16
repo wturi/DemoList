@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography.Pkcs;
-using System.Threading;
 using System.Windows.Threading;
+
 using ClassBase;
 
 namespace GetMouseInfo
@@ -30,7 +28,7 @@ namespace GetMouseInfo
         public MainViewModel()
         {
             _info = new ObservableCollection<string>();
-            _timer.Interval = new TimeSpan(0, 0, 0, 0,500);
+            _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             _timer.Tick += Timer_Tick;
             _timer.Start();
         }
@@ -69,9 +67,8 @@ namespace GetMouseInfo
         /// 委托定义，用于控制界面元素
         /// </summary>
         public delegate void ScrollToEnd();
+
         public ScrollToEnd FocusLastItem = null;
-
-
 
         #region method
 

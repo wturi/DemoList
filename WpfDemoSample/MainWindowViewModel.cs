@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Windows;
 
 using ClassBase;
 
@@ -49,7 +48,6 @@ namespace WpfDemoSample
             _windowNameList.Add("获取鼠标信息");
         }
 
-
         public void RunWindow(string windowName)
         {
             if (_demoDictionary.TryGetValue(windowName, out var value))
@@ -57,7 +55,6 @@ namespace WpfDemoSample
                 GetInvokeMethod<string>(value, value, "MainWindow", "Show", null);
             }
         }
-
 
         /// <summary>
         /// 调用方法实例
@@ -69,28 +66,28 @@ namespace WpfDemoSample
         /// <param name="methodName">方法名</param>
         /// <param name="paras"></param>
         /// <returns></returns>
-        private T GetInvokeMethod<T>(string assemblyName, string nameSpace, string className, string methodName, object[] paras)
+        private static T GetInvokeMethod<T>(string assemblyName, string nameSpace, string className, string methodName, object[] paras)
         {
             try
             {
                 //命名空间.类名,程序集
-                string path = nameSpace + "." + className + "," + assemblyName;
+                var path = nameSpace + "." + className + "," + assemblyName;
                 //加载类型
-                Type type = Type.GetType(path);
+                var type = Type.GetType(path);
                 //根据类型创建实例
-                object obj = Activator.CreateInstance(type, true);
+                var obj = Activator.CreateInstance(type, true);
                 //加载方法参数类型及方法
                 MethodInfo method = null;
                 if (paras != null && paras.Length > 0)
                 {
                     //加载方法参数类型
-                    Type[] paratypes = new Type[paras.Length];
-                    for (int i = 0; i < paras.Length; i++)
+                    var paraTypes = new Type[paras.Length];
+                    for (var i = 0; i < paras.Length; i++)
                     {
-                        paratypes[i] = paras[i].GetType();
+                        paraTypes[i] = paras[i].GetType();
                     }
                     //加载有参方法
-                    method = type.GetMethod(methodName, paratypes);
+                    method = type.GetMethod(methodName, paraTypes);
                 }
                 else
                 {

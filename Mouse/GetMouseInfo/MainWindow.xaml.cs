@@ -12,13 +12,13 @@ namespace GetMouseInfo
     public partial class MainWindow : Window
     {
         private readonly MainViewModel _mainViewModel = new MainViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
             this.DataContext = _mainViewModel;
             _mainViewModel.FocusLastItem += AutoScroll;
         }
-
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
