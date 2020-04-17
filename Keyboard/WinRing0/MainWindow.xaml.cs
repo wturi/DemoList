@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -43,8 +44,7 @@ namespace WinRing0
             }
 
             Thread.Sleep(millisecond);
-
-            RunWinRing0(inputText);
+            Task.Run(() => { RunWinRing0(inputText); });
         }
 
         private static void RunWinRing0(string inputText)
