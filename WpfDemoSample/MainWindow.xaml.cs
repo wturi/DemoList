@@ -16,7 +16,8 @@ namespace WpfDemoSample
         {
             this.DataContext = _mainWindowViewModel;
             InitializeComponent();
-            MessageTextBlock.Text = "需要安装.net core 3.1,现在地址：https://dotnet.microsoft.com/download/dotnet-core/3.1";
+            MessageTextBlock.Text = "必要环境：.net core 3.1\r\n";
+            MessageTextBlock.Text += "下载地址：https://dotnet.microsoft.com/download/dotnet-core/3.1";
         }
 
         /// <summary>

@@ -16,7 +16,7 @@
             <RowDefinition Height="9*"></RowDefinition>
         </Grid.RowDefinitions>
         <ComboBox
-            Width="100"
+            Margin="10,0,10,0"
             Height="20"
             Grid.Column="0"
             Grid.Row="0"
@@ -32,6 +32,7 @@
         <TextBox 
             x:Name="MessageTextBlock" 
             AcceptsReturn="True"
+            TextWrapping="Wrap"
             Grid.Row="1" 
             Grid.Column="0" 
             Grid.ColumnSpan="2" 
