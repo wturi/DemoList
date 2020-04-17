@@ -15,12 +15,12 @@
             <ColumnDefinition Width="44*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"></RowDefinition>
-            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*" MinHeight="40"></RowDefinition>
+            <RowDefinition Height="9*" MinHeight="100"></RowDefinition>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Margin="14,11">输入内容</TextBlock>
-        <TextBox x:Name="TextBox" Grid.Row="0" Grid.Column="1" Margin="10,11" Text="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" />
+        <TextBox x:Name="TextBox" Grid.Row="0" Grid.Column="1" Margin="10,11"/>
 
         <CheckBox x:Name="MouseFocus" Grid.Column="2" Grid.Row="0" Margin="0,11">跟随鼠标焦点</CheckBox>
         <TextBox x:Name="Millisecond" Grid.Column="3" Grid.Row="0" Margin="0,11">1000</TextBox>

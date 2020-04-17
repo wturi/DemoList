@@ -15,6 +15,9 @@ namespace WinRing0
         public MainWindow()
         {
             InitializeComponent();
+            TextBox.Text =
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz`1234567890-=~!@#$%^&*()_+{}|[]\\:\";',./<>?";
+            ShowTextBox.Text = "PS：需要管理员启动，计算机设备管理器中需要有键盘设备为PS/2";
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
