@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDemoSample", "WpfDemoSample.csproj", "{3F57694B-FDC0-44CC-87DC-1AD72742CBA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfDemoSample", "WpfDemoSample.csproj", "{3F57694B-FDC0-44CC-87DC-1AD72742CBA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassBase", "..\ClassBase\ClassBase.csproj", "{42402BFF-D67B-427B-A175-3BAE372CABCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassBase", "..\ClassBase\ClassBase.csproj", "{42402BFF-D67B-427B-A175-3BAE372CABCD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mouse", "Mouse", "{11FDE0E7-226C-46C2-B82B-F3DEFC61AD8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetMouseInfo", "..\Mouse\GetMouseInfo\GetMouseInfo.csproj", "{3578842F-E983-4CF9-86F9-918E480FEC11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetMouseInfo", "..\Mouse\GetMouseInfo\GetMouseInfo.csproj", "{3578842F-E983-4CF9-86F9-918E480FEC11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedMemory", "SharedMemory", "{E0C196D8-AADD-4C6B-84C0-05784B29DBAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadSharedMemory", "..\SharedMemory\ReadSharedMemory\ReadSharedMemory.csproj", "{24E28909-F74E-4466-94DC-1FE27676B2E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +33,17 @@ Global
 		{3578842F-E983-4CF9-86F9-918E480FEC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3578842F-E983-4CF9-86F9-918E480FEC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3578842F-E983-4CF9-86F9-918E480FEC11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3578842F-E983-4CF9-86F9-918E480FEC11} = {11FDE0E7-226C-46C2-B82B-F3DEFC61AD8E}
+		{24E28909-F74E-4466-94DC-1FE27676B2E5} = {E0C196D8-AADD-4C6B-84C0-05784B29DBAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC7971A1-15AC-4DA2-8E61-FAF5202C87C5}

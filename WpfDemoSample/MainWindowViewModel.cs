@@ -46,6 +46,9 @@ namespace WpfDemoSample
 
             _demoDictionary.TryAdd("获取鼠标信息", "GetMouseInfo");
             _windowNameList.Add("获取鼠标信息");
+
+            _demoDictionary.TryAdd("读取内存信息", "ReadSharedMemory");
+            _windowNameList.Add("读取内存信息");
         }
 
         public void RunWindow(string windowName)

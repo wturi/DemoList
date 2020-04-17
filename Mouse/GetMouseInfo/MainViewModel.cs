@@ -12,22 +12,22 @@ namespace GetMouseInfo
     {
         private readonly DispatcherTimer _timer = new DispatcherTimer();
 
-        private ObservableCollection<string> _info;
+        private ObservableCollection<string> _getMouseInfo;
 
-        public ObservableCollection<string> Info
+        public ObservableCollection<string> GetMouseInfo
         {
-            get => _info;
+            get => _getMouseInfo;
             set
             {
-                if (_info == value) return;
-                _info = value;
-                RaisePropertyChanged("Info");
+                if (_getMouseInfo == value) return;
+                _getMouseInfo = value;
+                RaisePropertyChanged("GetMouseInfo");
             }
         }
 
         public MainViewModel()
         {
-            _info = new ObservableCollection<string>();
+            _getMouseInfo = new ObservableCollection<string>();
             _timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
             _timer.Tick += Timer_Tick;
             _timer.Start();
@@ -39,7 +39,7 @@ namespace GetMouseInfo
 
             var msg = GetParentHandle((IntPtr)hWnd, $"鼠标指向句柄 : {hWnd}");
 
-            Info.Add(msg);
+            GetMouseInfo.Add(msg);
 
             FocusLastItem();
         }

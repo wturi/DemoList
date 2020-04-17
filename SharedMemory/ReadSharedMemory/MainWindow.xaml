@@ -1,0 +1,22 @@
+﻿<Window x:Class="ReadSharedMemory.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReadSharedMemory"
+        mc:Ignorable="d"
+        Title="读取内存信息" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="9*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="SharedMemoryName" Grid.Column="0" Grid.Row="0" Height="20" Width="300">BotTimeNativeMessageHostSharedMemory</TextBox>
+        <Button x:Name="Btn" Grid.Column="1" Grid.Row="0" Height="20" Width="80" Click="Btn_OnClick">读取</Button>
+        <ListBox x:Name="SharedMemoryInfo" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding ReadSharedMemoryInfo}" ></ListBox>
+    </Grid>
+</Window>
