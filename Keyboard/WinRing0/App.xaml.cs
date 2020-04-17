@@ -9,7 +9,7 @@ using System.Windows;
 namespace WinRing0
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// App.xaml 的交互逻辑
     /// </summary>
     public partial class App : Application
     {
