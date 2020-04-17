@@ -49,6 +49,9 @@ namespace WpfDemoSample
 
             _demoDictionary.TryAdd("读取内存信息", "ReadSharedMemory");
             _windowNameList.Add("读取内存信息");
+
+            _demoDictionary.TryAdd("模拟键盘（WinRing0）", "WinRing0");
+            _windowNameList.Add("模拟键盘（WinRing0）");
         }
 
         public void RunWindow(string windowName)

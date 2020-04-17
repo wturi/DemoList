@@ -8,19 +8,25 @@
         Title="模拟键盘（WinRing0）" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
-            <ColumnDefinition Width="8*"></ColumnDefinition>
-            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="44*"></ColumnDefinition>
+            <ColumnDefinition Width="220*"></ColumnDefinition>
+            <ColumnDefinition Width="49*"></ColumnDefinition>
+            <ColumnDefinition Width="39*"></ColumnDefinition>
+            <ColumnDefinition Width="44*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="9*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Width="60" Height="20" Grid.Row="0" Grid.Column="0">输入内容</TextBlock>
-        <TextBox x:Name="TextBox" Width="600" Height="20" Grid.Row="0" Grid.Column="1"></TextBox>
-        <Button Width="60" Height="20" Grid.Row="0" Grid.Column="2" Click="ButtonBase_OnClick">运行</Button>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="14,11">输入内容</TextBlock>
+        <TextBox x:Name="TextBox" Grid.Row="0" Grid.Column="1" Margin="10,11"  />
 
-        <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="10,0,10,5"></TextBox>
+        <CheckBox x:Name="MouseFocus" Grid.Column="2" Grid.Row="0" Margin="0,11">跟随鼠标焦点</CheckBox>
+        <TextBox x:Name="Millisecond" Grid.Column="3" Grid.Row="0" Margin="0,11">1000</TextBox>
+
+        <Button Grid.Row="0" Grid.Column="4" Click="ButtonBase_OnClick" Margin="14,11">运行</Button>
+
+        <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" Margin="10,0,10,5"></TextBox>
     </Grid>
 </Window>

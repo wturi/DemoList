@@ -7,9 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dlls\WinRing0.dll" />
+    <None Remove="Dlls\WinRing0x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Dlls\WinRing0.dll" />
+    <Content Include="Dlls\WinRing0x64.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ClassBase\ClassBase.csproj" />
+    <ProjectReference Include="..\Keyboard\WinRing0\WinRing0.csproj" />
     <ProjectReference Include="..\Mouse\GetMouseInfo\GetMouseInfo.csproj" />
     <ProjectReference Include="..\SharedMemory\ReadSharedMemory\ReadSharedMemory.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy $(ProjectDir)Dlls\*.* $(ProjectDir)$(OutDir)*.*" />
+  </Target>
 
 </Project>

@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using WinRing0.Helpers;
 
 namespace WinRing0
@@ -32,19 +21,31 @@ namespace WinRing0
             ShowTextBox.Text = string.Empty;
 
             var inputText = TextBox.Text;
+            var millisecondText = Millisecond.Text;
+            var millisecond = 1000;
+
             if (string.IsNullOrEmpty(inputText))
             {
                 ShowTextBox.Text = "请输入键盘内容";
                 return;
             }
 
-            ShowTextBox.Focus();
+            //是否跟随鼠标焦点
+            if (MouseFocus?.IsChecked != null && !(bool)(MouseFocus.IsChecked))
+            {
+                ShowTextBox.Focus();
+            }
 
-            Thread.Sleep(1000);
+            //延迟运行间隔
+            if (!string.IsNullOrEmpty(millisecondText))
+            {
+                int.TryParse(Millisecond.Text, out millisecond);
+            }
+
+            Thread.Sleep(millisecond);
 
             RunWinRing0(inputText);
         }
-
 
         private static void RunWinRing0(string inputText)
         {
