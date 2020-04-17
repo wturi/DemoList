@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetMouseInfo", "..\Mouse\Ge
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedMemory", "SharedMemory", "{E0C196D8-AADD-4C6B-84C0-05784B29DBAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadSharedMemory", "..\SharedMemory\ReadSharedMemory\ReadSharedMemory.csproj", "{24E28909-F74E-4466-94DC-1FE27676B2E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReadSharedMemory", "..\SharedMemory\ReadSharedMemory\ReadSharedMemory.csproj", "{24E28909-F74E-4466-94DC-1FE27676B2E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keyboard", "Keyboard", "{824786CE-39F3-49B7-A7AA-C93FB9CA0DE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinRing0", "..\Keyboard\WinRing0\WinRing0.csproj", "{694725C7-E2A8-4D55-B751-9C921F0ED38F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +41,10 @@ Global
 		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24E28909-F74E-4466-94DC-1FE27676B2E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{694725C7-E2A8-4D55-B751-9C921F0ED38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{694725C7-E2A8-4D55-B751-9C921F0ED38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{694725C7-E2A8-4D55-B751-9C921F0ED38F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{694725C7-E2A8-4D55-B751-9C921F0ED38F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +52,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3578842F-E983-4CF9-86F9-918E480FEC11} = {11FDE0E7-226C-46C2-B82B-F3DEFC61AD8E}
 		{24E28909-F74E-4466-94DC-1FE27676B2E5} = {E0C196D8-AADD-4C6B-84C0-05784B29DBAB}
+		{694725C7-E2A8-4D55-B751-9C921F0ED38F} = {824786CE-39F3-49B7-A7AA-C93FB9CA0DE7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FC7971A1-15AC-4DA2-8E61-FAF5202C87C5}

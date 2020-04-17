@@ -40,8 +40,9 @@ namespace ReadSharedMemory
                 var scrollViewer = (ScrollViewer)decorator.Child;
                 scrollViewer.ScrollToEnd();
             }
-            catch (Exception)
+            catch
             {
+                // ignored
             }
         }
 
