@@ -12,7 +12,7 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="1*" MinHeight="40"></RowDefinition>
             <RowDefinition Height="9*"></RowDefinition>
         </Grid.RowDefinitions>
         <ComboBox
@@ -28,5 +28,13 @@
             Grid.Column="1"
             Grid.Row="0"
             Click="ButtonBase_OnClick">启动</Button>
+
+        <TextBox 
+            x:Name="MessageTextBlock" 
+            AcceptsReturn="True"
+            Grid.Row="1" 
+            Grid.Column="0" 
+            Grid.ColumnSpan="2" 
+            Margin="10,5,10,5"></TextBox>
     </Grid>
 </Window>
