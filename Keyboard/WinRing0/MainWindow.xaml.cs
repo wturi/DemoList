@@ -27,6 +27,12 @@ namespace WinRing0
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
+            var inputText = TextBox.Text;
+            if (string.IsNullOrEmpty(inputText))
+            {
+                MessageBox.Show("请输入内容");
+                return;
+            }
             ShowTextBox.Focus();
         }
     }
