@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GetProcessChildren.Properties
+namespace GetProcessInfo.Properties
 {
 
 

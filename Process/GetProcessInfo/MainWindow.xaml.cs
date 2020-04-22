@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace GetProcessChildren
+namespace GetProcessInfo
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -25,6 +25,15 @@ namespace GetProcessChildren
             InitializeComponent();
         }
 
-        //todo
+        private void Run_OnClick(object sender, RoutedEventArgs e)
+        {
+            var type = BrotherProcess.IsChecked != null && (bool)BrotherProcess.IsChecked
+                ? "brother"
+                : ChildrenProcess.IsChecked != null && (bool)ChildrenProcess.IsChecked
+                    ? "children"
+                    : "parent";
+
+
+        }
     }
 }

@@ -21,7 +21,7 @@
     <ProjectReference Include="..\Keyboard\WinRing0\WinRing0.csproj" />
     <ProjectReference Include="..\Mouse\GetMouseInfo\GetMouseInfo.csproj" />
     <ProjectReference Include="..\Mouse\SetMouseState\SetMouseState.csproj" />
-    <ProjectReference Include="..\Process\GetProcessChildren\GetProcessChildren.csproj" />
+    <ProjectReference Include="..\Process\GetProcessInfo\GetProcessInfo.csproj" />
     <ProjectReference Include="..\SharedMemory\ReadSharedMemory\ReadSharedMemory.csproj" />
   </ItemGroup>
 

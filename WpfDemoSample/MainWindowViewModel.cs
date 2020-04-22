@@ -50,7 +50,7 @@ namespace WpfDemoSample
 
             _demoDictionary.TryAdd("读取内存信息", "ReadSharedMemory");
             _demoDictionary.TryAdd("模拟键盘（WinRing0）", "WinRing0");
-            _demoDictionary.TryAdd("获取子进程", "GetProcessChildren");
+            _demoDictionary.TryAdd("获取进程信息", "GetProcessInfo");
 
             _windowNameList = _demoDictionary.Keys.ToList();
         }
