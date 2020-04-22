@@ -11,6 +11,7 @@ namespace SetMouseState
     public partial class MainWindow : Window
     {
         private bool _isWhile = false;
+        private int _whileNum = 20;
 
         public MainWindow()
         {
@@ -23,7 +24,6 @@ namespace SetMouseState
             {
                 _isWhile = true;
             }
-
             SetMouseState();
         }
 
@@ -34,15 +34,17 @@ namespace SetMouseState
 
         private void SetMouseState()
         {
+            _whileNum = 20;
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 do
                 {
                     this.Cursor = Cursors.Wait;
-                    Thread.Sleep(50);
+                    Thread.Sleep(10);
                     this.Cursor = Cursors.Arrow;
-                    Thread.Sleep(200);
-                } while (_isWhile);
+                    Thread.Sleep(50);
+                    _whileNum--;
+                } while (_isWhile && _whileNum > 0);
             }));
         }
     }
