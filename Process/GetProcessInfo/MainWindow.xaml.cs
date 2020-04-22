@@ -12,6 +12,7 @@ namespace GetProcessInfo
     /// </summary>
     public partial class MainWindow : Window
     {
+        private int _killProcessNum = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -75,6 +76,7 @@ namespace GetProcessInfo
                 {
                     //杀死进程
                     KillProcessMethod();
+                    ShowTextBox.Text = $"kill process number ：{_killProcessNum}";
                 }
             }
             catch (Exception exception)
@@ -94,7 +96,7 @@ namespace GetProcessInfo
                 {
                     try
                     {
-                        KillProcessAndChildren(p.Id);
+                        KillProcessAndChildren(p);
                     }
                     catch
                     {
@@ -107,7 +109,8 @@ namespace GetProcessInfo
 
             try
             {
-                KillProcessAndChildren(pId);
+                var process = Process.GetProcessById(pId);
+                KillProcessAndChildren(process);
             }
             catch
             {
@@ -115,15 +118,16 @@ namespace GetProcessInfo
             }
         }
 
-        private void KillProcessAndChildren(int pId)
+        private void KillProcessAndChildren(Process process)
         {
-            var children = Helpers.ProcessHelper.GetChildProcesses(pId);
-            foreach (var child in children)
+            var children = Helpers.ProcessHelper.GetChildProcesses(process.Id);
+            if (children.Any())
             {
-                child.Kill();
+                children.ForEach(KillProcessAndChildren);
             }
 
-            Process.GetProcessById(pId)?.Kill();
+            _killProcessNum++;
+            process.Kill();
         }
     }
 }
