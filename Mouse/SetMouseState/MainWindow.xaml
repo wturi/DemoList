@@ -12,10 +12,10 @@
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ComboBox x:Name="MouseState" Height="20" Width="100" Grid.Column="0">
+        <ComboBox x:Name="MouseState" Height="20" Width="100" Grid.Column="0" SelectionChanged="MouseState_OnSelectionChanged">
             <ComboBoxItem>忙碌</ComboBoxItem>
         </ComboBox>
-        <CheckBox x:Name="IsWhile" Height="20" Width="100" Grid.Column="1">是否循环(20次)</CheckBox>
+        <CheckBox x:Name="IsWhile" Height="20" Width="150" Grid.Column="1">是否循环(20次)</CheckBox>
         <Grid Grid.Column="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
