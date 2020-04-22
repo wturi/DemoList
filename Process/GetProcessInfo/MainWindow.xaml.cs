@@ -23,9 +23,12 @@ namespace GetProcessInfo
             {
                 var pidStr = Pid.Text;
 
-                if (!int.TryParse(pidStr, out var pid))
+
+
+
+                if (!int.TryParse(pidStr, out var pid) && string.IsNullOrEmpty(PName.Text))
                 {
-                    MessageBox.Show("请输入Pid");
+                    MessageBox.Show("请输入任意参数");
                     return;
                 }
 
@@ -56,7 +59,7 @@ namespace GetProcessInfo
 
                     ShowTextBox.Text = JsonConvert.SerializeObject(result);
                 }
-                else
+                else if (ParentProcess.IsChecked != null && (bool)ParentProcess.IsChecked)
                 {
                     //父进程
                     var parentProcess = Helpers.ProcessHelper.Parent(process, null);
@@ -68,12 +71,59 @@ namespace GetProcessInfo
 
                     ShowTextBox.Text = JsonConvert.SerializeObject(result);
                 }
+                else if (KillProcess.IsChecked != null && (bool)KillProcess.IsChecked)
+                {
+                    //杀死进程
+                    KillProcessMethod();
+                }
             }
             catch (Exception exception)
             {
                 ShowTextBox.Text = JsonConvert.SerializeObject(exception);
             }
+        }
 
+        private void KillProcessMethod()
+        {
+            var pName = PName.Text;
+
+            if (!string.IsNullOrEmpty(pName))
+            {
+                var ps = Process.GetProcessesByName(pName);
+                foreach (var p in ps)
+                {
+                    try
+                    {
+                        KillProcessAndChildren(p.Id);
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                }
+            }
+
+            if (!int.TryParse(Pid.Text, out var pId)) return;
+
+            try
+            {
+                KillProcessAndChildren(pId);
+            }
+            catch
+            {
+                // ignored
+            }
+        }
+
+        private void KillProcessAndChildren(int pId)
+        {
+            var children = Helpers.ProcessHelper.GetChildProcesses(pId);
+            foreach (var child in children)
+            {
+                child.Kill();
+            }
+
+            Process.GetProcessById(pId)?.Kill();
         }
     }
 }

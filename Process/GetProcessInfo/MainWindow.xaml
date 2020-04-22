@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GetProcessInfo"
         mc:Ignorable="d"
-        Title="获取进程信息" Height="450" Width="800">
+        Title="进程操作" Height="450" Width="800">
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -15,26 +16,46 @@
             <RowDefinition Height="1*" MinHeight="40"></RowDefinition>
             <RowDefinition Height="9*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid VerticalAlignment="Center" Margin="10,0,10,5">
+
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,10,0">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <RadioButton x:Name="ParentProcess" IsChecked="True" GroupName="GetProcessInfoType" Grid.Column="0">上级进程</RadioButton>
-            <RadioButton x:Name="ChildrenProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="1">下级进程</RadioButton>
-            <RadioButton x:Name="BrotherProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="2">平级进程</RadioButton>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" MinHeight="20"></RowDefinition>
+                <RowDefinition Height="1*" MinHeight="20"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <RadioButton x:Name="ParentProcess" IsChecked="True" GroupName="GetProcessInfoType" Grid.Column="0" Grid.Row="0">获取上级进程</RadioButton>
+            <RadioButton x:Name="ChildrenProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="1" Grid.Row="0">获取下级进程</RadioButton>
+            <RadioButton x:Name="BrotherProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="2" Grid.Row="0">获取平级进程</RadioButton>
+
+            <RadioButton x:Name="KillProcess" IsChecked="false" GroupName="GetProcessInfoType" Grid.Column="0" Grid.Row="1">kill进程</RadioButton>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,10,0">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <TextBlock HorizontalAlignment="Right">进程Pid：</TextBlock>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0">进程Pid：</TextBlock>
             <TextBox x:Name="Pid" Grid.Column="1" Grid.Row="0" Margin="5,0,5,0"></TextBox>
-            <Button x:Name="Run" Grid.Column="2" Grid.Row="0" Width="50" Height="20" HorizontalAlignment="Right" Click="Run_OnClick">执行</Button>
+
+            <TextBlock HorizontalAlignment="Right" Grid.Row="1" Grid.Column="0">进程名称：</TextBlock>
+            <TextBox x:Name="PName" Grid.Column="1" Grid.Row="1" Margin="5,0,5,0"></TextBox>
+
+            <Button x:Name="Run" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="50" Height="20" HorizontalAlignment="Right" Click="Run_OnClick">执行</Button>
+
         </Grid>
         <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,5" TextWrapping="Wrap"></TextBox>
     </Grid>
