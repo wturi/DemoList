@@ -46,9 +46,11 @@ namespace WpfDemoSample
             _windowNameList = new List<string>();
 
             _demoDictionary.TryAdd("获取鼠标信息", "GetMouseInfo");
+            _demoDictionary.TryAdd("设置鼠标状态", "SetMouseState");
+
             _demoDictionary.TryAdd("读取内存信息", "ReadSharedMemory");
             _demoDictionary.TryAdd("模拟键盘（WinRing0）", "WinRing0");
-            _demoDictionary.TryAdd("设置鼠标状态", "SetMouseState");
+            _demoDictionary.TryAdd("获取子进程", "GetProcessChildren");
 
             _windowNameList = _demoDictionary.Keys.ToList();
         }
