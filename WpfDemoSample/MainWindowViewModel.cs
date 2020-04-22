@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-
+using System.Threading.Tasks;
 using ClassBase;
 
 namespace WpfDemoSample
@@ -45,13 +46,11 @@ namespace WpfDemoSample
             _windowNameList = new List<string>();
 
             _demoDictionary.TryAdd("获取鼠标信息", "GetMouseInfo");
-            _windowNameList.Add("获取鼠标信息");
-
             _demoDictionary.TryAdd("读取内存信息", "ReadSharedMemory");
-            _windowNameList.Add("读取内存信息");
-
             _demoDictionary.TryAdd("模拟键盘（WinRing0）", "WinRing0");
-            _windowNameList.Add("模拟键盘（WinRing0）");
+            _demoDictionary.TryAdd("设置鼠标状态", "SetMouseState");
+
+            _windowNameList = _demoDictionary.Keys.ToList();
         }
 
         public void RunWindow(string windowName)
