@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfDemoSample", "WpfDemoSample.csproj", "{3F57694B-FDC0-44CC-87DC-1AD72742CBA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassBase", "..\ClassBase\ClassBase.csproj", "{42402BFF-D67B-427B-A175-3BAE372CABCD}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mouse", "Mouse", "{11FDE0E7-226C-46C2-B82B-F3DEFC61AD8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetMouseInfo", "..\Mouse\GetMouseInfo\GetMouseInfo.csproj", "{3578842F-E983-4CF9-86F9-918E480FEC11}"
@@ -25,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SetMouseState", "..\Mouse\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetProcessInfo", "..\Process\GetProcessInfo\GetProcessInfo.csproj", "{181F43E5-3A06-4A25-9442-D49E2DD42B11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassBase", "..\ClassBase\ClassBase.csproj", "{BDB80048-6D0D-4389-B905-F18DE6F375AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "..\Helpers\Helpers.csproj", "{DB09E70A-42BD-44E1-9689-E087FB9A427B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +37,6 @@ Global
 		{3F57694B-FDC0-44CC-87DC-1AD72742CBA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F57694B-FDC0-44CC-87DC-1AD72742CBA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F57694B-FDC0-44CC-87DC-1AD72742CBA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42402BFF-D67B-427B-A175-3BAE372CABCD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3578842F-E983-4CF9-86F9-918E480FEC11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3578842F-E983-4CF9-86F9-918E480FEC11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3578842F-E983-4CF9-86F9-918E480FEC11}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +57,14 @@ Global
 		{181F43E5-3A06-4A25-9442-D49E2DD42B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{181F43E5-3A06-4A25-9442-D49E2DD42B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{181F43E5-3A06-4A25-9442-D49E2DD42B11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB80048-6D0D-4389-B905-F18DE6F375AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB80048-6D0D-4389-B905-F18DE6F375AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB80048-6D0D-4389-B905-F18DE6F375AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB80048-6D0D-4389-B905-F18DE6F375AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB09E70A-42BD-44E1-9689-E087FB9A427B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB09E70A-42BD-44E1-9689-E087FB9A427B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB09E70A-42BD-44E1-9689-E087FB9A427B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB09E70A-42BD-44E1-9689-E087FB9A427B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

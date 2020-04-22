@@ -1,17 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
+using Newtonsoft.Json;
 
 namespace GetProcessInfo
 {
@@ -27,13 +18,55 @@ namespace GetProcessInfo
 
         private void Run_OnClick(object sender, RoutedEventArgs e)
         {
-            var type = BrotherProcess.IsChecked != null && (bool)BrotherProcess.IsChecked
-                ? "brother"
-                : ChildrenProcess.IsChecked != null && (bool)ChildrenProcess.IsChecked
-                    ? "children"
-                    : "parent";
+            var resultStr = string.Empty;
 
+            var pidStr = Pid.Text;
 
+            if (!int.TryParse(pidStr, out var pid))
+            {
+                MessageBox.Show("请输入Pid");
+                return;
+            }
+
+            var process = Process.GetProcessById(pid);
+
+            if (BrotherProcess.IsChecked != null && (bool)BrotherProcess.IsChecked)
+            {
+                //兄弟进程
+                var parentProcess = Helpers.ProcessHelper.Parent(process, null);
+                var processList = Helpers.ProcessHelper.GetChildProcesses(parentProcess.Id);
+                var result = processList.Select(p => new
+                {
+                    p.ProcessName,
+                    ProcessId = p.Id
+                });
+
+                ShowTextBox.Text = JsonConvert.SerializeObject(result);
+            }
+            else if (ChildrenProcess.IsChecked != null && (bool)ChildrenProcess.IsChecked)
+            {
+                //子进程
+                var processList = Helpers.ProcessHelper.GetChildProcesses(process.Id);
+                var result = processList.Select(p => new
+                {
+                    p.ProcessName,
+                    ProcessId = p.Id
+                });
+
+                ShowTextBox.Text = JsonConvert.SerializeObject(result);
+            }
+            else
+            {
+                //父进程
+                var parentProcess = Helpers.ProcessHelper.Parent(process, null);
+                var result = new
+                {
+                    parentProcess?.ProcessName,
+                    ProcessId = parentProcess?.Id
+                };
+
+                ShowTextBox.Text = JsonConvert.SerializeObject(result);
+            }
         }
     }
 }

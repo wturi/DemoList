@@ -21,9 +21,9 @@
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <RadioButton x:Name="ParentProcess" IsChecked="True" GroupName="GetProcessInfoType" Grid.Column="0">父进程</RadioButton>
-            <RadioButton x:Name="ChildrenProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="1">子进程</RadioButton>
-            <RadioButton x:Name="BrotherProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="2">兄弟进程</RadioButton>
+            <RadioButton x:Name="ParentProcess" IsChecked="True" GroupName="GetProcessInfoType" Grid.Column="0">上级进程</RadioButton>
+            <RadioButton x:Name="ChildrenProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="1">下级进程</RadioButton>
+            <RadioButton x:Name="BrotherProcess" IsChecked="False" GroupName="GetProcessInfoType" Grid.Column="2">平级进程</RadioButton>
         </Grid>
 
         <Grid Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Margin="0,0,10,0">
@@ -36,6 +36,6 @@
             <TextBox x:Name="Pid" Grid.Column="1" Grid.Row="0" Margin="5,0,5,0"></TextBox>
             <Button x:Name="Run" Grid.Column="2" Grid.Row="0" Width="50" Height="20" HorizontalAlignment="Right" Click="Run_OnClick">执行</Button>
         </Grid>
-        <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,5"></TextBox>
+        <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,5" TextWrapping="Wrap"></TextBox>
     </Grid>
 </Window>

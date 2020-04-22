@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassBase\ClassBase.csproj" />
+    <ProjectReference Include="..\Helpers\Helpers.csproj" />
     <ProjectReference Include="..\Keyboard\WinRing0\WinRing0.csproj" />
     <ProjectReference Include="..\Mouse\GetMouseInfo\GetMouseInfo.csproj" />
     <ProjectReference Include="..\Mouse\SetMouseState\SetMouseState.csproj" />
