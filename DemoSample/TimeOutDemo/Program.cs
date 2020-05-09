@@ -9,22 +9,33 @@ namespace TimeOutDemo
 
         private static void Main(string[] args)
         {
+
+            var tokenSource1 = new CancellationTokenSource();
             try
             {
                 var message = string.Empty;
                 var dd = string.Empty;
-                var ishave = false;
+                var shave = false;
+
+
 
                 CallWithTimeout(delegate
                 {
-                    while (string.IsNullOrEmpty(message))
+                    CallWithTimeout(delegate
                     {
-                        FiveSecondMethod(111, 222, ref message, ref dd);
-                    }
-                    ishave = true;
-                }, 10000);
+                        while (string.IsNullOrEmpty(message))
+                        {
+                            if (tokenSource1.Token.IsCancellationRequested)
+                            {
+                                throw new TimeoutException();
+                            }
+                            FiveSecondMethod(111, 222, ref message, ref dd);
+                        }
+                        shave = true;
+                    }, 5000, tokenSource1);
+                }, 3000, tokenSource1);
 
-                Console.WriteLine(ishave);
+                Console.WriteLine(shave);
                 Console.WriteLine(message);
                 Console.ReadLine();
             }
@@ -40,18 +51,19 @@ namespace TimeOutDemo
         {
             count++;
             Console.WriteLine(count);
-            //Thread.Sleep(1000);
+            Thread.Sleep(500);
             message = count > 20 ? ("FiveSecondMethod" + arg1 + arg2) : null;
 
             return count > 20 ? message : null;
         }
 
-        private static void CallWithTimeout(Action action, int timeoutMilliseconds)
+        private static void CallWithTimeout(Action action, int timeoutMilliseconds, CancellationTokenSource cancellationTokenSource)
         {
             Thread threadToKill = null;
             Action wrappedAction = () =>
             {
                 threadToKill = Thread.CurrentThread;
+                threadToKill.IsBackground = true;
                 action();
             };
             IAsyncResult result = wrappedAction.BeginInvoke(null, null);
@@ -62,6 +74,7 @@ namespace TimeOutDemo
             else
             {
                 threadToKill.Abort();
+                cancellationTokenSource.Cancel();
                 throw new TimeoutException();
             }
         }

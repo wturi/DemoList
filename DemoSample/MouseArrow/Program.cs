@@ -10,7 +10,7 @@ namespace MouseArrow
     {
         static void Main(string[] args)
         {
-            this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
+            //this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
         }
     }
 }

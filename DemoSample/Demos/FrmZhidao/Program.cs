@@ -92,19 +92,17 @@ namespace FrmZhidao
         private static void Main(string[] args)
         {
 
-            var dd = Assembly.Load("System");
+            while (true)
+            {
+                var hWnd = GetMousePointWindowsHandle();
+                Console.Write($"鼠标指向句柄 : {hWnd}");
 
-            //while (true)
-            //{
-            //    var hWnd = GetMousePointWindowsHandle();
-            //    Console.Write($"鼠标指向句柄 : {hWnd}");
+                GetParentHandle((IntPtr)hWnd);
 
-            //    GetParentHandle((IntPtr)hWnd);
+                Console.WriteLine();
 
-            //    Console.WriteLine();
-
-            //    Thread.Sleep(1000);
-            //}
+                Thread.Sleep(1000);
+            }
         }
 
         private static void GetParentHandle(IntPtr hWnd)
