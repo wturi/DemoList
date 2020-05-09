@@ -21,22 +21,13 @@ namespace TimeOutDemo
 
                 CallWithTimeout(delegate
                 {
-                    CallWithTimeout(delegate
-                    {
-                        while (string.IsNullOrEmpty(message))
-                        {
-                            if (tokenSource1.Token.IsCancellationRequested)
-                            {
-                                throw new TimeoutException();
-                            }
-                            FiveSecondMethod(111, 222, ref message, ref dd);
-                        }
-                        shave = true;
-                    }, 5000, tokenSource1);
-                }, 3000, tokenSource1);
 
-                Console.WriteLine(shave);
-                Console.WriteLine(message);
+                    Children(message, dd, tokenSource1);
+
+
+                    shave = true;
+                }, 2000, tokenSource1);
+
                 Console.ReadLine();
             }
             catch (Exception)
@@ -45,6 +36,23 @@ namespace TimeOutDemo
             }
 
             Console.ReadKey();
+        }
+
+
+        private static void Children(string message, string dd, CancellationTokenSource cancellationTokenSource)
+        {
+            CallWithTimeout(delegate
+            {
+                while (string.IsNullOrEmpty(message))
+                {
+                    if (cancellationTokenSource.Token.IsCancellationRequested)
+                    {
+                        throw new TimeoutException();
+                    }
+                    FiveSecondMethod(111, 222, ref message, ref dd);
+                }
+
+            }, 5000, cancellationTokenSource);
         }
 
         private static string FiveSecondMethod(int arg1, int arg2, ref string message, ref string ddd)
