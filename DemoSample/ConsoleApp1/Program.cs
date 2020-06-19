@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading;
 
 namespace ConsoleApp1
@@ -9,7 +8,6 @@ namespace ConsoleApp1
     {
         private static void Main(string[] args)
         {
-
             var processName = "";
 
             Console.WriteLine("输入process name(默认为：EncooNativeMessageHost)：");
@@ -19,7 +17,6 @@ namespace ConsoleApp1
             {
                 processName = "EncooNativeMessageHost";
             }
-
 
             while (true)
             {
