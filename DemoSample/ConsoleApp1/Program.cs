@@ -9,35 +9,25 @@ namespace ConsoleApp1
     {
         private static void Main(string[] args)
         {
-            long firstNum = 0;
 
-            long lastNum = 0;
+            var processName = "";
+
+            Console.WriteLine("输入process name(默认为：EncooNativeMessageHost)：");
+            processName = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(processName))
+            {
+                processName = "EncooNativeMessageHost";
+            }
+
 
             while (true)
             {
                 try
                 {
-                    var p = Process.GetProcessesByName("Encoo.Executor").FirstOrDefault();
-
-                    var counter = new PerformanceCounter("Process", "Working Set - Private", p.ProcessName);
-
-                    var raw = counter.RawValue / 1024;
-
-                    if (firstNum == 0)
-                    {
-                        firstNum = raw;
-                    }
-
-                    Console.WriteLine($"{raw}   {raw - firstNum}   {raw - lastNum}");
-
-                    lastNum = raw;
-
-                    using (var file = new System.IO.StreamWriter(@"C:\BVTResult\raw.txt", true))
-                    {
-                        file.WriteLine(raw.ToString());// 直接追加文件末尾，换行
-                    }
-
-                    Thread.Sleep(5000);
+                    var ps = Process.GetProcessesByName(processName);
+                    Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}  process num :{ps.Length}");
+                    Thread.Sleep(200);
                 }
                 catch (Exception)
                 {
