@@ -9,7 +9,6 @@ namespace TimeOutDemo
 
         private static void Main(string[] args)
         {
-
             var tokenSource1 = new CancellationTokenSource();
             try
             {
@@ -17,13 +16,9 @@ namespace TimeOutDemo
                 var dd = string.Empty;
                 var shave = false;
 
-
-
                 CallWithTimeout(delegate
                 {
-
                     Children(message, dd, tokenSource1);
-
 
                     shave = true;
                 }, 2000, tokenSource1);
@@ -38,7 +33,6 @@ namespace TimeOutDemo
             Console.ReadKey();
         }
 
-
         private static void Children(string message, string dd, CancellationTokenSource cancellationTokenSource)
         {
             CallWithTimeout(delegate
@@ -51,7 +45,6 @@ namespace TimeOutDemo
                     }
                     FiveSecondMethod(111, 222, ref message, ref dd);
                 }
-
             }, 5000, cancellationTokenSource);
         }
 

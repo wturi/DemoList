@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MSScriptControl;
 
-using MSScriptControl;
+using System;
 
 namespace InvokeJSDemo
 {

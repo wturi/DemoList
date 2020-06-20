@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading;
-
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Interactions;
+
+using System;
+using System.Threading;
 
 namespace SDemo
 {

@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using System;
 using System.Activities.Tracking;
 using System.IO;
-
-using Newtonsoft.Json;
 
 namespace WFHelper.TrackingParticipant
 {

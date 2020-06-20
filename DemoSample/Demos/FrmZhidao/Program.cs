@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -91,7 +90,6 @@ namespace FrmZhidao
 
         private static void Main(string[] args)
         {
-
             while (true)
             {
                 var hWnd = GetMousePointWindowsHandle();

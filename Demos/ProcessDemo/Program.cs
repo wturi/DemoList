@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Microsoft.Win32;
+
+using Newtonsoft.Json;
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
-using Microsoft.Win32;
-
-using Newtonsoft.Json;
 
 namespace ProcessDemo
 {
@@ -31,9 +32,8 @@ namespace ProcessDemo
                 afterProcessIdList = GetBrowserWindowHandleList("chrome");
                 var afterTime = DateTime.Now;
                 Console.WriteLine($"now have chrome process ids : {JsonConvert.SerializeObject(afterProcessIdList)} , time : {(afterTime - beforeTime).Milliseconds}");
-                
-                isFirst = false;
 
+                isFirst = false;
             } while (afterProcessIdList == beforeProcessIdList);
 
             var latestProcessId = GetNewBrowserWindowHandle("chrome");

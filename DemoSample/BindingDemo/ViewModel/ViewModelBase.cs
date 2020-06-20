@@ -17,7 +17,7 @@ namespace BindingDemo.ViewModel
             return true;
         }
 
-        public void RaisePropertyChanged([CallerMemberName]string prop = null)
+        public void RaisePropertyChanged([CallerMemberName] string prop = null)
         {
             if (PropertyChanged != null)
             {

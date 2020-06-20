@@ -1,6 +1,6 @@
-﻿using System.Activities.Presentation.Metadata;
+﻿using Design.Mail;
 
-using Design.Mail;
+using System.Activities.Presentation.Metadata;
 
 namespace Design
 {
