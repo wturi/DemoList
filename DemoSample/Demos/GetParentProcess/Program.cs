@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GetParentProcess
 {
-    class Program
+    internal class Program
     {
         private static List<Process> BeforeOpenBrowser { set; get; } = new List<Process>();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
             GetNowProcessBeforeOpenBrowser("iexplore");
 
             //Parent(Process.GetCurrentProcess(), new[] { "cmd" });
@@ -21,14 +18,11 @@ namespace GetParentProcess
             Console.ReadLine();
         }
 
-
-
         /// <summary>
         /// 获取打开浏览器之前的ie进程
         /// </summary>
         private static void GetNowProcessBeforeOpenBrowser(string processName)
         {
-
             var pp = Process.GetProcessesByName(processName);
             foreach (var process in pp)
             {
@@ -38,7 +32,6 @@ namespace GetParentProcess
                 }
             }
         }
-
 
         /// <summary>
         /// 获取进程的父进程

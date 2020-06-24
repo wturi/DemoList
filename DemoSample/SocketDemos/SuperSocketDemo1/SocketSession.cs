@@ -1,10 +1,10 @@
-﻿using System;
-using System.Text;
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 using SuperSocket.SocketBase;
 using SuperSocket.SocketBase.Protocol;
+
+using System;
+using System.Text;
 
 namespace SuperSocketDemo1
 {

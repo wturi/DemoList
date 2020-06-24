@@ -80,7 +80,7 @@ namespace WinRing0Demo
         private static extern bool FreeLibrary(IntPtr hModule);
 
         [DllImport("kernel32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = false)]
-        private static extern IntPtr GetProcAddress(IntPtr hModule, [MarshalAs(UnmanagedType.LPStr)]  string lpProcName);
+        private static extern IntPtr GetProcAddress(IntPtr hModule, [MarshalAs(UnmanagedType.LPStr)] string lpProcName);
 
         private IntPtr module = IntPtr.Zero;
         private uint status = (uint)Status.NO_ERROR;

@@ -1,7 +1,7 @@
-﻿using System;
-
-using SuperSocket.SocketBase.Command;
+﻿using SuperSocket.SocketBase.Command;
 using SuperSocket.SocketBase.Protocol;
+
+using System;
 
 namespace SuperSocketDemo1
 {

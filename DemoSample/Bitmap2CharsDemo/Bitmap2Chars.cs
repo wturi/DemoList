@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Text;
-
-using Newtonsoft.Json;
 
 namespace Bitmap2CharsDemo
 {

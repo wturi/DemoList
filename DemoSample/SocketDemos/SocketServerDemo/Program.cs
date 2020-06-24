@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SocketExtension;
 
-using SocketExtension;
+using System;
 
 namespace SocketServerDemo
 {
