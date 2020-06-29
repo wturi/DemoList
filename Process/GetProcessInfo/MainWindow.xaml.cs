@@ -1,9 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Windows;
-
-using Newtonsoft.Json;
+﻿using System.Windows;
 
 namespace GetProcessInfo
 {
@@ -12,122 +7,43 @@ namespace GetProcessInfo
     /// </summary>
     public partial class MainWindow : Window
     {
-        private int _killProcessNum = 0;
+        private readonly MainViewModel _mainViewModel = new MainViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = _mainViewModel;
         }
 
         private void Run_OnClick(object sender, RoutedEventArgs e)
         {
-            try
+            var pidStr = Pid.Text;
+
+            if (!int.TryParse(pidStr, out var pid) && string.IsNullOrEmpty(PName.Text))
             {
-                var pidStr = Pid.Text;
-
-
-
-
-                if (!int.TryParse(pidStr, out var pid) && string.IsNullOrEmpty(PName.Text))
-                {
-                    MessageBox.Show("请输入任意参数");
-                    return;
-                }
-
-                var process = Process.GetProcessById(pid);
-
-                if (BrotherProcess.IsChecked != null && (bool)BrotherProcess.IsChecked)
-                {
-                    //兄弟进程
-                    var parentProcess = Helpers.ProcessHelper.Parent(process, null);
-                    var processList = Helpers.ProcessHelper.GetChildProcesses(parentProcess.Id);
-                    var result = processList.Select(p => new
-                    {
-                        p.ProcessName,
-                        ProcessId = p.Id
-                    });
-
-                    ShowTextBox.Text = JsonConvert.SerializeObject(result);
-                }
-                else if (ChildrenProcess.IsChecked != null && (bool)ChildrenProcess.IsChecked)
-                {
-                    //子进程
-                    var processList = Helpers.ProcessHelper.GetChildProcesses(process.Id);
-                    var result = processList.Select(p => new
-                    {
-                        p.ProcessName,
-                        ProcessId = p.Id
-                    });
-
-                    ShowTextBox.Text = JsonConvert.SerializeObject(result);
-                }
-                else if (ParentProcess.IsChecked != null && (bool)ParentProcess.IsChecked)
-                {
-                    //父进程
-                    var parentProcess = Helpers.ProcessHelper.Parent(process, null);
-                    var result = new
-                    {
-                        parentProcess?.ProcessName,
-                        ProcessId = parentProcess?.Id
-                    };
-
-                    ShowTextBox.Text = JsonConvert.SerializeObject(result);
-                }
-                else if (KillProcess.IsChecked != null && (bool)KillProcess.IsChecked)
-                {
-                    //杀死进程
-                    KillProcessMethod();
-                    ShowTextBox.Text = $"kill process number ：{_killProcessNum}";
-                }
-            }
-            catch (Exception exception)
-            {
-                ShowTextBox.Text = JsonConvert.SerializeObject(exception);
-            }
-        }
-
-        private void KillProcessMethod()
-        {
-            var pName = PName.Text;
-
-            if (!string.IsNullOrEmpty(pName))
-            {
-                var ps = Process.GetProcessesByName(pName);
-                foreach (var p in ps)
-                {
-                    try
-                    {
-                        KillProcessAndChildren(p);
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-                }
+                MessageBox.Show("请输入任意参数");
+                return;
             }
 
-            if (!int.TryParse(Pid.Text, out var pId)) return;
-
-            try
+            var processCommandEnum = ProcessCommandEnum.UnKnow;
+            if (BrotherProcess.IsChecked != null && (bool)BrotherProcess.IsChecked)
             {
-                var process = Process.GetProcessById(pId);
-                KillProcessAndChildren(process);
+                processCommandEnum = ProcessCommandEnum.GetBrotherProcessInfo;
             }
-            catch
+            else if (ChildrenProcess.IsChecked != null && (bool)ChildrenProcess.IsChecked)
             {
-                // ignored
+                processCommandEnum = ProcessCommandEnum.GetChildrenProcessInfo;
             }
-        }
-
-        private void KillProcessAndChildren(Process process)
-        {
-            var children = Helpers.ProcessHelper.GetChildProcesses(process.Id);
-            if (children.Any())
+            else if (ParentProcess.IsChecked != null && (bool)ParentProcess.IsChecked)
             {
-                children.ForEach(KillProcessAndChildren);
+                processCommandEnum = ProcessCommandEnum.GetParentProcessInfo;
+            }
+            else if (KillProcess.IsChecked != null && (bool)KillProcess.IsChecked)
+            {
+                processCommandEnum = ProcessCommandEnum.KillProcess;
             }
 
-            _killProcessNum++;
-            process.Kill();
+            _mainViewModel.Run(processCommandEnum, PName.Text, pid);
         }
     }
 }

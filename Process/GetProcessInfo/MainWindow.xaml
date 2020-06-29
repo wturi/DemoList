@@ -57,6 +57,6 @@
             <Button x:Name="Run" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Width="50" Height="20" HorizontalAlignment="Right" Click="Run_OnClick">执行</Button>
 
         </Grid>
-        <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,5" TextWrapping="Wrap"></TextBox>
+        <TextBox x:Name="ShowTextBox" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,5" TextWrapping="Wrap" Text="{Binding ProcessInfo}"></TextBox>
     </Grid>
 </Window>
