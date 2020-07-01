@@ -163,6 +163,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserCommandMQWPFDemo", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrowserCOmmandMqCmdDemo", "BrowserCommandMQ\BrowserCOmmandMqCmdDemo\BrowserCOmmandMqCmdDemo.csproj", "{38E348D4-D215-4FB7-8BE8-B973100769E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemoryMqTest", "MemoryMqTest\MemoryMqTest.csproj", "{6935077D-7797-4CAB-88FD-8E6FF9A25A38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -691,6 +693,14 @@ Global
 		{38E348D4-D215-4FB7-8BE8-B973100769E2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{38E348D4-D215-4FB7-8BE8-B973100769E2}.Release|x64.ActiveCfg = Release|Any CPU
 		{38E348D4-D215-4FB7-8BE8-B973100769E2}.Release|x64.Build.0 = Release|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Debug|x64.Build.0 = Debug|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Release|x64.ActiveCfg = Release|Any CPU
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -761,6 +771,7 @@ Global
 		{F7EC2643-3DC3-4772-954F-8AC00DA62D91} = {7C321745-7285-4369-82A9-4B039B1CEC66}
 		{12C2CF8A-2878-4BF7-BC3D-06ABDC7A548B} = {7C321745-7285-4369-82A9-4B039B1CEC66}
 		{38E348D4-D215-4FB7-8BE8-B973100769E2} = {7C321745-7285-4369-82A9-4B039B1CEC66}
+		{6935077D-7797-4CAB-88FD-8E6FF9A25A38} = {7C321745-7285-4369-82A9-4B039B1CEC66}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C7FA33DE-B9B5-4740-A6D8-5123C6C21AFC}

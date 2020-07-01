@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
-using Fleck;
+using MMQ;
 
 namespace BrowserCommandMQ
 {
@@ -9,33 +11,18 @@ namespace BrowserCommandMQ
     {
         private static void Main(string[] args)
         {
-            SingletonRun();
+            Console.WriteLine($"Memory Queue Test Start");
+            //SingletonRun();
 
-            WebSocketServerStart(args);
+            new Task(() => { TestEnqueue("thread1"); }).Start();
+            new Task(() => { TestEnqueue("thread2"); }).Start();
 
-            while (true)
-            {
-                
-            }
-        }
+            Thread.Sleep(100);
+            new Task(() => { TestDequeue("thread1"); }).Start();
 
-        /// <summary>
-        /// 执行
-        /// </summary>
-        /// <param name="args"></param>
-        private static void WebSocketServerStart(string[] args)
-        {
-            var port = 8021;
-            var wsServer = new WebSocketServer($"ws://127.0.0.1:{port}");
-            var clientManager = new ClientConnectionManager();
-            wsServer.Start(connection =>
-            {
-                var conn = connection.ConnectionInfo;
-                connection.OnOpen = () => clientManager.AddConnection(conn.ClientPort, connection);
-                connection.OnMessage = clientMessage => { };
-                connection.OnError = error => { clientManager.RemoveConnection(conn.ClientPort); };
-                connection.OnClose = () => clientManager.RemoveConnection(conn.ClientPort);
-            });
+            new Task(() => { TestDequeue("thread2"); }).Start();
+
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -50,5 +37,43 @@ namespace BrowserCommandMQ
                 Environment.Exit(1);
             }
         }
+
+        #region 测试
+
+        private static void TestEnqueue(string threadNum)
+        {
+            using (var queue = MemoryMappedQueue.Create("UniqueName"))
+            {
+                using (var producer = queue.CreateProducer())
+                {
+                    var num = 1;
+                    while (true)
+                    {
+                        var test = $"Hello,{threadNum}!{++num}";
+                        var message = Encoding.UTF8.GetBytes(test);
+                        producer.Enqueue(message);
+
+                        Console.WriteLine($"{threadNum} enqueue to memory : {test}");
+
+                        Thread.Sleep(10);
+                    }
+                }
+            }
+        }
+
+        private static void TestDequeue(string threadNum)
+        {
+            using (var consumer = MemoryMappedQueue.CreateConsumer("UniqueName"))
+            {
+                while (true)
+                {
+                    var message = consumer.Dequeue();
+                    var text = Encoding.UTF8.GetString(message);
+                    Console.WriteLine($"\t\t\t\t\t\t {threadNum} read message from memory : {text}");
+                }
+            }
+        }
+
+        #endregion 测试
     }
 }
