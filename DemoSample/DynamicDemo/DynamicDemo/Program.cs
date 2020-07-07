@@ -8,7 +8,7 @@ namespace DynamicDemo
     {
         private static void Main(string[] args)
         {
-            var returnObj = GetDynamicClassBydt();
+            var returnObj = GetDynamicClassByDataTable();
             Console.WriteLine(JsonConvert.SerializeObject(returnObj));
 
             Console.ReadLine();
@@ -32,7 +32,7 @@ namespace DynamicDemo
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private static Object GetDynamicClassBydt()
+        private static Object GetDynamicClassByDataTable()
         {
             dynamic d = new System.Dynamic.ExpandoObject();
             (d as System.Collections.Generic.ICollection<System.Collections.Generic.KeyValuePair<string, object>>).Add(new System.Collections.Generic.KeyValuePair<string, object>("numA", 1));

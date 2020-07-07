@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Linq;
 using System.Reactive.Concurrency;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Reactive.Subjects;
 using System.Threading;
 
 namespace RxDemo
@@ -11,32 +10,25 @@ namespace RxDemo
     {
         public static void Run1()
         {
-            Console.WriteLine($"CurrentThreadId:{Thread.CurrentThread.ManagedThreadId}");
+            Thread.CurrentThread.Name = "Main";
 
-            var observable = Enumerable.Range(1, 50).ToObservable(NewThreadScheduler.Default);//申明可观察序列
+            Console.WriteLine($"CurrentThreadId:{Thread.CurrentThread.Name}");
 
-            var subject = new Subject<int>();//申明Subject
+            IScheduler thread1 = new NewThreadScheduler(x => new Thread(x) { Name = "Thread1" });
+            IScheduler thread2 = new NewThreadScheduler(x => new Thread(x) { Name = "Thread2" });
 
-            //订阅subject
-            subject.Subscribe((temperature) =>
-            {
-                Thread.Sleep(100);
-                Console.WriteLine($"当前温度：{temperature},ThreadId:{Thread.CurrentThread.ManagedThreadId}");
-            });
-
-            observable.Subscribe(subject);//订阅observable
-
-            subject.Subscribe(Run2(subject));
-        }
-
-        private static Subject<int> Run2(IObservable<int> subject)
-        {
-            var subject1 = new Subject<int>();
-
-            //订阅subject
-            subject1.Subscribe((temperature) => Console.WriteLine($"嘟嘟嘟，当前水温：{temperature},ThreadId:{Thread.CurrentThread.ManagedThreadId}"));
-
-            return subject1;
+            Observable.Create<int>(o =>
+                {
+                    Console.WriteLine("Subscribing on " + Thread.CurrentThread.Name);
+                    for (var i = 0; i < 5; i++)
+                    {
+                        o.OnNext(i);
+                    }
+                    return Disposable.Create(() => { });
+                })
+                .SubscribeOn(thread1)
+                .ObserveOn(thread2)
+                .Subscribe(x => Console.WriteLine("Observing '" + x + "' on " + Thread.CurrentThread.Name));
         }
     }
 }
