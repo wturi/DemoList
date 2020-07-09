@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Concurrency;
-using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading;
+using System.Reactive.Subjects;
 
 namespace RxDemo
 {
@@ -10,25 +10,11 @@ namespace RxDemo
     {
         public static void Run1()
         {
-            Thread.CurrentThread.Name = "Main";
-
-            Console.WriteLine($"CurrentThreadId:{Thread.CurrentThread.Name}");
-
-            IScheduler thread1 = new NewThreadScheduler(x => new Thread(x) { Name = "Thread1" });
-            IScheduler thread2 = new NewThreadScheduler(x => new Thread(x) { Name = "Thread2" });
-
-            Observable.Create<int>(o =>
-                {
-                    Console.WriteLine("Subscribing on " + Thread.CurrentThread.Name);
-                    for (var i = 0; i < 5; i++)
-                    {
-                        o.OnNext(i);
-                    }
-                    return Disposable.Create(() => { });
-                })
-                .SubscribeOn(thread1)
-                .ObserveOn(thread2)
-                .Subscribe(x => Console.WriteLine("Observing '" + x + "' on " + Thread.CurrentThread.Name));
+            var observable = Enumerable.Range(1, 100).ToObservable(NewThreadScheduler.Default);//申明可观察序列
+            Subject<int> subject = new Subject<int>();//申明Subject
+            subject.Subscribe((temperature) => Console.WriteLine($"当前温度：{temperature}"));//订阅subject
+            subject.Subscribe((temperature) => Console.WriteLine($"嘟嘟嘟，当前水温：{temperature}"));//订阅subject
+            observable.Subscribe(subject);//订阅observable
         }
     }
 }
