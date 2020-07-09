@@ -8,8 +8,11 @@ namespace DynamicDemo
     {
         private static void Main(string[] args)
         {
-            var returnObj = GetDynamicClassByDataTable();
-            Console.WriteLine(JsonConvert.SerializeObject(returnObj));
+            //var returnObj = GetDynamicClassByDataTable();
+            //Console.WriteLine(JsonConvert.SerializeObject(returnObj));
+
+            Run1();
+
 
             Console.ReadLine();
         }
@@ -20,8 +23,17 @@ namespace DynamicDemo
             //可以直接调用方法
             foo.Run("dynamic demo run");
 
-            //直接调用方法
-            var msg = foo.Msg;
+            dynamic msg = null;
+
+            try
+            {
+                //直接调用方法
+                msg = foo.Msg;
+            }
+            catch (Exception e)
+            {
+                msg = foo.Msg;
+            }
 
             Console.WriteLine(msg);
             Console.ReadLine();
