@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 
@@ -9,6 +10,8 @@ namespace WinRing0.Helpers
     {
         public enum Key
         {
+            #region 字母
+
             KC_A = 0x41,
             KC_B = 0x42,
             KC_C = 0x43,
@@ -35,6 +38,11 @@ namespace WinRing0.Helpers
             KC_X = 0x58,
             KC_Y = 0x59,
             KC_Z = 0x5A,
+
+            #endregion 字母
+
+            #region 数字
+
             KC_0 = 0x30,
             KC_1 = 0x31,
             KC_2 = 0x32,
@@ -45,6 +53,11 @@ namespace WinRing0.Helpers
             KC_7 = 0x37,
             KC_8 = 0x38,
             KC_9 = 0x39,
+
+            #endregion 数字
+
+            #region 小键盘区域
+
             KC_SMALL_0 = 0x60,
             KC_SMALL_1 = 0x61,
             KC_SMALL_2 = 0x62,
@@ -61,6 +74,11 @@ namespace WinRing0.Helpers
             KC_SMALL_Subtract = 0x6D,
             KC_SMALL_Decimal = 0x6E,
             KC_SMALL_Divide = 0x6F,
+
+            #endregion 小键盘区域
+
+            #region F键位区域
+
             KC_FUNCTION_F1 = 0x70,
             KC_FUNCTION_F2 = 0x71,
             KC_FUNCTION_F3 = 0x72,
@@ -73,6 +91,11 @@ namespace WinRing0.Helpers
             KC_FUNCTION_F10 = 0x79,
             KC_FUNCTION_F11 = 0x7A,
             KC_FUNCTION_F12 = 0x7B,
+
+            #endregion F键位区域
+
+            #region 功能键
+
             KC_CONTROL_BackSpace = 0x8,
             KC_CONTROL_Tab = 0x9,
             KC_CONTROL_Clear = 0xC,
@@ -113,6 +136,8 @@ namespace WinRing0.Helpers
             KC_MULTIMEDIA_Mail = 0xB4,
             KC_MULTIMEDIA_Search = 0xAA,
             KC_MULTIMEDIA_Collection = 0xAB,
+
+            #endregion 功能键
         }
 
         private static Ols ols = null;
@@ -306,7 +331,11 @@ namespace WinRing0.Helpers
             return SymbolChar.Contains(chr);
         }
 
-        private static List<char> SymbolChar = new List<char> { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '~', };
+        private static readonly List<char> SymbolChar = new List<char>
+            {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '~',};
+
+        private static readonly List<string> FunctionKey = new List<string> { "[enter]", "[esc]", "[alt]", "[tab]" };
+
 
         private static char ShiftConvert(char chr)
         {
@@ -356,6 +385,51 @@ namespace WinRing0.Helpers
             if (isShift)
                 KeyUp(Key.KC_CONTROL_Shift);
             Thread.CurrentThread.Join(200);
+        }
+
+        /// <summary>
+        /// 发送功能键
+        /// </summary>
+        /// <param name="functionKey"></param>
+        public static void SendFunctionKey(string functionKey)
+        {
+            var result = Key.KC_CONTROL_Enter;
+
+            switch (functionKey)
+            {
+                case "[enter]": result = Key.KC_CONTROL_Enter; break;
+                case "[esc]": result = Key.KC_CONTROL_Esc; break;
+                case "[alt]": result = Key.KC_CONTROL_Alt; break;
+                case "[tab]": result = Key.KC_CONTROL_Tab; break;
+            }
+
+            KeyDown(result);
+            Thread.CurrentThread.Join(200);
+            KeyUp(result);
+        }
+
+        public static bool IsFunctionKey(int index, string inputText, out int nextIndex)
+        {
+            nextIndex = index;
+
+            var leftSquareBrackets = index;
+
+            var rightSquareBrackets = inputText.IndexOf(']', index);
+
+            if (rightSquareBrackets < 0) return false;
+
+            var functionKey = inputText.Substring(leftSquareBrackets, rightSquareBrackets - leftSquareBrackets + 1);
+
+            if (FunctionKey.FirstOrDefault(f => f.Equals(functionKey)) == null)
+                functionKey = string.Empty;
+
+            if (string.IsNullOrEmpty(functionKey)) return false;
+
+            WinRingHelper.SendFunctionKey(functionKey);
+
+            nextIndex = rightSquareBrackets;
+
+            return true;
         }
     }
 }

@@ -54,9 +54,13 @@ namespace WinRing0
         {
             WinRingHelper.init();
 
-            foreach (var value in inputText)
+            for (var index = 0; index < inputText.Length; index++)
             {
-                WinRingHelper.Send(value);
+                var value = inputText[index];
+                if (!WinRingHelper.IsFunctionKey(index, inputText, out index))
+                {
+                    WinRingHelper.Send(value);
+                }
             }
         }
     }
