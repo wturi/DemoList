@@ -38,7 +38,7 @@ namespace BlockingCollection
         public event Action<T> ProcessItemEvent;
 
         //处理异常，需要三个参数，当前队列实例，异常，当时处理的数据
-        public event Action<dynamic, Exception, T> ProcessExceptionEvent;
+        public event Action<ProcessQueue<T>, Exception, T> ProcessExceptionEvent;
 
         public ProcessQueue()
         {
@@ -75,14 +75,14 @@ namespace BlockingCollection
 
         public void Flush()
         {
-            Console.WriteLine(nameof(Flush));
-
-            Console.WriteLine($"_queue.count -> {_queue.Count}");
             StopProcess();
 
             while (_queue.Count != 0)
             {
-                if (!_queue.TryTake(out var item)) continue;
+                if (!_queue.TryTake(out var item))
+                {
+                    continue;
+                }
                 try
                 {
                     ProcessItemEvent?.Invoke(item);
@@ -92,6 +92,18 @@ namespace BlockingCollection
                     OnProcessException(ex, item);
                 }
             }
+        }
+
+        public void StopAndClear()
+        {
+            _threadCollection.Clear();
+
+            while (_queue.Count != 0)
+            {
+                _queue.TryTake(out var item);
+                Console.WriteLine(_queue.Count);
+            }
+
         }
 
         private void DataAdded()

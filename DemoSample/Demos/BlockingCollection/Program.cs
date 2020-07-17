@@ -10,13 +10,49 @@ namespace BlockingCollection
 
         private static void Main(string[] args)
         {
-            var processQueue = new ProcessQueue<int>();
+            var processQueue = new ProcessQueue<string>();
             processQueue.ProcessItemEvent += ProcessQueue_ProcessItemEvent;
             processQueue.ProcessExceptionEvent += ProcessQueue_ProcessExceptionEvent;
 
-            processQueue.Enqueue(1);
-            processQueue.Enqueue(2);
-            processQueue.Enqueue(3);
+            new Thread(() =>
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    processQueue.Enqueue($"{Thread.CurrentThread.ManagedThreadId}.{i}");
+                }
+            }).Start();
+
+            new Thread(() =>
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    processQueue.Enqueue($"{Thread.CurrentThread.ManagedThreadId}.{i}");
+                }
+            }).Start();
+
+            new Thread(() =>
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    processQueue.Enqueue($"{Thread.CurrentThread.ManagedThreadId}.{i}");
+                }
+            }).Start();
+
+            new Thread(() =>
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    processQueue.Enqueue($"{Thread.CurrentThread.ManagedThreadId}.{i}");
+                }
+            }).Start();
+
+            new Thread(() =>
+            {
+                for (var i = 0; i < 100; i++)
+                {
+                    processQueue.Enqueue($"{Thread.CurrentThread.ManagedThreadId}.{i}");
+                }
+            }).Start();
 
             Console.ReadLine();
         }
@@ -25,11 +61,13 @@ namespace BlockingCollection
         /// 该方法对入队的每个元素进行处理
         /// </summary>
         /// <param name="value"></param>
-        private static void ProcessQueue_ProcessItemEvent(int value)
+        private static void ProcessQueue_ProcessItemEvent(string value)
         {
             Console.WriteLine($"{++_runningId}--{value}");
 
-            if (value == 1) throw new TimeoutException();
+            Thread.Sleep(10);
+
+            if (_runningId == 50) throw new TimeoutException();
         }
 
         /// <summary>
@@ -38,10 +76,11 @@ namespace BlockingCollection
         /// <param name="obj">队列实例</param>
         /// <param name="ex">异常对象</param>
         /// <param name="value">出错的数据</param>
-        private static void ProcessQueue_ProcessExceptionEvent(dynamic obj, Exception ex, int value)
+        private static void ProcessQueue_ProcessExceptionEvent(ProcessQueue<string> obj, Exception ex, string value)
         {
             Console.WriteLine(ex.ToString());
-            obj.Flush();
+            obj.StopAndClear();
+            Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> end {obj.GetInternalItemCount()}");
         }
 
         private static void Demo1()
