@@ -75,6 +75,9 @@ namespace BlockingCollection
 
         public void Flush()
         {
+            Console.WriteLine(nameof(Flush));
+
+            Console.WriteLine($"_queue.count -> {_queue.Count}");
             StopProcess();
 
             while (_queue.Count != 0)

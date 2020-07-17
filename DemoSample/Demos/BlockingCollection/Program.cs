@@ -11,8 +11,8 @@ namespace BlockingCollection
         private static void Main(string[] args)
         {
             var processQueue = new ProcessQueue<int>();
-            processQueue.ProcessExceptionEvent += ProcessQueue_ProcessExceptionEvent;
             processQueue.ProcessItemEvent += ProcessQueue_ProcessItemEvent;
+            processQueue.ProcessExceptionEvent += ProcessQueue_ProcessExceptionEvent;
 
             processQueue.Enqueue(1);
             processQueue.Enqueue(2);
@@ -28,6 +28,8 @@ namespace BlockingCollection
         private static void ProcessQueue_ProcessItemEvent(int value)
         {
             Console.WriteLine($"{++_runningId}--{value}");
+
+            if (value == 1) throw new TimeoutException();
         }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace BlockingCollection
         private static void ProcessQueue_ProcessExceptionEvent(dynamic obj, Exception ex, int value)
         {
             Console.WriteLine(ex.ToString());
+            obj.Flush();
         }
 
         private static void Demo1()
