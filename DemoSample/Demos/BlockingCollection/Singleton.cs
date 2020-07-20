@@ -86,8 +86,9 @@ namespace BlockingCollection
         /// <param name="value">出错的数据</param>
         private void ProcessQueue_ProcessExceptionEvent(ProcessQueue<IeCommandMessage> obj, Exception ex, IeCommandMessage value)
         {
+            Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> before stop {obj.GetInternalItemCount()}");
             obj.StopAndClear();
-            Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> end {obj.GetInternalItemCount()}");
+            Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> after stop {obj.GetInternalItemCount()}");
         }
 
         /// <summary>

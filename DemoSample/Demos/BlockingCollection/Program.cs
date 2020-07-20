@@ -40,7 +40,6 @@ namespace BlockingCollection
                 catch (Exception e)
                 {
                     Console.WriteLine($"return null {JsonConvert.SerializeObject(e)}");
-                    new Thread(Demo).Start();
                     break;
                 }
             }
