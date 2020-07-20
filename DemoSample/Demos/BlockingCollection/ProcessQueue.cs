@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-using Newtonsoft.Json;
-
 namespace BlockingCollection
 {
     /// <summary>
@@ -94,6 +92,9 @@ namespace BlockingCollection
             }
         }
 
+        /// <summary>
+        /// 停止处理队列并清理队列中未消费消息
+        /// </summary>
         public void StopAndClear()
         {
             _threadCollection.Clear();
@@ -101,9 +102,7 @@ namespace BlockingCollection
             while (_queue.Count != 0)
             {
                 _queue.TryTake(out var item);
-                Console.WriteLine(_queue.Count);
             }
-
         }
 
         private void DataAdded()
@@ -144,7 +143,7 @@ namespace BlockingCollection
                         }
                         catch (OperationCanceledException ex)
                         {
-                            Console.WriteLine(JsonConvert.SerializeObject(ex));
+                            //Console.WriteLine(JsonConvert.SerializeObject(ex));
                         }
                     }
                     catch (Exception ex)

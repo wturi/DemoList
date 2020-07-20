@@ -11,13 +11,13 @@ namespace BlockingCollection
 
         private static readonly object Locker = new object();
 
-        private static readonly BlockingCollection<object> BlockingCollection = new BlockingCollection<object>();
+        private int _runningId = 0;
 
-        private readonly ConcurrentDictionary<string, object> _returnData = new ConcurrentDictionary<string, object>();
+        private int _sharedMemoryId = 0;
 
-        private CancellationTokenSource _cancellationTokenSource = new CancellationTokenSource();
+        private readonly ProcessQueue<IeCommandMessage> _processQueue;
 
-        private static int _executionOrder = 0;
+        private readonly ConcurrentDictionary<string, IeCommandMessage> _returnData = new ConcurrentDictionary<string, IeCommandMessage>();
 
         public static Singleton Instance
         {
@@ -37,121 +37,111 @@ namespace BlockingCollection
 
         private Singleton()
         {
-            new Task(RaiseDataEvent).Start();
+            _processQueue = new ProcessQueue<IeCommandMessage>();
+            _processQueue.ProcessItemEvent += ProcessQueue_ProcessItemEvent;
+            _processQueue.ProcessExceptionEvent += ProcessQueue_ProcessExceptionEvent;
         }
 
         /// <summary>
-        /// 发送消息并等会返回值
+        /// 该方法对入队的每个元素进行处理
         /// </summary>
-        /// <param name="msg"></param>
-        public object SendAndReturn(string msg)
+        /// <param name="value"></param>
+        private void ProcessQueue_ProcessItemEvent(IeCommandMessage value)
         {
-            try
+            Task.Factory.StartNew(() =>
             {
-                if (!Send(msg, _cancellationTokenSource.Token)) throw new SendAndReturnException();
-
-                object resultValue = null;
-
-                var isTimeout = !Task.Factory.StartNew(() =>
+                do
                 {
-                    do
+                    value.ResultMessage = new ResultMessage
                     {
-                        resultValue = GetResultValue(msg);
-                    } while (resultValue == null);
-                }, _cancellationTokenSource.Token).Wait(5000);
+                        ReturnParameters = new
+                        {
+                            RunningId = ++_runningId
+                        }
+                    };
 
-                if (isTimeout)
-                {
-                    Console.WriteLine($"timeout -> SendAndReturn - {DateTime.Now:yyyy-mm-dd HH:mm:ss.fff}");
-                }
+                    if (_returnData.TryGetValue(value.ReturnDataDictionaryKey, out var resultIeCommand) && resultIeCommand == null)
+                    {
+                        _returnData[value.ReturnDataDictionaryKey] = value;
+                    }
 
-                return isTimeout ? throw new TimeoutException() : resultValue;
-            }
-            catch (AggregateException aggregateException)
-            {
-                return aggregateException.Message;
-            }
+                    if (_runningId == 50) Thread.Sleep(value.TimeoutMillisecond + 1000);
+
+                    Thread.Sleep(20);
+
+                    value.IsTimeout = false;
+                    value.ResultTime = DateTime.Now;
+
+                } while (value.IsTimeout);
+            }).Wait(value.TimeoutMillisecond);
+
+            if (value.IsTimeout) throw new TimeoutException();
+        }
+
+        /// <summary>
+        ///  处理异常
+        /// </summary>
+        /// <param name="obj">队列实例</param>
+        /// <param name="ex">异常对象</param>
+        /// <param name="value">出错的数据</param>
+        private void ProcessQueue_ProcessExceptionEvent(ProcessQueue<IeCommandMessage> obj, Exception ex, IeCommandMessage value)
+        {
+            obj.StopAndClear();
+            Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> end {obj.GetInternalItemCount()}");
         }
 
         /// <summary>
         /// 发送消息
         /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="cancellationToken"></param>
-        private bool Send(string msg, CancellationToken cancellationToken)
+        /// <param name="ieCommandMessage"></param>
+        /// <param name="returnDataDictionaryKey"></param>
+        /// <returns></returns>
+        private bool Send(IeCommandMessage ieCommandMessage, out string returnDataDictionaryKey)
         {
-            try
-            {
-                return _returnData.TryAdd(msg, null) && BlockingCollection.TryAdd(msg, 1000, cancellationToken);
-            }
-            catch (OperationCanceledException)
-            {
-                Console.WriteLine($"cancellation token is cancel");
-                BlockingCollection.CompleteAdding();
-                return false;
-            }
+            returnDataDictionaryKey = ieCommandMessage.ReturnDataDictionaryKey = $"BrowserCommand{ieCommandMessage.ManagedThreadId.ToString().PadLeft(3, '0')}{(++_sharedMemoryId).ToString().PadLeft(6, '0')}";
+
+            if (!_returnData.TryAdd(ieCommandMessage.ReturnDataDictionaryKey, null)) return false;
+
+            _processQueue.Enqueue(ieCommandMessage);
+            return true;
         }
 
         /// <summary>
-        /// 获取结果
+        /// 获取返回值
         /// </summary>
+        /// <param name="key"></param>
         /// <returns></returns>
-        private object GetResultValue(string key)
+        private IeCommandMessage GetReturnValue(string key)
         {
             return _returnData.TryGetValue(key, out var value) ? value : null;
         }
 
         /// <summary>
-        /// 消费数据
+        /// 发送消息，并根据消息中的超时时间等待数据返回
         /// </summary>
-        private void RaiseDataEvent()
+        /// <param name="ieCommandMessage"></param>
+        /// <returns></returns>
+        public IeCommandMessage SendAndGet(IeCommandMessage ieCommandMessage)
         {
-            foreach (var obj in BlockingCollection.GetConsumingEnumerable())
+            try
             {
-                if (BlockingCollection.IsAddingCompleted) return;
-                ExecuteDataEvent(obj, obj.ToString());
+                if (!Send(ieCommandMessage, out var key)) return null;
+
+                var startTime = DateTime.Now;
+
+                do
+                {
+                    var messageObj = GetReturnValue(key);
+
+                    if (messageObj != null) return messageObj;
+                } while (DateTime.Now - startTime < TimeSpan.FromMilliseconds(ieCommandMessage.TimeoutMillisecond));
+
+                throw new TimeoutException();
             }
-
-
-            Console.WriteLine($"blocking collection is dispose");
-        }
-
-        /// <summary>
-        /// 处理数据
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="key"></param>
-        private void ExecuteDataEvent(object obj, string key)
-        {
-            string resultMsg = null;
-            var isTimeout = !Task.Factory.StartNew(() =>
-             {
-                 if (_executionOrder == 100)
-                 {
-                     Thread.Sleep(3000);
-                 }
-                 else
-                 {
-                     resultMsg = $"{++_executionOrder} ---- {DateTime.Now:yyyy-mm-dd HH:mm:ss.fff} ---- {obj}";
-
-                     Thread.Sleep(20);
-                 }
-             }).Wait(2000);
-
-            if (isTimeout)
+            catch (Exception e)
             {
-                BlockingCollection.CompleteAdding();
-
-                _cancellationTokenSource.Cancel();
-
-                Console.WriteLine($"timeout -> complete adding");
-
-                return;
-            }
-
-            if (_returnData.ContainsKey(key))
-            {
-                _returnData[key] = resultMsg;
+                //_cancellationTokenSource.Cancel();
+                throw e;
             }
         }
     }
