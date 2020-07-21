@@ -7,10 +7,12 @@ namespace BlockingCollection
 {
     internal class Program
     {
-        private static int _runningId = 0;
-
         private static void Main(string[] args)
         {
+            new Thread(Demo).Start();
+
+            new Thread(Demo).Start();
+
             new Thread(Demo).Start();
 
             new Thread(Demo).Start();
@@ -34,7 +36,6 @@ namespace BlockingCollection
                 try
                 {
                     var returnIe = Singleton.Instance.SendAndGet(ieCommandManage);
-
                     Console.WriteLine($"after send : {JsonConvert.SerializeObject(returnIe?.ResultMessage)}");
                 }
                 catch (Exception e)

@@ -101,7 +101,8 @@ namespace BlockingCollection
 
             while (_queue.Count != 0)
             {
-                _queue.TryTake(out var item);
+                _queue.Take();
+                Console.WriteLine($"now _queue have {_queue.Count}");
             }
         }
 
