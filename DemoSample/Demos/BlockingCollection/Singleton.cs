@@ -74,7 +74,7 @@ namespace BlockingCollection
                 } while (value.IsTimeout);
             }).Wait(value.TimeoutMillisecond);
 
-            if (value.IsTimeout) 
+            if (value.IsTimeout)
                 throw new TimeoutException();
         }
 
