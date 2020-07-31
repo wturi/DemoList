@@ -87,7 +87,7 @@ namespace BlockingCollection
         private void ProcessQueue_ProcessExceptionEvent(ProcessQueue<IeCommandMessage> obj, Exception ex, IeCommandMessage value)
         {
             Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> before stop {obj.GetInternalItemCount()}");
-            obj.StopAndClear();
+            new Task(obj.StopAndClear).Start();
             Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> after stop {obj.GetInternalItemCount()}");
         }
 
