@@ -1,6 +1,6 @@
-﻿using SuperSocket.SocketBase;
+﻿using System;
 
-using System;
+using SuperSocket.SocketBase;
 
 namespace SuperSocketDemo1
 {

@@ -1,8 +1,8 @@
-﻿using SuperSocket.SocketBase;
-using SuperSocket.SocketBase.Protocol;
-
-using System;
+﻿using System;
 using System.Linq;
+
+using SuperSocket.SocketBase;
+using SuperSocket.SocketBase.Protocol;
 
 namespace SuperSocketDemo
 {

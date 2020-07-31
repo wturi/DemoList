@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BrowserCOmmandMqCmdDemo
 {
-    class Program
+    internal class Program
     {
         public enum ShowCommands : int
         {
@@ -27,8 +23,9 @@ namespace BrowserCOmmandMqCmdDemo
             SW_FORCEMINIMIZE = 11,
             SW_MAX = 11
         }
+
         [DllImport("shell32.dll")]
-        static extern IntPtr ShellExecute(
+        private static extern IntPtr ShellExecute(
             IntPtr hwnd,
             string lpOperation,
             string lpFile,
@@ -36,7 +33,7 @@ namespace BrowserCOmmandMqCmdDemo
             string lpDirectory,
             ShowCommands nShowCmd);
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             ShellExecute(IntPtr.Zero, "open", @"c:\test.flv", "", "", ShowCommands.SW_SHOWNORMAL);
             System.Console.ReadKey();

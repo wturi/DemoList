@@ -1,8 +1,8 @@
-﻿using ActivityLibrary.Mail;
-
-using System.Activities.Presentation.Metadata;
+﻿using System.Activities.Presentation.Metadata;
 using System.ComponentModel;
 using System.Drawing;
+
+using ActivityLibrary.Mail;
 
 namespace Design.Mail
 {

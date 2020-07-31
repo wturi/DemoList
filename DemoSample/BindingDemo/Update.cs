@@ -1,7 +1,7 @@
-﻿using BindingDemo.ViewModel;
-
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+
+using BindingDemo.ViewModel;
 
 namespace BindingDemo
 {

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-using System;
+﻿using System;
 
 namespace DynamicDemo
 {
@@ -12,7 +10,6 @@ namespace DynamicDemo
             //Console.WriteLine(JsonConvert.SerializeObject(returnObj));
 
             Run1();
-
 
             Console.ReadLine();
         }
