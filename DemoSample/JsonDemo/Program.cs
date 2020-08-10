@@ -23,6 +23,15 @@ namespace JsonDemo
     {
         private static void Main(string[] args)
         {
+            //Demo1();
+
+            Demo2();
+
+            Console.ReadLine();
+        }
+
+        private static void Demo1()
+        {
             var gongHui = new Employee { Name = "Gong Hui" };
             var jack = new Employee { Name = "Jack" };
 
@@ -43,8 +52,14 @@ namespace JsonDemo
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
             Console.WriteLine(json3);
-
-            Console.ReadLine();
         }
+
+
+        private static void Demo2()
+        {
+
+        }
+
     }
 }
+

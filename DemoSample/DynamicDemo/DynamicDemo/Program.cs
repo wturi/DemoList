@@ -1,5 +1,7 @@
 ﻿using System;
 
+using Newtonsoft.Json;
+
 namespace DynamicDemo
 {
     internal class Program
@@ -16,23 +18,33 @@ namespace DynamicDemo
 
         private static void Run1()
         {
-            dynamic foo = new DemoMethod();
-            //可以直接调用方法
-            foo.Run("dynamic demo run");
-
-            dynamic msg = null;
-
-            try
+            var data = new
             {
-                //直接调用方法
-                msg = foo.Msg;
-            }
-            catch (Exception e)
-            {
-                msg = foo.Msg;
-            }
+                result = 1,
+                response = new
+                {
+                    data = new
+                    {
+                        data=new
+                        {
+                            num=1,
+                        },
+                        version = "2020",
+                        result = 1
+                    }
+                },
 
-            Console.WriteLine(msg);
+            };
+
+
+            var json = JsonConvert.SerializeObject(data);
+            Console.WriteLine(json);
+
+
+            var dynamic = JsonConvert.DeserializeObject<dynamic>(json);
+
+            Console.WriteLine(dynamic.response.data.data.num);
+
             Console.ReadLine();
         }
 
