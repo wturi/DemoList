@@ -25,21 +25,18 @@ namespace DynamicDemo
                 {
                     data = new
                     {
-                        data=new
+                        data = new
                         {
-                            num=1,
+                            num = 1,
                         },
                         version = "2020",
                         result = 1
                     }
                 },
-
             };
-
 
             var json = JsonConvert.SerializeObject(data);
             Console.WriteLine(json);
-
 
             var dynamic = JsonConvert.DeserializeObject<dynamic>(json);
 
