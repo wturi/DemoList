@@ -2,9 +2,9 @@
 
 namespace Csharp80DemoCore
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             //RangeDemo.Run();
 

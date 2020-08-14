@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
+using Newtonsoft.Json;
+
 namespace BlockingCollection
 {
     /// <summary>
@@ -66,7 +68,7 @@ namespace BlockingCollection
             {
                 throw new ArgumentException("items");
             }
-
+            Console.WriteLine(JsonConvert.SerializeObject(items));
             _queue.Add(items, _canCellToken);
             DataAdded();
         }
@@ -101,7 +103,8 @@ namespace BlockingCollection
 
             while (_queue.Count != 0)
             {
-                _queue.TryTake(out var item);
+                _queue.Take();
+                Console.WriteLine($"now _queue have {_queue.Count}");
             }
         }
 

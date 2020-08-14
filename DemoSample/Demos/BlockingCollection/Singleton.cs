@@ -71,11 +71,11 @@ namespace BlockingCollection
 
                     value.IsTimeout = false;
                     value.ResultTime = DateTime.Now;
-
                 } while (value.IsTimeout);
             }).Wait(value.TimeoutMillisecond);
 
-            if (value.IsTimeout) throw new TimeoutException();
+            if (value.IsTimeout)
+                throw new TimeoutException();
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace BlockingCollection
         private void ProcessQueue_ProcessExceptionEvent(ProcessQueue<IeCommandMessage> obj, Exception ex, IeCommandMessage value)
         {
             Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> before stop {obj.GetInternalItemCount()}");
-            obj.StopAndClear();
+            new Task(obj.StopAndClear).Start();
             Console.WriteLine($"ProcessQueue_ProcessExceptionEvent -> after stop {obj.GetInternalItemCount()}");
         }
 

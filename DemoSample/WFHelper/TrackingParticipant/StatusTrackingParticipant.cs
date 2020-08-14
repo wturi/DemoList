@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-
-using System;
+﻿using System;
 using System.Activities.Tracking;
 using System.Diagnostics;
 using System.Globalization;
+
+using Newtonsoft.Json;
 
 namespace WFHelper.TrackingParticipant
 {

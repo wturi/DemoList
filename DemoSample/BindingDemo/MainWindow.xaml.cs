@@ -1,6 +1,6 @@
-﻿using BindingDemo.ViewModel;
+﻿using System.Windows;
 
-using System.Windows;
+using BindingDemo.ViewModel;
 
 namespace BindingDemo
 {

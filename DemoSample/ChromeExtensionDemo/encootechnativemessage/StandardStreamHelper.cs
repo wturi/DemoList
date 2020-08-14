@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-
-using System;
+﻿using System;
 using System.IO;
+
+using Newtonsoft.Json.Linq;
 
 namespace EncootechNativeMessage
 {

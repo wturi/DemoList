@@ -41,8 +41,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Walterlv.WeakEvents, Version=0.15.0.0, Culture=neutral, PublicKeyToken=ca7319592574d503, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Walterlv.WeakEvents.0.15.0\lib\net45\Walterlv.WeakEvents.dll</HintPath>
+    <Reference Include="Walterlv.WeakEvents, Version=5.7.1.0, Culture=neutral, PublicKeyToken=ca7319592574d503, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Walterlv.WeakEvents.5.7.1\lib\net45\Walterlv.WeakEvents.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

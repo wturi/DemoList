@@ -1,11 +1,4 @@
-﻿using ActivityLibrary.Mail;
-
-using Design;
-
-using Microsoft.CSharp.Activities;
-using Microsoft.Win32;
-
-using System;
+﻿using System;
 using System.Activities;
 using System.Activities.Core.Presentation;
 using System.Activities.Expressions;
@@ -27,6 +20,13 @@ using System.Resources;
 using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
+
+using ActivityLibrary.Mail;
+
+using Design;
+
+using Microsoft.CSharp.Activities;
+using Microsoft.Win32;
 
 using WFHelper.Executions;
 using WFHelper.Extensions;
