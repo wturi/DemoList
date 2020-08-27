@@ -1,6 +1,7 @@
 ﻿using System;
 
 using WatiN.Core;
+using WatiN.Core.Native.Chrome;
 
 namespace WaitNDemo
 {
