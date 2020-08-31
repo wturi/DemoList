@@ -23,7 +23,7 @@ namespace MonitorFolder
 
             int.TryParse(ConfigurationManager.AppSettings["IntervalTime"], out _intervalTime);
 
-            if (_sourceDirectories != null)
+            if (_sourceDirectories != null) 
                 foreach (var sourceDirectory in _sourceDirectories)
                 {
                     new Thread(() =>
