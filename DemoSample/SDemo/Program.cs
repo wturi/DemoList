@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading;
 
 using OpenQA.Selenium;
@@ -11,6 +12,15 @@ namespace SDemo
     internal class Program
     {
         private static void Main(string[] args)
+        {
+            string[] files = Directory.GetFiles("D:\\", "AipSdk.dll");
+            foreach (string dir in files)
+            {
+                Console.WriteLine(dir);
+            }
+        }
+
+        public static void Demo()
         {
             #region chrome 配置文档
 
