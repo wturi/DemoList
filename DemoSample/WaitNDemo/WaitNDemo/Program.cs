@@ -10,7 +10,7 @@ namespace WaitNDemo
         [STAThread]
         private static void Main(string[] args)
         {
-            var ie = Browser.AttachTo<IE>(Find.ByTitle("百度一下，你就知"), 2400);
+            var ie = Browser.AttachTo<FireFox>(Find.ByTitle("百度一下，你就知"), 2400);
             ie.Element(Find.ById("kw")).Focus();
 
             var element = ie.ActiveElement;
