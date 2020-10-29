@@ -1,31 +1,51 @@
 ﻿using System;
 
-using SHDocVw;
-
 namespace ActiveIETab
 {
     internal class Program
     {
         private static void Main(string[] args)
         {
-            var url = "https://encootest.chinacloudsites.cn/";
-
-            ShellWindows shellWindows = new SHDocVw.ShellWindows();
-
-            string filename;
-
-            foreach (SHDocVw.InternetExplorer ie in shellWindows)
+            var dd = 1;
+            Console.WriteLine(dd);
+            var timer = new System.Timers.Timer
             {
-                filename = System.IO.Path.GetFileNameWithoutExtension(ie.FullName).ToLower();
+                Interval = 5000
+            };
 
-                if (filename.Equals("iexplore") && ie.LocationURL.Contains(url))
+            timer.Elapsed += (obj, e) =>
+            {
+                dd = 2;
+                timer.Stop();
+            };
 
-                {
-                    new TabActivator((IntPtr)ie.HWND).ActivateByTabsUrl(ie.LocationURL);
+            timer.Start();
 
-                    break;
-                }
-            }
+            Console.WriteLine(dd);
+
+            Console.ReadLine();
         }
+
+        //private static void Demo()
+        //{
+        //    var url = "https://encootest.chinacloudsites.cn/";
+
+        //    ShellWindows shellWindows = new SHDocVw.ShellWindows();
+
+        //    string filename;
+
+        //    foreach (SHDocVw.InternetExplorer ie in shellWindows)
+        //    {
+        //        filename = System.IO.Path.GetFileNameWithoutExtension(ie.FullName).ToLower();
+
+        //        if (filename.Equals("iexplore") && ie.LocationURL.Contains(url))
+
+        //        {
+        //            new TabActivator((IntPtr)ie.HWND).ActivateByTabsUrl(ie.LocationURL);
+
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }
