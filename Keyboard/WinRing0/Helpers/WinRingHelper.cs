@@ -334,7 +334,7 @@ namespace WinRing0.Helpers
         private static readonly List<char> SymbolChar = new List<char>
             {'!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', '"', '<', '>', '?', '~',};
 
-        private static readonly List<string> FunctionKey = new List<string> { "[enter]", "[esc]", "[alt]", "[tab]" };
+        private static readonly List<string> FunctionKey = new List<string> { "[enter]", "[esc]", "[alt]", "[tab]", "[backspace]", "[Clear]" };
 
 
         private static char ShiftConvert(char chr)
@@ -401,6 +401,8 @@ namespace WinRing0.Helpers
                 case "[esc]": result = Key.KC_CONTROL_Esc; break;
                 case "[alt]": result = Key.KC_CONTROL_Alt; break;
                 case "[tab]": result = Key.KC_CONTROL_Tab; break;
+                case "[backspace]": result = Key.KC_CONTROL_BackSpace; break;
+                case "[clear]": result = Key.KC_CONTROL_Clear; break;
             }
 
             KeyDown(result);
