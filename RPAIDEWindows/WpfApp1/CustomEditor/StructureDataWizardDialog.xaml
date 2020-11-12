@@ -1,0 +1,170 @@
+﻿<windows:WindowBase x:Class="WpfApp1.CustomEditor.StructureDataWizardDialog"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:WpfApp1.CustomEditor"
+            mc:Ignorable="d"
+            xmlns:localization="clr-namespace:WpfApp1.Properties"
+            xmlns:windows="clr-namespace:Encoo.Common.UI.Windows;assembly=Encoo.Common.UI"
+            xmlns:ap="clr-namespace:WpfApp1.AttachedProperties"
+            TitleBarVisibility="Visible"
+            UseDefaultIcon="True"
+            ResizeMode="NoResize"
+            Title="获取结构化数据"
+            FontSize="12"
+            Foreground="#32373C"
+            SizeToContent="Height"
+            MinHeight="184"
+            MaxHeight="500"
+            MinWidth="366"
+            Width="406">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Encoo.Common.UI;component/Themes/Generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="16">
+        <!--数据展示页面-->
+        <Grid Name="DataShow" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="24"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="44"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--输入行-->
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <!--最大提取数-->
+                <Grid Grid.Column="0" Margin="0">
+                    <TextBlock HorizontalAlignment="Left" Width="72" Height="16" Margin="0,4,0,0" Text="最大提取条数"></TextBlock>
+                    <TextBox HorizontalAlignment="Left" Width="90" Height="24" Margin="84,0,0,0" Name="MaxExtractNum"></TextBox>
+                </Grid>
+                <!--输出数据表-->
+                <Grid Grid.Column="1" Margin="0">
+                    <TextBlock Text="输出数据表"  HorizontalAlignment="Right" Margin="0,4,170,0"></TextBlock>
+                    <TextBox HorizontalAlignment="Right" Height="24" Width="158" Margin="12,0,0,0"></TextBox>
+                </Grid>
+            </Grid>
+            <!--数据表格-->
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="0">
+                <TextBlock HorizontalAlignment="left" VerticalAlignment="Top" Width="52" Height="18" Margin="0,16,0,0" FontSize="13" Text="预览数据"></TextBlock>
+                <ListView BorderBrush="#e4e9f2" Margin="0,46,0,0">
+                </ListView>
+            </Grid>
+            <!--底部按钮-->
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0" VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" HorizontalAlignment="Left"  Width="130" Height="28" Style="{StaticResource DefaultButtonStyle}" Content="继续获取相关数据" Name="GetMoreData" Click="GetMoreData_OnClick" />
+                <Button Grid.Column="1" HorizontalAlignment="Right" Width="72" Margin="0,0,84,0" Height="28" Style="{StaticResource DefaultButtonStyle}" Content="后退" Name="DataShowBack" Click="DataShowBack_OnClick" />
+                <Button Grid.Column="1" HorizontalAlignment="Right" Width="72" Height="28" Style="{StaticResource PrimaryThemeButtonStyle}" Content="完成" Name="DataShowComplete" Click="DataShowComplete_OnClick" />
+            </Grid>
+        </Grid>
+
+        <!--是否获取表格全部数据-->
+        <Grid Name="IsGetTableData" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--提示文字-->
+            <Grid Grid.Row="0" Margin="0">
+                <TextBlock Margin="0" >您选中了一个Table，是否获取整表全部数据？</TextBlock>
+            </Grid>
+            <!--按钮-->
+            <Grid Grid.Row="1" Margin="0">
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource DefaultButtonStyle}" Content="取消" Name="IsGetTableDataCancel" Click="IsGetTableDataCancel_OnClick"></Button>
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0,0,84,0" Style="{StaticResource PrimaryThemeButtonStyle}" Content="导入" Name="IsGetTableDataImport" Click="IsGetTableDataImport_OnClick"></Button>
+            </Grid>
+        </Grid>
+
+        <!--第一个元素-->
+        <Grid Name="FirstElement" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--提示文字-->
+            <Grid Grid.Row="0" Margin="0">
+                <TextBlock Margin="0" >请指定数据源内第一个元素</TextBlock>
+            </Grid>
+            <!--按钮-->
+            <Grid Grid.Row="1" Margin="0">
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource PrimaryThemeButtonStyle}" Content="下一步" Name="FirstElementNext" Click="FirstElementNext_OnClick"></Button>
+            </Grid>
+        </Grid>
+
+        <!--第二个元素-->
+        <Grid Margin="0" Name="SecondElement" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--提示文字-->
+            <Grid Grid.Row="0" Margin="0">
+                <TextBlock Margin="0" >请指定数据源内第二个元素</TextBlock>
+            </Grid>
+            <!--按钮-->
+            <Grid Grid.Row="1" Margin="0">
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0,0,84,0" Style="{StaticResource DefaultButtonStyle}" Content="后退" Name="SecondElementBack" Click="SecondElementBack_OnClick"></Button>
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource PrimaryThemeButtonStyle}" Content="下一步" Name="SecondElementNext" Click="SecondElementNext_OnClick"></Button>
+            </Grid>
+        </Grid>
+
+        <!--重新指定-->
+        <Grid Margin="0" Name="ToSpecify" Visibility="Hidden">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--提示文字-->
+            <Grid Grid.Row="0" Margin="0">
+                <TextBlock Margin="0" >你指定的元素不支持获取结构化数据，请重新制定。</TextBlock>
+            </Grid>
+            <!--按钮-->
+            <Grid Grid.Row="1" Margin="0">
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource PrimaryThemeButtonStyle}" Content="确定" Name="ToSpecifySure" Click="ToSpecifySure_OnClick"></Button>
+            </Grid>
+        </Grid>
+
+        <!--获取更多数据-->
+        <Grid Margin="0" Name="MoreData">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*" ></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="0,0,0,1" BorderBrush="#E4E9F2">
+                <Grid  Margin="0 ,0,0,16">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Width="72" Text="文本列名称："></TextBlock>
+                    <TextBox HorizontalAlignment="Right" VerticalAlignment="Center" Width="269" Height="24" ></TextBox>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1" Height="auto">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="获取更多数据" Margin="0,16,0,12" HorizontalAlignment="Left" Foreground="#3E434D"></TextBlock>
+                    <local:TableControl x:Name="MoreDataTable" Grid.Row="1" Margin="0,0,0,40"></local:TableControl>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0,0,84,0" Style="{StaticResource DefaultButtonStyle}" Content="后退" Name="MoreDataBack" Click="MoreDataBack_OnClick"></Button>
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource PrimaryThemeButtonStyle}" Content="下一步" Name="MoreDataNext" Click="MoreDataNext_OnClick" ></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</windows:WindowBase>
