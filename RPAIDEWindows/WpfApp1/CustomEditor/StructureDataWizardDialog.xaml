@@ -18,7 +18,8 @@
             MinHeight="184"
             MaxHeight="500"
             MinWidth="366"
-            Width="406">
+            Height="184"
+            Width="366">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -139,7 +140,7 @@
         </Grid>
 
         <!--获取更多数据-->
-        <Grid Margin="0" Name="MoreData">
+        <Grid Margin="0" Name="MoreData" Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*" ></RowDefinition>
@@ -164,6 +165,22 @@
             <Grid Grid.Row="2">
                 <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0,0,84,0" Style="{StaticResource DefaultButtonStyle}" Content="后退" Name="MoreDataBack" Click="MoreDataBack_OnClick"></Button>
                 <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource PrimaryThemeButtonStyle}" Content="下一步" Name="MoreDataNext" Click="MoreDataNext_OnClick" ></Button>
+            </Grid>
+        </Grid>
+
+        <!--无法识别-->
+        <Grid Margin="0" Name="UnableToIdentify">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="28"></RowDefinition>
+            </Grid.RowDefinitions>
+            <!--提示文字-->
+            <Grid Grid.Row="0" Margin="0">
+                <TextBlock Margin="0" TextWrapping="Wrap">无法识别您所指定元素的规律,无法获取其结构化数据.请重新指定数据源内第二个元素</TextBlock>
+            </Grid>
+            <!--按钮-->
+            <Grid Grid.Row="1" Margin="0">
+                <Button HorizontalAlignment="Right" Width="72" Height="28" Margin="0" Style="{StaticResource DefaultButtonStyle}" Content="确认" Name="UnableToIdentifySure" Click="UnableToIdentifySure_OnClick" />
             </Grid>
         </Grid>
     </Grid>

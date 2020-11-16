@@ -222,6 +222,17 @@ namespace WpfApp1.CustomEditor
         {
 
         }
+
+        /// <summary>
+        /// 无法识别第二个元素,返回到第二个元素页面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void UnableToIdentifySure_OnClick(object sender, RoutedEventArgs e)
+        {
+            PageSwitch(StructureDataWizardDialogPage.UnableToIdentify, _pageLink.Peek());
+            _pageLink.Pop();
+        }
     }
 
     public enum StructureDataWizardDialogPage
@@ -254,6 +265,10 @@ namespace WpfApp1.CustomEditor
         /// <summary>
         /// 获取更多页面
         /// </summary>
-        MoreData
+        MoreData,
+        /// <summary>
+        /// 无法识别第二个元素
+        /// </summary>
+        UnableToIdentify
     }
 }
